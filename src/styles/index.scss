@@ -1,4 +1,7 @@
-@import url('./css/normalize.css');
-@import url('./css/fonts.css');
+@import './vendor/normalize.scss';
+@import './vendor/fonts.scss';
 
 @import './abstracts/variables/colors.scss';
+@import './abstracts/placeholders.scss';
+
+@import './globals.scss';
