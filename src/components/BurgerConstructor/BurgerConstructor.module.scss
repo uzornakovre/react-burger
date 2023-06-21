@@ -2,6 +2,76 @@
 
 .burgerConstructor {
   width: 100%;
-  height: 400px;
-  background-color: $color-background-1;
+}
+
+.resultList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+.middleList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  max-height: 465px;
+  margin-right: -16px;
+  padding-right: 8px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.item_top,
+.item_bottom {
+  transition: all .2s linear;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: .8;
+  }
+}
+
+.middleItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .2s linear;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    opacity: .8;
+    transform: scale(1.01);
+  }
+}
+
+.orderInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  padding-right: 16px;
+}
+
+.totalPrice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.totalPriceValue {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price-l,
+    $line-height: $font-line-height-price-l,
+    $color: $color-text-1
+  )
 }
