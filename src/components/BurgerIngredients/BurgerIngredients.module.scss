@@ -1,9 +1,5 @@
 @import '../../styles/index.scss';
 
-// .burgerIngredients {
-//   padding-left: 20px;
-// }
-
 .title {
   @include renderFont(
     $weight: 700,
@@ -16,4 +12,10 @@
 .tabs {
   display: flex;
   justify-content: space-between;
+}
+
+.categories {
+  max-height: 750px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

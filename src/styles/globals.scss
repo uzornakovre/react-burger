@@ -1,3 +1,17 @@
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*:-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border-radius: 0;
+  border: none;
+}
+
 html {
   font-size: 10px; // для удобного использования rem в переменных
 }
