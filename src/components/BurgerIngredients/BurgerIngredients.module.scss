@@ -1,0 +1,19 @@
+@import '../../styles/index.scss';
+
+// .burgerIngredients {
+//   padding-left: 20px;
+// }
+
+.title {
+  @include renderFont(
+    $weight: 700,
+    $size: $font-size-heading-l,
+    $line-height: $font-line-height-heading-l,
+    $color: $color-text-1
+  )
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
