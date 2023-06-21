@@ -1,3 +1,7 @@
+html {
+  font-size: 10px; // для удобного использования rem в переменных
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,7 +21,7 @@ ul,
 ol,
 a,
 button {
-  @extend %indents-reset;
+  @extend %indents-reset; // обнуление отступов
 }
 
 a {

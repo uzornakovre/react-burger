@@ -1,0 +1,13 @@
+@mixin renderFont(
+  $family: 'JetBrainsMono',
+  $weight: 400,
+  $size: 16px,
+  $line-height: 1.5,
+  $color: $color-text-1
+) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+}
