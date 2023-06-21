@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import Category from './Category/Category';
 import styles from './BurgerIngredients.module.scss';
 
 class BurgerIngredients extends React.Component {
@@ -27,7 +28,13 @@ class BurgerIngredients extends React.Component {
         </div>
         <ul className={styles.categories}>
           <li className={styles.categoriesItem}>
-            
+            <Category title="Булка" type="bun" />
+          </li>
+          <li className={styles.categoriesItem}>
+            <Category title="Соусы" type="sauce" />
+          </li>
+          <li className={styles.categoriesItem}>
+            <Category title="Начинки" type="main" />
           </li>
         </ul>
       </section>
