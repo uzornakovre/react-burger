@@ -35,6 +35,7 @@ class AppHeader extends React.Component {
             </ul>
           </nav>
           <div className={appHeaderStyles.logo}><Logo /></div>
+          <h1 className={appHeaderStyles.title} lang="en">Stellar Burgers</h1>
         </div>
       </header>
     )
