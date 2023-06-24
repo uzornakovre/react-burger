@@ -1,11 +1,11 @@
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
-import mainStyles from './Main.module.scss';
+import styles from './Content.module.scss';
 
-function Main() {
+function Content() {
   return (
-    <main className={mainStyles.main}>
-      <div className={mainStyles.container}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <BurgerIngredients />
         <BurgerConstructor />
       </div>
@@ -13,4 +13,4 @@ function Main() {
   )
 }
 
-export default Main;
+export default Content;
