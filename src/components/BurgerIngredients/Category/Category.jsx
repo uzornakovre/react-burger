@@ -1,18 +1,15 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import INGREDIENTS from '../../../utils/data/INGREDIENTS';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
-class Category extends React.Component {
-  state = {
-    items: [],
-  }
+function Category({ title, type }) {
+  const [items, setItems] = useState([]);
 
-  componentDidMount() {
-    this.setState({
-      ...this.state,
-      items: INGREDIENTS.filter(i => i.type === this.props.type).map((i) => (
+  useEffect(() => {
+    setItems(
+      INGREDIENTS.filter(i => i.type === type).map((i) => (
         <li className={styles.listItem} key={`listItem-${i._id}`}>
           <Item 
             key={`listItem-${i._id}`}
@@ -26,19 +23,18 @@ class Category extends React.Component {
             image={i.image} />
         </li>
       ))
-    });
-  }
-
-  render() {
-    return (
-      <div className={`${styles.category}`}>
-        <h3 className={styles.title}>{this.props.title}</h3>
-        <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>
-          {this.state.items}
-        </ul>
-      </div>
     )
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div className={`${styles.category}`}>
+      <h3 className={styles.title}>{title}</h3>
+      <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>
+        {items}
+      </ul>
+    </div>
+  )
 }
 
 Category.propTypes = {

@@ -1,5 +1,4 @@
-import React from 'react';
-import appHeaderStyles from './AppHeader.module.scss';
+import styles from './AppHeader.module.scss';
 import { 
   BurgerIcon,
   ListIcon,
@@ -7,39 +6,37 @@ import {
   ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-class AppHeader extends React.Component {
-  render() {
-    return (
-      <header className={appHeaderStyles.header}>
-        <div className={appHeaderStyles.container}>
-          <nav className={appHeaderStyles.navigation}>
-            <ul className={appHeaderStyles.navList}>
-              <li className={`${appHeaderStyles.navItem} p-5 mr-2`}>
-                <a className={appHeaderStyles.navLink} href='#'>
-                  <BurgerIcon type="primary" />
-                  <span className={`${appHeaderStyles.navLinkText} pl-2`}>Конструктор</span>
-                </a>               
-              </li>
-              <li className={`${appHeaderStyles.navItem} p-5 mr-2`}>
-                <a className={`${appHeaderStyles.navLink} ${appHeaderStyles.inactive}`} href='#'>
-                  <ListIcon type="secondary" />
-                  <span className={`${appHeaderStyles.navLinkText} pl-2`}>Лента заказов</span>
-                </a>               
-              </li>
-              <li className={`${appHeaderStyles.navItem} p-5`}>
-                <a className={`${appHeaderStyles.navLink} ${appHeaderStyles.inactive}`} href='#'>
-                  <ProfileIcon type="secondary" />
-                  <span className={`${appHeaderStyles.navLinkText} pl-2`}>Личный кабинет</span>
-                </a>               
-              </li>
-            </ul>
-          </nav>
-          <div className={appHeaderStyles.logo}><Logo /></div>
-          <h1 className={appHeaderStyles.title} lang="en">Stellar Burgers</h1>
-        </div>
-      </header>
-    )
-  }
+function AppHeader() {
+  return (
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <nav className={styles.navigation}>
+          <ul className={styles.navList}>
+            <li className={`${styles.navItem} p-5 mr-2`}>
+              <a className={styles.navLink} href='#'>
+                <BurgerIcon type="primary" />
+                <span className={`${styles.navLinkText} pl-2`}>Конструктор</span>
+              </a>               
+            </li>
+            <li className={`${styles.navItem} p-5 mr-2`}>
+              <a className={`${styles.navLink} ${styles.inactive}`} href='#'>
+                <ListIcon type="secondary" />
+                <span className={`${styles.navLinkText} pl-2`}>Лента заказов</span>
+              </a>               
+            </li>
+            <li className={`${styles.navItem} p-5`}>
+              <a className={`${styles.navLink} ${styles.inactive}`} href='#'>
+                <ProfileIcon type="secondary" />
+                <span className={`${styles.navLinkText} pl-2`}>Личный кабинет</span>
+              </a>               
+            </li>
+          </ul>
+        </nav>
+        <div className={styles.logo}><Logo /></div>
+        <h1 className={styles.title} lang="en">Stellar Burgers</h1>
+      </div>
+    </header>
+  )
 }
 
 export default AppHeader;
