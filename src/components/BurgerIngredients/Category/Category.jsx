@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import INGREDIENTS from '../../../utils/data/INGREDIENTS';
+import INGREDIENTS from '../../../utils/data/ingredients';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
