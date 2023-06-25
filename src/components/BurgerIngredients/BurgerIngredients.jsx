@@ -6,21 +6,21 @@ import styles from './BurgerIngredients.module.scss';
 function BurgerIngredients() {
   const [current, setCurrent] = useState('one');
 
-  function setCurrentTab(evt) {
-    setCurrent(evt);
-  }
+  // function setCurrentTab(evt) {
+  //   setCurrent(evt);
+  // }
   
   return (
     <section className={`${styles.burgerIngredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
       <div className={`${styles.tabs} mt-5 mb-10`}>
-        <Tab value="one" active={current === 'one'} onClick={setCurrentTab}>
+        <Tab value="one" active={current === 'one'} onClick={(evt) => setCurrent(evt)}>
           Булки
         </Tab>
-        <Tab value="two" active={current === 'two'} onClick={setCurrentTab}>
+        <Tab value="two" active={current === 'two'} onClick={(evt) => setCurrent(evt)}>
           Соусы
         </Tab>
-        <Tab value="three" active={current === 'three'} onClick={setCurrentTab}>
+        <Tab value="three" active={current === 'three'} onClick={(evt) => setCurrent(evt)}>
           Начинки
         </Tab>
       </div>
