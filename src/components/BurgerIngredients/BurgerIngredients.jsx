@@ -5,10 +5,6 @@ import styles from './BurgerIngredients.module.scss';
 
 function BurgerIngredients() {
   const [current, setCurrent] = useState('one');
-
-  // function setCurrentTab(evt) {
-  //   setCurrent(evt);
-  // }
   
   return (
     <section className={`${styles.burgerIngredients} mt-10`}>
