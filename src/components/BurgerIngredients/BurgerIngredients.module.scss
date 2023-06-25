@@ -1,0 +1,21 @@
+@import '../../styles/index.scss';
+
+.title {
+  @include renderFont(
+    $weight: 700,
+    $size: $font-size-heading-l,
+    $line-height: $font-line-height-heading-l,
+    $color: $color-text-1
+  )
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories {
+  max-height: 750px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

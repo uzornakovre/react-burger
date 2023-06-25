@@ -1,0 +1,71 @@
+@import '../../styles/index.scss';
+
+.header {
+  color: $color-text-1;
+  background-color: $color-background-1;
+  
+  @include renderFont();
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1280px;
+  height: inherit;
+  margin: 0 auto;
+}
+
+.navigation {
+  width: 100%;
+}
+
+.navList {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.navItem {
+  margin: 12px 0;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all .2s linear;
+
+  &:last-of-type {
+    margin-left: auto;
+  }
+
+  &:hover {
+    background-color: $color-background-2;
+  }
+
+  &:active {
+    opacity: .7;
+  }
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  color: $color-text-1;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  width: 0;
+  height: 0;
+  transform: scale(0);
+  visibility: hidden;
+}
+
+.inactive {
+  color: $color-text-2;
+}

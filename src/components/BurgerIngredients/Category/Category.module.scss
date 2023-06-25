@@ -1,0 +1,13 @@
+@import '../../../styles/index.scss';
+
+.title {
+  @include renderFont(
+    $size: $font-size-heading
+  )
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}

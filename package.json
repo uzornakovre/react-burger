@@ -40,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.63.4",
+    "@babel/plugin-proposal-private-property-in-object": ""
   }
 }
