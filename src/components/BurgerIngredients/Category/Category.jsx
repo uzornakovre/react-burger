@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import INGREDIENTS from '../../../utils/data/ingredients';
+import ingredients from '../../../utils/data/ingredients';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
@@ -9,7 +9,7 @@ function Category({ title, type }) {
 
   useEffect(() => {
     setItems(
-      INGREDIENTS.filter(i => i.type === type).map((i) => (
+      ingredients.filter(i => i.type === type).map((i) => (
         <li className={styles.listItem} key={`listItem-${i._id}`}>
           <Item 
             key={`listItem-${i._id}`}
