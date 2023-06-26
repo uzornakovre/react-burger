@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 import Category from './Category/Category';
 import styles from './BurgerIngredients.module.scss';
 
-function BurgerIngredients() {
+function BurgerIngredients({ onIngredientClick }) {
   const [current, setCurrent] = useState('one');
   
   return (
@@ -22,17 +23,21 @@ function BurgerIngredients() {
       </div>
       <ul className={styles.categories}>
         <li className={styles.categoriesItem}>
-          <Category title="Булка" type="bun" />
+          <Category title="Булка" type="bun" onIngredientClick={onIngredientClick} />
         </li>
         <li className={styles.categoriesItem}>
-          <Category title="Соусы" type="sauce" />
+          <Category title="Соусы" type="sauce" onIngredientClick={onIngredientClick} />
         </li>
         <li className={styles.categoriesItem}>
-          <Category title="Начинки" type="main" />
+          <Category title="Начинки" type="main" onIngredientClick={onIngredientClick} />
         </li>
       </ul>
     </section>
   )
+}
+
+BurgerIngredients.propTypes = {
+  onIngredientClick: PropTypes.func.isRequired
 }
 
 export default BurgerIngredients;

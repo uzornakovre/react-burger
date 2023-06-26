@@ -1,7 +1,8 @@
 import { ConstructorElement, CurrencyIcon, Button, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.scss';
+import PropTypes from 'prop-types';
 
-function BurgerConstructor() {
+function BurgerConstructor({ onOrderClick }) {
   return (
     <section className={`${styles.burgerConstructor} mt-25`}>
       <ul className={styles.resultList}>
@@ -97,10 +98,18 @@ function BurgerConstructor() {
           <span className={styles.totalPriceValue}>450</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="large">Оформить заказ</Button>
+        <Button 
+          htmlType="button" 
+          type="primary" 
+          size="large"
+          onClick={onOrderClick}>Оформить заказ</Button>
       </div>
     </section>
   )
+}
+
+BurgerConstructor.propTypes = {
+  onOrderClick: PropTypes.func.isRequired
 }
 
 export default BurgerConstructor;

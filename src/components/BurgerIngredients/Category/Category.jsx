@@ -4,12 +4,15 @@ import { IngredientsListContext } from '../../../contexts/IngredientsListContext
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
-function Category({ title, type }) {
+function Category({ title, type, onIngredientClick }) {
   const ingredientsList = useContext(IngredientsListContext);
 
   const ingredients = useMemo(() =>
     ingredientsList.filter(i => i.type === type).map((i) => (
-      <li className={styles.listItem} key={`listItem-${i._id}`}>
+      <li 
+        className={styles.listItem}
+        key={`listItem-${i._id}`}
+        onClick={onIngredientClick}>
         <Item 
           _id={i._id}
           name={i.name}
@@ -37,6 +40,7 @@ function Category({ title, type }) {
 Category.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  onIngredientClick: PropTypes.func.isRequired
 }; 
 
 export default Category;
