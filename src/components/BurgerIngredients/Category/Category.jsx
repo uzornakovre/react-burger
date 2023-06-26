@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import INGREDIENTS from '../../../utils/data/ingredients';
+import { IngredientsListContext } from '../../../contexts/IngredientsListContext';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
 function Category({ title, type }) {
   const [items, setItems] = useState([]);
+  const ingredientsList = useContext(IngredientsListContext);
 
   useEffect(() => {
+    console.log(ingredientsList)
     setItems(
-      INGREDIENTS.filter(i => i.type === type).map((i) => (
+      ingredientsList.filter(i => i.type === type).map((i) => (
         <li className={styles.listItem} key={`listItem-${i._id}`}>
           <Item 
             key={`listItem-${i._id}`}
