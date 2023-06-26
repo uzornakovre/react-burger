@@ -1,39 +1,34 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { IngredientsListContext } from '../../../contexts/IngredientsListContext';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
 function Category({ title, type }) {
-  const [items, setItems] = useState([]);
   const ingredientsList = useContext(IngredientsListContext);
 
-  useEffect(() => {
-    console.log(ingredientsList)
-    setItems(
-      ingredientsList.filter(i => i.type === type).map((i) => (
-        <li className={styles.listItem} key={`listItem-${i._id}`}>
-          <Item 
-            key={`listItem-${i._id}`}
-            name={i.name}
-            type={i.type}
-            proteins={i.proteins}
-            fat={i.fat}
-            carbohydrates={i.carbohydrates}
-            calories={i.calories}
-            price={i.price}
-            image={i.image} />
-        </li>
-      ))
-    )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const ingredients = useMemo(() =>
+    ingredientsList.filter(i => i.type === type).map((i) => (
+      <li className={styles.listItem} key={`listItem-${i._id}`}>
+        <Item 
+          _id={i._id}
+          name={i.name}
+          type={i.type}
+          proteins={i.proteins}
+          fat={i.fat}
+          carbohydrates={i.carbohydrates}
+          calories={i.calories}
+          price={i.price}
+          image={i.image} />
+      </li>
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    )), [ingredientsList]);
 
   return (
     <div className={`${styles.category}`}>
       <h3 className={styles.title}>{title}</h3>
       <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>
-        {items}
+        {ingredients}
       </ul>
     </div>
   )
