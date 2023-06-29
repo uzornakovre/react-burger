@@ -3,9 +3,9 @@
 .modal {
   position: relative;
   display: flex;
+  box-sizing: border-box;
   width: 720px;
-  height: 618px;
-  padding: 40px;
+  padding: 40px 40px 60px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;

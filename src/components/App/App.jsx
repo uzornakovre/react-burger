@@ -8,6 +8,7 @@ import { IngredientsListContext } from '../../contexts/IngredientsListContext';
 
 function App() {
   const [ingredientsList, setIngredientsList] = useState([]);
+  const [currentIngredient, setCurrentIngredient] = useState({});
   const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
 
@@ -21,7 +22,9 @@ function App() {
     });
   }, []);
 
-  function handleIngredientClick() {
+  function handleIngredientClick(item) {
+    console.log(item)
+    setCurrentIngredient(item);
     setIsIngredientDetailsModalOpen(true);
   }
 
@@ -64,9 +67,11 @@ function App() {
           onIngredientClick={handleIngredientClick}
           onOrderClick={handleOrderClick} />
         <ModalOverlay
-          isOpen={isIngredientDetailsModalOpen || isOrderDetailsModalOpen}
+          isIngredientDetailsModalOpen={isIngredientDetailsModalOpen}
+          isOrderDetailsModalOpen={isOrderDetailsModalOpen}
           onClose={closeAllModals}
-          onOverlayClick={handleModalOverlayClick}/>
+          onOverlayClick={handleModalOverlayClick}
+          currentIngredient={currentIngredient} />
       </div>
     </IngredientsListContext.Provider>
   );

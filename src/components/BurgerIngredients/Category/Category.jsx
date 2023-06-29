@@ -12,7 +12,7 @@ function Category({ title, type, onIngredientClick }) {
       <li 
         className={styles.listItem}
         key={`listItem-${i._id}`}
-        onClick={onIngredientClick}>
+        onClick={() => onIngredientClick(i)}>
         <Item 
           _id={i._id}
           name={i.name}
