@@ -35,9 +35,10 @@
 }
 
 .type {
-  @include renderFont();
+  @include renderFont(
+    $color: $color-text-2
+  );
 
-  color: $color-text-2;
   text-align: center;
 }
 
@@ -45,9 +46,9 @@
   @include renderFont(
     $family: $font-family-additional,
     $size: $font-size-price,
-    $line-height: $font-line-height-price
+    $line-height: $font-line-height-price,
+    $color: $color-text-2
   );
 
-  color: $color-text-2;
   text-align: center;
 }
