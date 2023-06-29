@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { ConstructorElement, CurrencyIcon, Button, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.scss';
-import PropTypes from 'prop-types';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
-function BurgerConstructor({ onOrderClick }) {
+function BurgerConstructor() {
+  const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
+
+  function handleOrderClick() {
+    setIsOrderDetailsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsOrderDetailsModalOpen(false);
+  }
+
   return (
     <section className={`${styles.burgerConstructor} mt-25`}>
       <ul className={styles.resultList}>
@@ -102,14 +114,17 @@ function BurgerConstructor({ onOrderClick }) {
           htmlType="button" 
           type="primary" 
           size="large"
-          onClick={onOrderClick}>Оформить заказ</Button>
+          onClick={handleOrderClick}>Оформить заказ</Button>
       </div>
+      <ModalOverlay
+        isOpen={isOrderDetailsModalOpen}
+        onClose={closeModal}
+        title=""
+      >
+        <OrderDetails />
+      </ModalOverlay>
     </section>
   )
-}
-
-BurgerConstructor.propTypes = {
-  onOrderClick: PropTypes.func.isRequired
 }
 
 export default BurgerConstructor;

@@ -1,46 +1,51 @@
 import styles from "./ModalOverlay.module.scss";
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
-import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import OrderDetails from "../OrderDetails/OrderDetails";
 
 const modalRoot = document.getElementById("react-modals");
 
-function ModalOverlay({
-  onClose,
-  onOverlayClick,
-  isIngredientDetailsModalOpen,
-  isOrderDetailsModalOpen,
-  currentIngredient
-}) {
+function ModalOverlay({ isOpen, onClose, title, children }) {
 
-  const [isOpen, setIsOpen] = useState(false);
+  function handleModalOverlayClick(evt) {
+    evt.target.classList.forEach((className) => {
+      if (className.includes('opened')) {
+        onClose();
+      }
+    });
+  }
 
   useEffect(() => {
-    isIngredientDetailsModalOpen || isOrderDetailsModalOpen ? setIsOpen(true) : setIsOpen(false);
-  }, [isIngredientDetailsModalOpen, isOrderDetailsModalOpen]);
+    function handleEscClick(evt) {
+      if (evt.key === 'Escape') {
+        onClose();
+      }
+    }
+    if (isOpen) {
+          document.addEventListener('keydown', handleEscClick);
+        }
+      return () => {
+        document.removeEventListener('keydown', handleEscClick);
+      }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   return createPortal(
     <div
       className={`${styles.modal_overlay} ${isOpen ? styles.opened : ""}`}
-      onMouseDown={onOverlayClick}
+      onMouseDown={handleModalOverlayClick}
     >
-      <Modal onClose={onClose} title={isIngredientDetailsModalOpen ? 'Детали ингредиента' : ''}>
-        {isIngredientDetailsModalOpen && <IngredientDetails currentIngredient={currentIngredient} />}
-        {isOrderDetailsModalOpen && <OrderDetails />}
-      </Modal>
+      <Modal onClose={onClose} title={title}>{children}</Modal>
     </div>,
     modalRoot
   );
 }
 
 ModalOverlay.propTypes = {
-  isIngredientDetailsModalOpen: PropTypes.bool.isRequired,
-  isOrderDetailsModalOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func.isRequired,
+  title: PropTypes.string
 };
 
 export default ModalOverlay;

@@ -2,10 +2,23 @@ import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import Category from './Category/Category';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
+import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import styles from './BurgerIngredients.module.scss';
 
-function BurgerIngredients({ onIngredientClick, ingredientsList }) {
+function BurgerIngredients({ ingredientsList }) {
   const [current, setCurrent] = useState('one');
+  const [currentIngredient, setCurrentIngredient] = useState({});
+  const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
+
+  function handleIngredientClick(item) {
+    setCurrentIngredient(item);
+    setIsIngredientDetailsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsIngredientDetailsModalOpen(false);
+  }
   
   return (
     <section className={`${styles.burgerIngredients} mt-10`}>
@@ -26,30 +39,36 @@ function BurgerIngredients({ onIngredientClick, ingredientsList }) {
           <Category
             title="Булка"
             type="bun"
-            onIngredientClick={onIngredientClick}
+            onIngredientClick={handleIngredientClick}
             ingredientsList={ingredientsList} />
         </li>
         <li className={styles.categoriesItem}>
           <Category
             title="Соусы"
             type="sauce"
-            onIngredientClick={onIngredientClick}
+            onIngredientClick={handleIngredientClick}
             ingredientsList={ingredientsList} />
         </li>
         <li className={styles.categoriesItem}>
           <Category
             title="Начинки"
             type="main"
-            onIngredientClick={onIngredientClick}
+            onIngredientClick={handleIngredientClick}
             ingredientsList={ingredientsList} />
         </li>
       </ul>
+      <ModalOverlay
+        isOpen={isIngredientDetailsModalOpen}
+        onClose={closeModal}
+        currentIngredient={currentIngredient}
+        title="Детали ингредиента">
+          <IngredientDetails currentIngredient={currentIngredient} />
+        </ModalOverlay>
     </section>
   )
 }
 
 BurgerIngredients.propTypes = {
-  onIngredientClick: PropTypes.func.isRequired,
   ingredientsList: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,

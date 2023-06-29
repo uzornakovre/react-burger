@@ -3,20 +3,18 @@ import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import PropTypes from 'prop-types';
 import styles from './Content.module.scss';
 
-function Content({ onIngredientClick, onOrderClick, ingredientsList}) {
+function Content({ ingredientsList}) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <BurgerIngredients onIngredientClick={onIngredientClick} ingredientsList={ingredientsList} />
-        <BurgerConstructor onOrderClick={onOrderClick} />
+        <BurgerIngredients ingredientsList={ingredientsList} />
+        <BurgerConstructor />
       </div>
     </main>
   )
 }
 
 Content.propTypes = {
-  onIngredientClick: PropTypes.func.isRequired,
-  onOrderClick: PropTypes.func.isRequired,
   ingredientsList: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
