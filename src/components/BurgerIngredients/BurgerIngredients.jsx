@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Category from './Category/Category';
 import styles from './BurgerIngredients.module.scss';
 
-function BurgerIngredients({ onIngredientClick }) {
+function BurgerIngredients({ onIngredientClick, ingredientsList }) {
   const [current, setCurrent] = useState('one');
   
   return (
@@ -23,13 +23,25 @@ function BurgerIngredients({ onIngredientClick }) {
       </div>
       <ul className={styles.categories}>
         <li className={styles.categoriesItem}>
-          <Category title="Булка" type="bun" onIngredientClick={onIngredientClick} />
+          <Category
+            title="Булка"
+            type="bun"
+            onIngredientClick={onIngredientClick}
+            ingredientsList={ingredientsList} />
         </li>
         <li className={styles.categoriesItem}>
-          <Category title="Соусы" type="sauce" onIngredientClick={onIngredientClick} />
+          <Category
+            title="Соусы"
+            type="sauce"
+            onIngredientClick={onIngredientClick}
+            ingredientsList={ingredientsList} />
         </li>
         <li className={styles.categoriesItem}>
-          <Category title="Начинки" type="main" onIngredientClick={onIngredientClick} />
+          <Category
+            title="Начинки"
+            type="main"
+            onIngredientClick={onIngredientClick}
+            ingredientsList={ingredientsList} />
         </li>
       </ul>
     </section>
@@ -37,7 +49,20 @@ function BurgerIngredients({ onIngredientClick }) {
 }
 
 BurgerIngredients.propTypes = {
-  onIngredientClick: PropTypes.func.isRequired
+  onIngredientClick: PropTypes.func.isRequired,
+  ingredientsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      proteins: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      carbohydrates: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  )
 }
 
 export default BurgerIngredients;

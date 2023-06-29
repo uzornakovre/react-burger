@@ -1,12 +1,9 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { IngredientsListContext } from '../../../contexts/IngredientsListContext';
 import Item from '../Item/Item';
 import styles from './Category.module.scss';
 
-function Category({ title, type, onIngredientClick }) {
-  const ingredientsList = useContext(IngredientsListContext);
-
+function Category({ title, type, onIngredientClick, ingredientsList }) {
   const ingredients = useMemo(() =>
     ingredientsList.filter(i => i.type === type).map((i) => (
       <li 
@@ -40,7 +37,20 @@ function Category({ title, type, onIngredientClick }) {
 Category.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  onIngredientClick: PropTypes.func.isRequired
+  onIngredientClick: PropTypes.func.isRequired,
+  ingredientsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      proteins: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      carbohydrates: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  )
 }; 
 
 export default Category;

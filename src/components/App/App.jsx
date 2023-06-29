@@ -4,7 +4,7 @@ import styles from './App.module.scss';
 import AppHeader from '../AppHeader/AppHeader';
 import Content from '../Content/Content';
 import ModalOverlay from '../ModalOverlay/ModalOverlay';
-import { IngredientsListContext } from '../../contexts/IngredientsListContext';
+// import { IngredientsListContext } from '../../contexts/IngredientsListContext';
 
 function App() {
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -23,7 +23,6 @@ function App() {
   }, []);
 
   function handleIngredientClick(item) {
-    console.log(item)
     setCurrentIngredient(item);
     setIsIngredientDetailsModalOpen(true);
   }
@@ -60,20 +59,19 @@ function App() {
   }, [isIngredientDetailsModalOpen, isOrderDetailsModalOpen]);
 
   return (
-    <IngredientsListContext.Provider value={ingredientsList}>
-      <div className={styles.app}>
-        <AppHeader />
-        <Content 
-          onIngredientClick={handleIngredientClick}
-          onOrderClick={handleOrderClick} />
-        <ModalOverlay
-          isIngredientDetailsModalOpen={isIngredientDetailsModalOpen}
-          isOrderDetailsModalOpen={isOrderDetailsModalOpen}
-          onClose={closeAllModals}
-          onOverlayClick={handleModalOverlayClick}
-          currentIngredient={currentIngredient} />
-      </div>
-    </IngredientsListContext.Provider>
+    <div className={styles.app}>
+      <AppHeader />
+      <Content 
+        onIngredientClick={handleIngredientClick}
+        onOrderClick={handleOrderClick}
+        ingredientsList={ingredientsList} />
+      <ModalOverlay
+        isIngredientDetailsModalOpen={isIngredientDetailsModalOpen}
+        isOrderDetailsModalOpen={isOrderDetailsModalOpen}
+        onClose={closeAllModals}
+        onOverlayClick={handleModalOverlayClick}
+        currentIngredient={currentIngredient} />
+    </div>
   );
 }
 
