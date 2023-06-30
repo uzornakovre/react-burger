@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
+import { currentIngredientType } from '../../utils/prop-types';
 import Category from './Category/Category';
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
@@ -69,19 +70,7 @@ function BurgerIngredients({ ingredientsList }) {
 }
 
 BurgerIngredients.propTypes = {
-  ingredientsList: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-    })
-  )
+  ingredientsList: PropTypes.arrayOf(currentIngredientType)
 }
 
 export default BurgerIngredients;
