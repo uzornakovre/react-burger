@@ -1,4 +1,4 @@
-import styles from "./ModalOverlay.module.scss";
+import styles from "./modal-overlay.module.scss";
 import PropTypes from "prop-types";
 
 function ModalOverlay({ isOpen, onOverlayClick, children }) {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './Item.module.scss';
+import styles from './item.module.scss';
 
 function Item({ name, price, image }) {
   return (

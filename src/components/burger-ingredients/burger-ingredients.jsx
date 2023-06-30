@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { currentIngredientType } from '../../utils/prop-types';
-import Category from './category-/category-';
-import Modal from '../modal-/modal-';
-import IngredientDetails from '../ingredient-details-/ingredient-details-';
-import styles from './BurgerIngredients.module.scss';
+import Category from './category/category';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
+import styles from './burger-ingredients.module.scss';
 
 function BurgerIngredients({ ingredientsList }) {
   const [current, setCurrent] = useState('one');

@@ -1,4 +1,4 @@
-import styles from './IngredientDetails.module.scss';
+import styles from './ingredient-details.module.scss';
 import { currentIngredientType } from '../../utils/prop-types';
 
 function IngredientDetails({ currentIngredient }) {

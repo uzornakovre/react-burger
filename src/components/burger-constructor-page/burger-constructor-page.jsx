@@ -1,7 +1,7 @@
-import BurgerIngredients from '../burger-ingredients-/burger-ingredients-';
-import BurgerConstructor from '../burger-constructor-/burger-constructor-';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import BurgerConstructor from '../burger-constructor/burger-constructor';
 import PropTypes from 'prop-types';
-import styles from './Content.module.scss';
+import styles from './burger-constructor-page.module.scss';
 
 function Content({ ingredientsList}) {
   return (

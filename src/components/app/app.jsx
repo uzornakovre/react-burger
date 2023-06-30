@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../utils/api';
-import styles from './App.module.scss';
-import AppHeader from '../app-header-/app-header-';
+import styles from './app.module.scss';
+import AppHeader from '../app-header/app-header';
 import Content from '../burger-constructor-page/burger-constructor-page';
 
 function App() {

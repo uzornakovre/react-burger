@@ -1,4 +1,4 @@
-import styles from './OrderDetails.module.scss';
+import styles from './order-details.module.scss';
 import orderCompleteImage from '../../images/done.png';
 
 function OrderDetails() {
