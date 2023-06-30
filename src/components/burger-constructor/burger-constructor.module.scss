@@ -1,10 +1,10 @@
 @import '../../styles/index.scss';
 
-.burgerConstructor {
+.burger_constructor {
   width: 100%;
 }
 
-.resultList {
+.result_list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -12,7 +12,7 @@
   padding-right: 16px;
 }
 
-.middleList {
+.middle_list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -37,7 +37,7 @@
   }
 }
 
-.middleItem {
+.middle_item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -53,7 +53,7 @@
   }
 }
 
-.orderInfo {
+.order_info {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -61,13 +61,13 @@
   padding-right: 16px;
 }
 
-.totalPrice {
+.total_price {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.totalPriceValue {
+.total_price_value {
   @include renderFont(
     $family: $font-family-additional,
     $size: $font-size-price-l,

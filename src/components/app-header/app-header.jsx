@@ -11,23 +11,23 @@ function AppHeader() {
     <header className={styles.header}>
       <div className={styles.container}>
         <nav className={styles.navigation}>
-          <ul className={styles.navList}>
-            <li className={`${styles.navItem} p-5 mr-2`}>
-              <a className={styles.navLink} href='#'>
+          <ul className={styles.nav_list}>
+            <li className={`${styles.nav_item} p-5 mr-2`}>
+              <a className={styles.nav_link} href='#'>
                 <BurgerIcon type="primary" />
-                <span className={`${styles.navLinkText} pl-2`}>Конструктор</span>
+                <span className={`${styles.nav_link_text} pl-2`}>Конструктор</span>
               </a>               
             </li>
-            <li className={`${styles.navItem} p-5 mr-2`}>
-              <a className={`${styles.navLink} ${styles.inactive}`} href='#'>
+            <li className={`${styles.nav_item} p-5 mr-2`}>
+              <a className={`${styles.nav_link} ${styles.inactive}`} href='#'>
                 <ListIcon type="secondary" />
-                <span className={`${styles.navLinkText} pl-2`}>Лента заказов</span>
+                <span className={`${styles.nav_link_text} pl-2`}>Лента заказов</span>
               </a>               
             </li>
-            <li className={`${styles.navItem} p-5`}>
-              <a className={`${styles.navLink} ${styles.inactive}`} href='#'>
+            <li className={`${styles.nav_item} p-5`}>
+              <a className={`${styles.nav_link} ${styles.inactive}`} href='#'>
                 <ProfileIcon type="secondary" />
-                <span className={`${styles.navLinkText} pl-2`}>Личный кабинет</span>
+                <span className={`${styles.nav_link_text} pl-2`}>Личный кабинет</span>
               </a>               
             </li>
           </ul>
