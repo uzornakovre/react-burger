@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ConstructorElement, CurrencyIcon, Button, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.scss';
-import ModalOverlay from '../ModalOverlay/ModalOverlay';
+import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 
 function BurgerConstructor() {
@@ -116,13 +116,13 @@ function BurgerConstructor() {
           size="large"
           onClick={handleOrderClick}>Оформить заказ</Button>
       </div>
-      <ModalOverlay
+      <Modal
         isOpen={isOrderDetailsModalOpen}
         onClose={closeModal}
         title=""
       >
         <OrderDetails />
-      </ModalOverlay>
+      </Modal>
     </section>
   )
 }

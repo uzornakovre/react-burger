@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import Category from './Category/Category';
-import ModalOverlay from '../ModalOverlay/ModalOverlay';
+import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import styles from './BurgerIngredients.module.scss';
 
@@ -57,13 +57,13 @@ function BurgerIngredients({ ingredientsList }) {
             ingredientsList={ingredientsList} />
         </li>
       </ul>
-      <ModalOverlay
+      <Modal
         isOpen={isIngredientDetailsModalOpen}
         onClose={closeModal}
         currentIngredient={currentIngredient}
         title="Детали ингредиента">
           <IngredientDetails currentIngredient={currentIngredient} />
-        </ModalOverlay>
+        </Modal>
     </section>
   )
 }
