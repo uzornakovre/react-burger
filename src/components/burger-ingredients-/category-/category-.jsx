@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { currentIngredientType } from '../../../utils/prop-types';
-import Item from '../Item/Item';
+import Item from '../item-/item-';
 import styles from './Category.module.scss';
 
 function Category({ title, type, onIngredientClick, ingredientsList }) {

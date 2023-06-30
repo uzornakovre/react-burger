@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from './Modal.module.scss';
 import PropTypes from 'prop-types';
-import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import ModalOverlay from "../modal-overlay-/modal-overlay-";
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const modalRoot = document.getElementById("react-modals");

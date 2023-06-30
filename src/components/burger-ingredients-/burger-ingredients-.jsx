@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { currentIngredientType } from '../../utils/prop-types';
-import Category from './Category/Category';
-import Modal from '../Modal/Modal';
-import IngredientDetails from '../IngredientDetails/IngredientDetails';
+import Category from './category-/category-';
+import Modal from '../modal-/modal-';
+import IngredientDetails from '../ingredient-details-/ingredient-details-';
 import styles from './BurgerIngredients.module.scss';
 
 function BurgerIngredients({ ingredientsList }) {
