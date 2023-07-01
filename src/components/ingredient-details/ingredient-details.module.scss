@@ -1,0 +1,54 @@
+@import '../../styles/index.scss';
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.image {
+  width: 480px;
+}
+
+.name {
+  margin-top: 16px;
+  margin-bottom: 32px;
+
+  @include renderFont(
+    $weight: 700,
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading
+  )
+}
+
+.nutrition_values {
+  display: flex;
+  gap: 20px;
+}
+
+.nutrition_value {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 112px;
+}
+
+.type {
+  @include renderFont(
+    $color: $color-text-2
+  );
+
+  text-align: center;
+}
+
+.value {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price,
+    $color: $color-text-2
+  );
+
+  text-align: center;
+}

@@ -1,0 +1,45 @@
+@import '../../styles/index.scss';
+
+.modal {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 720px;
+  padding: 40px 40px 60px;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+
+  border-radius: 40px;
+  border: 1px solid var(--interface-modal-edge, rgba(76, 76, 255, 0.20));
+  background: var(--interface-modal-bg, #1C1C21);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04), 0px 4px 8px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.04), 0px 24px 32px 0px rgba(0, 0, 0, 0.04);
+}
+
+.modal_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+}
+
+.title {
+  @include renderFont(
+    $weight: 700,
+    $size: $font-size-heading-l,
+    $line-height: $font-line-height-heading-l,
+  )
+}
+
+.close_button {
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform .2s linear;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}

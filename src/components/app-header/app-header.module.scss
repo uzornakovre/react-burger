@@ -20,13 +20,13 @@
   width: 100%;
 }
 
-.navList {
+.nav_list {
   display: flex;
   justify-content: flex-start;
   width: 100%;
 }
 
-.navItem {
+.nav_item {
   margin: 12px 0;
   border-radius: 40px;
   cursor: pointer;
@@ -45,7 +45,7 @@
   }
 }
 
-.navLink {
+.nav_link {
   display: flex;
   align-items: center;
   color: $color-text-1;
