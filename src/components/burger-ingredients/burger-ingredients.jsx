@@ -22,7 +22,7 @@ function BurgerIngredients({ ingredientsList }) {
   }
   
   return (
-    <section className={`${styles.burgerIngredients} mt-10`}>
+    <section className={`${styles.burger_ingredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
       <div className={`${styles.tabs} mt-5 mb-10`}>
         <Tab value="one" active={current === 'one'} onClick={(evt) => setCurrent(evt)}>

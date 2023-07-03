@@ -19,6 +19,7 @@ function Modal({ isOpen, onClose, title, children }) {
   useEffect(() => {
     function handleEscClick(evt) {
       if (evt.key === 'Escape') {
+        console.log(1)
         onClose();
       }
     }

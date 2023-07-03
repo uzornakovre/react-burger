@@ -29,7 +29,7 @@ function BurgerConstructor() {
         </li>
         <li className={`${styles.item} ${styles.item_middle}`}>
           <ul className={styles.middle_list}>
-            <li className={styles.middle_item}>
+            {/* <li className={styles.middle_item}>
               <DragIcon type="primary" />
               <ConstructorElement
                 text="Краторная булка N-200i (верх)"
@@ -92,7 +92,7 @@ function BurgerConstructor() {
                 price={50}
                 thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
               />
-            </li>
+            </li> */}
           </ul>
         </li>
         <li className={`${styles.item} ${styles.item_bottom}`}>
