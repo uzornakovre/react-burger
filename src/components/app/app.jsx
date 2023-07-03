@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
-// import { compose, createStore, applyMiddleware } from 'redux';
+// import { configureStore } from '@reduxjs/toolkit'
 import { api } from '../../utils/api';
 import styles from './app.module.scss';
 import AppHeader from '../app-header/app-header';
 import Content from '../burger-constructor-page/burger-constructor-page';
 
-// const composeEnhancers =
-//   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-//     : compose;
+// const reducer = (state, action) => state; 
 
-// const enhancer = composeEnhancers();
-// const rootReducer = (state, action) => state;
-// const store = createStore(rootReducer, enhancer); 
+// const store = configureStore({
+//   reducer,
+//   devTools: process.env.NODE_ENV !== 'production',
+// }) 
 
 function App() {
   const [ingredientsList, setIngredientsList] = useState([]);
