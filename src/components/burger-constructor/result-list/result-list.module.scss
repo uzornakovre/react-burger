@@ -8,12 +8,16 @@
   padding-right: 16px;
 }
 
+.item {
+  min-height: 80px;
+}
+
 .middle_list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
-  height: 465px;
+  max-height: 465px;
   margin-right: -16px;
   padding-right: 8px;
   overflow-y: scroll;
@@ -36,6 +40,7 @@
 .middle_item {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 8px;
   transition: all .2s linear;
 

@@ -1,93 +1,43 @@
-import { ConstructorElement,  DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useMemo } from 'react';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import Ingredient from '../ingredient/ingredient';
 import styles from './result-list.module.scss';
 
-function ResultList() {
+function ResultList({ bun, ingredients }) {
+  const currentIngredients = useMemo(() => 
+    ingredients.map(item => (
+      <li className={styles.middle_item} key={`ingredient-${item._id}`}>
+        <Ingredient 
+          name={item.name}
+          price={item.price}
+          image={item.image}
+        />
+      </li>
+    )), [ingredients]
+  )
   return (
     <ul className={styles.result_list}>
         <li className={`${styles.item} ${styles.item_top}`}>
           <ConstructorElement
             type="top"
             isLocked={true}
-            text="Краторная булка N-200i (верх)"
-            price={200}
-            thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
+            text={`${bun.name} (верх)`}
+            price={bun.price}
+            thumbnail={bun.image}
           />
         </li>
         <li className={`${styles.item} ${styles.item_middle}`}>
           <ul className={styles.middle_list}>
-            {/* <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li>
-            <li className={styles.middle_item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={50}
-                thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-              />
-            </li> */}
+            {currentIngredients}
           </ul>
         </li>
         <li className={`${styles.item} ${styles.item_bottom}`}>
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text="Краторная булка N-200i (низ)"
-            price={200}
-            thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
+            text={`${bun.name} (низ)`}
+            price={bun.price}
+            thumbnail={bun.image}
           />
         </li>
       </ul>
