@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ResultList from './result-list/result-list';
+import { IngredientsListContext } from '../../contexts/ingredients-list-context';
 
 function BurgerConstructor() {
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
+  const ingredientsList = useContext(IngredientsListContext);
 
   function handleOrderClick() {
     setIsOrderDetailsModalOpen(true);

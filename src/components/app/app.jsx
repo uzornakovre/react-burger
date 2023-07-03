@@ -4,6 +4,7 @@ import { api } from '../../utils/api';
 import styles from './app.module.scss';
 import AppHeader from '../app-header/app-header';
 import BurgerConstructorPage from '../burger-constructor-page/burger-constructor-page';
+import { IngredientsListContext } from '../../contexts/ingredients-list-context';
 
 // const reducer = (state, action) => state; 
 
@@ -28,7 +29,9 @@ function App() {
   return (
     <div className={styles.app}>
       <AppHeader />
-      <BurgerConstructorPage ingredientsList={ingredientsList} />
+      <IngredientsListContext.Provider value={ingredientsList}>
+        <BurgerConstructorPage />
+      </IngredientsListContext.Provider>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import PropTypes from 'prop-types';
+import { currentIngredientType } from '../../utils/prop-types';
 import styles from './burger-constructor-page.module.scss';
 
-function BurgerConstructorPage({ ingredientsList}) {
+function BurgerConstructorPage() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <BurgerIngredients ingredientsList={ingredientsList} />
+        <BurgerIngredients />
         <BurgerConstructor />
       </div>
     </main>
@@ -15,19 +16,7 @@ function BurgerConstructorPage({ ingredientsList}) {
 }
 
 BurgerConstructorPage.propTypes = {
-  ingredientsList: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-    })
-  )
+  ingredientsList: PropTypes.arrayOf(currentIngredientType)
 }
 
 export default BurgerConstructorPage;
