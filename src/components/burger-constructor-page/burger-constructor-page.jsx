@@ -3,7 +3,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 import PropTypes from 'prop-types';
 import styles from './burger-constructor-page.module.scss';
 
-function Content({ ingredientsList}) {
+function BurgerConstructorPage({ ingredientsList}) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -14,7 +14,7 @@ function Content({ ingredientsList}) {
   )
 }
 
-Content.propTypes = {
+BurgerConstructorPage.propTypes = {
   ingredientsList: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
@@ -30,4 +30,4 @@ Content.propTypes = {
   )
 }
 
-export default Content;
+export default BurgerConstructorPage;

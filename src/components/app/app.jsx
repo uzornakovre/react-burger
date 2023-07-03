@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../../utils/api';
 import styles from './app.module.scss';
 import AppHeader from '../app-header/app-header';
-import Content from '../burger-constructor-page/burger-constructor-page';
+import BurgerConstructorPage from '../burger-constructor-page/burger-constructor-page';
 
 // const reducer = (state, action) => state; 
 
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className={styles.app}>
       <AppHeader />
-      <Content ingredientsList={ingredientsList} />
+      <BurgerConstructorPage ingredientsList={ingredientsList} />
     </div>
   );
 }
