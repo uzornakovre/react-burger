@@ -21,6 +21,18 @@ class Api {
       }
     }).then(this._checkStatus)
   }
+
+  sendOrderData(data) {
+    return fetch(`${this._url}/orders`, {
+      method: 'POST',
+      headers: {
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        ingredients: data,
+      })
+    }).then(this._checkStatus)
+  }
 }
 
 export const api = new Api({
