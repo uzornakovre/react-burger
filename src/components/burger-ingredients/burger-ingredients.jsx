@@ -1,22 +1,26 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import { currentIngredientType } from '../../utils/prop-types';
 import Category from './category/category';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
-import { IngredientsListContext } from '../../contexts/ingredients-list-context';
+import { useDispatch } from 'react-redux';
+import { addBun, addIngredient } from '../../services/actions';
 
 function BurgerIngredients() {
-  const ingredientsList = useContext(IngredientsListContext);
   const [current, setCurrent] = useState('one');
   const [currentIngredient, setCurrentIngredient] = useState({});
   const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   function handleIngredientClick(item) {
     setCurrentIngredient(item);
     setIsIngredientDetailsModalOpen(true);
+
+    if (item.type === 'bun') {
+      dispatch(addBun({ ...item, id: Math.random() }));
+    } else dispatch(addIngredient({ ...item, id: Math.random() }));
   }
 
   function closeModal() {
@@ -42,22 +46,19 @@ function BurgerIngredients() {
           <Category
             title="Булка"
             type="bun"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
+            onIngredientClick={handleIngredientClick} />
         </li>
         <li className={styles.categoriesItem}>
           <Category
             title="Соусы"
             type="sauce"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
+            onIngredientClick={handleIngredientClick} />
         </li>
         <li className={styles.categoriesItem}>
           <Category
             title="Начинки"
             type="main"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
+            onIngredientClick={handleIngredientClick} />
         </li>
       </ul>
       <Modal
@@ -69,10 +70,6 @@ function BurgerIngredients() {
         </Modal>
     </section>
   )
-}
-
-BurgerIngredients.propTypes = {
-  ingredientsList: PropTypes.arrayOf(currentIngredientType)
 }
 
 export default BurgerIngredients;

@@ -1,19 +1,17 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ResultList from './result-list/result-list';
-import { IngredientsListContext } from '../../contexts/ingredients-list-context';
 import { api } from '../../utils/api';
-import { tempBun, tempIngredients } from '../../utils/tempData';
+import { useSelector } from 'react-redux';
 
 function BurgerConstructor() {
 
-  const ingredientsList = useContext(IngredientsListContext);
+  const selectedBun = useSelector(store => store.bun)
+  const selectedIngredients = useSelector(store => store.selected);
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
-  const [selectedBun, setSelectedBun] = useState(tempBun);
-  const [selectedIngredients, setSelectedIngredients] = useState(tempIngredients);
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderNumber, setOrderNumber] = useState(null);
 
@@ -38,13 +36,14 @@ function BurgerConstructor() {
 
   useEffect(() => {
     setTotalPrice(
-      selectedBun.price * 2 + selectedIngredients.reduce((acc, item) => acc + item.price, 0)
+      (selectedBun ? selectedBun.price * 2 : 0) + 
+      (selectedIngredients ? selectedIngredients.reduce((acc, item) => acc + item.price, 0) : 0) || 0
     )
   }, [selectedBun, selectedIngredients])
 
   return (
     <section className={`${styles.burger_constructor} mt-25`}>
-      <ResultList bun={selectedBun} ingredients={selectedIngredients} />
+      <ResultList bun={selectedBun} />
       <div className={`${styles.order_info} mt-10`}>
         <div className={styles.total_price}>
           <span className={styles.total_price_value}>{totalPrice}</span>
