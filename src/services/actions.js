@@ -4,6 +4,8 @@ export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_ERROR = 'GET_INGREDIENTS_ERROR'
 
+export const SET_CURRENT_INGREDIENT = 'SET_CURRENT_INGREDIENT';
+
 export const ADD_BUN = 'ADD_BUN';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
@@ -17,6 +19,13 @@ export function getIngredients() {
         .then(data => dispatch({ type: GET_INGREDIENTS_SUCCESS, payload: data }))
         .catch(err => dispatch({ type: GET_INGREDIENTS_ERROR, payload: err }))
     )
+  }
+}
+
+export function setCurrentIngredient(ingData) {
+  return {
+    type: SET_CURRENT_INGREDIENT,
+    payload: ingData
   }
 }
 

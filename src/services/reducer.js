@@ -4,7 +4,8 @@ import {
   GET_INGREDIENTS_ERROR,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
-  REMOVE_INGREDIENT
+  REMOVE_INGREDIENT,
+  SET_CURRENT_INGREDIENT
 } from "./actions";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   isLoading: false,
   bun: {},
   selected: [],
+  currentIngredient: {}
 }
 
 export const reducer = (state = initialState, action) => {
@@ -25,6 +27,9 @@ export const reducer = (state = initialState, action) => {
 
     case GET_INGREDIENTS_ERROR:
       return { ...state, error: action.payload}
+
+    case SET_CURRENT_INGREDIENT:
+      return { ...state, currentIngredient: action.payload }
 
     case ADD_BUN:
       return { ...state, bun: action.payload }

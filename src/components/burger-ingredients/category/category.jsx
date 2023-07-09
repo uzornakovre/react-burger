@@ -28,7 +28,7 @@ function Category({ title, type, onIngredientClick }) {
     )), [ingredientsList]);
 
   return (
-    <div className={`${styles.category}`}>
+    <div className={`${styles.category}`} id={`category_${type}`}>
       <h3 className={styles.title}>{title}</h3>
       <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>
         {ingredients}

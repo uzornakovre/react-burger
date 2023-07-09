@@ -4,18 +4,18 @@ import Category from './category/category';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
-import { useDispatch } from 'react-redux';
-import { addBun, addIngredient } from '../../services/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBun, addIngredient, setCurrentIngredient } from '../../services/actions';
 
 function BurgerIngredients() {
+  const currentIngredient = useSelector(store => store.currentIngredient);
   const [current, setCurrent] = useState('one');
-  const [currentIngredient, setCurrentIngredient] = useState({});
   const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
   function handleIngredientClick(item) {
-    setCurrentIngredient(item);
+    dispatch(setCurrentIngredient(item));
     setIsIngredientDetailsModalOpen(true);
 
     if (item.type === 'bun') {
