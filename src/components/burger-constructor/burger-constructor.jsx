@@ -36,7 +36,7 @@ function BurgerConstructor() {
 
   useEffect(() => {
     setTotalPrice(
-      (selectedBun ? selectedBun.price * 2 : 0) + 
+      (selectedBun ? selectedBun.price * 2 : 0) || 0 + 
       (selectedIngredients ? selectedIngredients.reduce((acc, item) => acc + item.price, 0) : 0) || 0
     )
   }, [selectedBun, selectedIngredients])
