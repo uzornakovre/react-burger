@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import Category from './category/category';
 import Modal from '../modal/modal';
@@ -17,6 +17,37 @@ function BurgerIngredients() {
 
   const dispatch = useDispatch();
 
+  const tabMenuRef = useRef();
+  const bunCategoryRef = useRef();
+  const saucesCategoryRef = useRef();
+  const mainCategoryRef = useRef();
+
+  function handleScrollMenu() {
+    const tabMenuPosition = tabMenuRef.current.getBoundingClientRect().bottom;
+    const bunsPosition = bunCategoryRef.current.getBoundingClientRect().top;
+    const saucesPosition = saucesCategoryRef.current.getBoundingClientRect().top;
+    const mainPosition = mainCategoryRef.current.getBoundingClientRect().top;
+
+    let bunsDistance = Math.abs(tabMenuPosition - bunsPosition);
+    let saucesDistance = Math.abs(tabMenuPosition - saucesPosition);
+    let mainDistance = Math.abs(tabMenuPosition - mainPosition);
+
+    if (bunsDistance <= saucesDistance && bunsDistance <= mainDistance) {
+      setCurrent('one');
+    } else if (saucesDistance <= bunsDistance && saucesDistance <= mainDistance) {
+      setCurrent('two');
+    } else if (mainDistance <= bunsDistance || mainDistance <= saucesDistance) {
+      setCurrent('three');
+    }
+  }
+
+  function handleTabClick(ref) {
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
     dispatch(setIsIngredientDetailsModalOpen(true));
@@ -33,31 +64,31 @@ function BurgerIngredients() {
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
-      <div className={`${styles.tabs} mt-5 mb-10`}>
-        <Tab value="one" active={current === 'one'} onClick={(evt) => setCurrent(evt)}>
+      <div className={`${styles.tabs} mt-5 mb-10`} ref={tabMenuRef}>
+        <Tab value="one" active={current === 'one'} onClick={() => handleTabClick(bunCategoryRef)}>
           Булки
         </Tab>
-        <Tab value="two" active={current === 'two'} onClick={(evt) => setCurrent(evt)}>
+        <Tab value="two" active={current === 'two'} onClick={() => handleTabClick(saucesCategoryRef)}>
           Соусы
         </Tab>
-        <Tab value="three" active={current === 'three'} onClick={(evt) => setCurrent(evt)}>
+        <Tab value="three" active={current === 'three'} onClick={() => handleTabClick(mainCategoryRef)}>
           Начинки
         </Tab>
       </div>
-      <ul className={styles.categories}>
-        <li className={styles.categoriesItem}>
+      <ul className={styles.categories} onScroll={handleScrollMenu}>
+        <li className={styles.categoriesItem} ref={bunCategoryRef}>
           <Category
             title="Булка"
             type="bun"
             onIngredientClick={handleIngredientClick} />
         </li>
-        <li className={styles.categoriesItem}>
+        <li className={styles.categoriesItem} ref={saucesCategoryRef}>
           <Category
             title="Соусы"
             type="sauce"
             onIngredientClick={handleIngredientClick} />
         </li>
-        <li className={styles.categoriesItem}>
+        <li className={styles.categoriesItem} ref={mainCategoryRef}>
           <Category
             title="Начинки"
             type="main"
