@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Item from '../item/item';
 import styles from './category.module.scss';
 import { useSelector } from 'react-redux';
+import { getAllIngredients } from '../../../utils/constants';
 
 function Category({ title, type, onIngredientClick }) {
-  const ingredientsList = useSelector(store => store.ingredients);
+  const ingredientsList = useSelector(getAllIngredients);
 
   const ingredients = useMemo(() =>
     ingredientsList.filter(i => i.type === type).map((i) => (

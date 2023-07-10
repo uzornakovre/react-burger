@@ -1,12 +1,18 @@
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { reducer } from './reducer';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit'
+import ingredientsSlice from './ingredients/ingredientsSlice';
+import constructorSlice from './constructor/constructorSlice';
+import currentIngredientSlice from './current-ingredient/currentIngredientSlice';
+import orderSlice from './order/orderSlice';
+import modalsSlice from './modals/modalsSlice';
 
-const configureStore = (initialStore) => {
-  const store = createStore(reducer, initialStore, composeWithDevTools(applyMiddleware(thunk)));
+const store = configureStore({
+  reducer: {
+    allIngredients: ingredientsSlice,
+    currentIngredient: currentIngredientSlice,
+    selected: constructorSlice,
+    order: orderSlice,
+    modals: modalsSlice
+  }
+})
 
-  return store;
-}
-
-export default configureStore;
+export default store;

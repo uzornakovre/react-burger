@@ -1,6 +1,6 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from 'react-redux';
-import { removeIngredient } from '../../../services/actions';
+import { removeIngredient } from '../../../services/constructor/constructorSlice';
 import PropTypes from 'prop-types';
 
 function Ingredient({ name, price, image, id }) {

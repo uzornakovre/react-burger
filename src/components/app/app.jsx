@@ -1,7 +1,7 @@
 import styles from './app.module.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getIngredients } from '../../services/actions';
+import { getIngredients } from '../../services/ingredients/ingredientsSlice';
 import AppHeader from '../app-header/app-header';
 import BurgerConstructorPage from '../burger-constructor-page/burger-constructor-page';
 

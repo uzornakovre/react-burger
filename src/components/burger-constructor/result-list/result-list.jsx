@@ -3,10 +3,11 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import Ingredient from '../ingredient/ingredient';
 import styles from './result-list.module.scss';
 import { useSelector } from 'react-redux';
+import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
 
 function ResultList() {
-  const selectedBun = useSelector(store => store.bun);
-  const selectedIngredients = useSelector(store => store.selected);
+  const selectedBun = useSelector(getSelectedBun);
+  const selectedIngredients = useSelector(getSelectedIngredients);
 
   const currentIngredients = useMemo(() => 
     selectedIngredients && selectedIngredients.map(item => (

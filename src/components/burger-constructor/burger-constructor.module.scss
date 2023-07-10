@@ -26,3 +26,11 @@
     $color: $color-text-1
   )
 }
+
+.error {
+  display: flex;
+  align-items: center;
+  height: 100px;
+
+  @include renderFont();
+}

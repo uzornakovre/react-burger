@@ -5,18 +5,21 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBun, addIngredient, setCurrentIngredient } from '../../services/actions';
+import { addBun, addIngredient } from '../../services/constructor/constructorSlice';
+import { setCurrentIngredient } from '../../services/current-ingredient/currentIngredientSlice';
+import { setIsIngredientDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { getCurrentIngredient, getIsIngredientDetailsModalOpen } from '../../utils/constants';
 
 function BurgerIngredients() {
-  const currentIngredient = useSelector(store => store.currentIngredient);
+  const currentIngredient = useSelector(getCurrentIngredient);
+  const isIngredientDetailsModalOpen = useSelector(getIsIngredientDetailsModalOpen);
   const [current, setCurrent] = useState('one');
-  const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
-    setIsIngredientDetailsModalOpen(true);
+    dispatch(setIsIngredientDetailsModalOpen(true));
 
     if (item.type === 'bun') {
       dispatch(addBun({ ...item, id: Math.random() }));
@@ -24,7 +27,7 @@ function BurgerIngredients() {
   }
 
   function closeModal() {
-    setIsIngredientDetailsModalOpen(false);
+    dispatch(setIsIngredientDetailsModalOpen(false));
   }
   
   return (

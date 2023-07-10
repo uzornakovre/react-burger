@@ -1,45 +1,56 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ResultList from './result-list/result-list';
-import { api } from '../../utils/api';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { sendOrderData, setTotalPrice } from '../../services/order/orderSlice';
+import { setIsErrorModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { 
+  getIsErrorModalOpen,
+  getIsOrderDetailsModalOpen,
+  getOrderId,
+  getSelectedBun, 
+  getSelectedIngredients, 
+  getTotalPrice,
+} from '../../utils/constants';
 
 function BurgerConstructor() {
 
-  const selectedBun = useSelector(store => store.bun)
-  const selectedIngredients = useSelector(store => store.selected);
-  const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [orderNumber, setOrderNumber] = useState(null);
+  const selectedBun = useSelector(getSelectedBun)
+  const selectedIngredients = useSelector(getSelectedIngredients);
+  const totalPrice = useSelector(getTotalPrice);
+  const orderNumber = useSelector(getOrderId);
+  const isOrderDetailsModalOpen = useSelector(getIsOrderDetailsModalOpen);
+  const isErrorModalOpen = useSelector(getIsErrorModalOpen);
+
+  const dispatch = useDispatch();
 
   function submitOrder(ingredients) {
-    api.sendOrderData(ingredients)
-      .then((res) => {
-        setOrderNumber(res.order.number)
-      })
-      .catch((error) =>{
-        console.log(error);
-      })
+    dispatch(sendOrderData(ingredients));
   }
 
   function handleOrderClick() {
-    setIsOrderDetailsModalOpen(true);
-    submitOrder(selectedIngredients.map(i => i._id));
+    if (selectedIngredients.length && selectedBun._id) {
+      dispatch(setIsOrderDetailsModalOpen(true));
+      submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
+    } else {
+      dispatch(setIsErrorModalOpen(true));
+    }
   }
 
   function closeModal() {
-    setIsOrderDetailsModalOpen(false);
+    dispatch(setIsOrderDetailsModalOpen(false));
+    dispatch(setIsErrorModalOpen(false));
   }
 
   useEffect(() => {
-    setTotalPrice(
-      (selectedBun ? selectedBun.price * 2 : 0) || 0 + 
-      (selectedIngredients ? selectedIngredients.reduce((acc, item) => acc + item.price, 0) : 0) || 0
-    )
-  }, [selectedBun, selectedIngredients])
+    dispatch(setTotalPrice(
+      (selectedBun.id ? selectedBun.price * 2 : 0) + 
+      (selectedIngredients ? selectedIngredients.reduce((acc, item) => acc + item.price, 0) : 0)
+    ))
+  }, [dispatch, selectedBun, selectedIngredients]);
 
   return (
     <section className={`${styles.burger_constructor} mt-25`}>
@@ -61,6 +72,13 @@ function BurgerConstructor() {
         title=""
       >
         <OrderDetails orderNumber={orderNumber} />
+      </Modal>
+      <Modal
+        isOpen={isErrorModalOpen}
+        onClose={closeModal}
+        title="Ошибка"
+      >
+        <span className={styles.error}>Необходимо выбрать булку и как минимум один ингредент</span>
       </Modal>
     </section>
   )
