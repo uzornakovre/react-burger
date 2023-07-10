@@ -1,6 +1,7 @@
 @import '../../../styles/index.scss';
 
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,4 +32,27 @@
 .title {
   min-height: 48px;
   text-align: center;
+}
+
+.counter {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  top: 0;
+  right: 0;
+
+  border-radius: 50%;
+  background-color: $color-interface-accent-1;
+}
+
+.counter_value {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price,
+  )
 }
