@@ -5,7 +5,6 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBun, addIngredient } from '../../services/constructor/constructorSlice';
 import { setCurrentIngredient } from '../../services/current-ingredient/currentIngredientSlice';
 import { setIsIngredientDetailsModalOpen } from '../../services/modals/modalsSlice';
 import { getCurrentIngredient, getIsIngredientDetailsModalOpen } from '../../utils/constants';
@@ -51,10 +50,6 @@ function BurgerIngredients() {
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
     dispatch(setIsIngredientDetailsModalOpen(true));
-
-    if (item.type === 'bun') {
-      dispatch(addBun({ ...item, id: Math.random() }));
-    } else dispatch(addIngredient({ ...item, id: Math.random() }));
   }
 
   function closeModal() {

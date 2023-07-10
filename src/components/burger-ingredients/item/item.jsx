@@ -4,9 +4,16 @@ import styles from './item.module.scss';
 import { useSelector } from 'react-redux';
 import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
 import { useEffect, useState } from 'react';
+import { useDrag } from 'react-dnd';
 
-function Item({ name, price, image, _id }) {
-
+function Item({ name, price, image, _id, type }) {
+  const [, dragRef] = useDrag({
+    type: "ingredient",
+    item: { name, price, image, _id, type },
+    collect: monitor => ({
+      isDrag: monitor.isDragging()
+    })
+  })
   const selectedBun = useSelector(getSelectedBun);
   const selectedIngredients = useSelector(getSelectedIngredients);
 
@@ -25,7 +32,7 @@ function Item({ name, price, image, _id }) {
   }, [selectedBun, selectedIngredients])
 
   return (
-    <div className={styles.item}>
+    <div className={styles.item} ref={dragRef}>
       <img className={`${styles.image} pl-4 pr-4 pb-1`} src={image} alt={name} />
       <div className={styles.price}>
         <span className={styles.priceValue}>{price}</span>
@@ -45,6 +52,7 @@ Item.propTypes = {
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 export default Item;

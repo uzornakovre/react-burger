@@ -6,6 +6,11 @@
   align-items: flex-end;
   gap: 16px;
   padding-right: 16px;
+
+  &_on_drop {
+    border-radius: 10px;
+    background-color: $color-background-1;
+  }
 }
 
 .item {

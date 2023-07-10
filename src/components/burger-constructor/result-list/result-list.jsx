@@ -2,12 +2,32 @@ import { useMemo } from 'react';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import Ingredient from '../ingredient/ingredient';
 import styles from './result-list.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
+import { useDrop } from 'react-dnd';
+import { addBun, addIngredient } from '../../../services/constructor/constructorSlice';
 
 function ResultList() {
   const selectedBun = useSelector(getSelectedBun);
   const selectedIngredients = useSelector(getSelectedIngredients);
+
+  const dispatch = useDispatch();
+
+  const [{isHover}, dropRef] = useDrop(() => ({
+    accept: "ingredient",
+    drop(item) {
+      handleDrop(item);
+    },
+    collect: monitor => ({
+      isHover: monitor.isOver(),
+    })
+  }));
+
+  function handleDrop(item) {
+    if (item.type === 'bun') {
+      dispatch(addBun({ ...item, id: Math.random() }));
+    } else dispatch(addIngredient({ ...item, id: Math.random() }));
+  }
 
   const currentIngredients = useMemo(() => 
     selectedIngredients && selectedIngredients.map(item => (
@@ -23,7 +43,7 @@ function ResultList() {
   )
 
   return (
-    <ul className={styles.result_list}>
+    <ul className={`${styles.result_list} ${isHover && styles.result_list_on_drop}`} ref={dropRef}>
         <li className={`${styles.item} ${styles.item_top}`}>
           {
             selectedBun.id
