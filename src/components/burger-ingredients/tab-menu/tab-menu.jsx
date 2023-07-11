@@ -1,4 +1,5 @@
 import styles from './tab-menu.module.scss';
+import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function TabMenu({ 
@@ -29,6 +30,14 @@ function TabMenu({
       </Tab>
     </div>
   )
+}
+
+TabMenu.propTypes = {
+  tabMenuRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  bunCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  saucesCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  mainCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  currentTab: PropTypes.string.isRequired
 }
 
 export default TabMenu;

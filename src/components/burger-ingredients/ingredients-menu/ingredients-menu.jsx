@@ -1,5 +1,6 @@
 import styles from './ingredients-menu.module.scss';
 import Category from '../category/category';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setCurrentIngredient } from '../../../services/current-ingredient/currentIngredientSlice';
 import { setIsIngredientDetailsModalOpen } from '../../../services/modals/modalsSlice';
@@ -59,6 +60,14 @@ function IngredientsMenu({
       </li>
     </ul>
   )
+}
+
+IngredientsMenu.propTypes = {
+  tabMenuRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  bunCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  saucesCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  mainCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  setCurrentTab: PropTypes.func.isRequired
 }
 
 export default IngredientsMenu;
