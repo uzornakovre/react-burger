@@ -14,7 +14,7 @@ function Ingredient({ name, price, image, id, index, moveSelectedIngredient }) {
     dispatch(removeIngredient(id));
   }
 
-  const [{ isHover }, dropRef] = useDrop({
+  const [{ handlerId, isHover }, dropRef] = useDrop({
     accept: "filling",
     collect: monitor => ({
       handlerId: monitor.getHandlerId(),
@@ -52,7 +52,7 @@ function Ingredient({ name, price, image, id, index, moveSelectedIngredient }) {
 
   return (
     <div className={`${styles.ingredient} ${isDrag && styles.ingredient_is_dragging}
-      ${isHover && styles.ingredient_is_hover}`} ref={ref}>
+      ${isHover && styles.ingredient_is_hover}`} ref={ref} data-handler-id={handlerId}>
       <DragIcon type="primary" />
       <ConstructorElement
         text={name}
