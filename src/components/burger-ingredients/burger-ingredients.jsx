@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import Category from './category/category';
 import Modal from '../modal/modal';
+import TabMenu from './tab-menu/tab-menu';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -40,13 +40,6 @@ function BurgerIngredients() {
     }
   }
 
-  function handleTabClick(ref) {
-    ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }
-
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
     dispatch(setIsIngredientDetailsModalOpen(true));
@@ -59,17 +52,13 @@ function BurgerIngredients() {
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
-      <div className={`${styles.tabs} mt-5 mb-10`} ref={tabMenuRef}>
-        <Tab value="one" active={current === 'one'} onClick={() => handleTabClick(bunCategoryRef)}>
-          Булки
-        </Tab>
-        <Tab value="two" active={current === 'two'} onClick={() => handleTabClick(saucesCategoryRef)}>
-          Соусы
-        </Tab>
-        <Tab value="three" active={current === 'three'} onClick={() => handleTabClick(mainCategoryRef)}>
-          Начинки
-        </Tab>
-      </div>
+      <TabMenu 
+        current={current}
+        tabMenuRef={tabMenuRef}
+        bunCategoryRef={bunCategoryRef}
+        saucesCategoryRef={saucesCategoryRef}
+        mainCategoryRef={mainCategoryRef}
+      />
       <ul className={styles.categories} onScroll={handleScrollMenu}>
         <li className={styles.categoriesItem} ref={bunCategoryRef}>
           <Category
