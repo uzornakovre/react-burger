@@ -1,0 +1,7 @@
+@import '../../../styles/index.scss';
+
+.categories {
+  height: calc(100vh - 285px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
