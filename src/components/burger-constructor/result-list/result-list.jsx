@@ -25,8 +25,8 @@ function ResultList() {
 
   function handleIngredientDrop(item) {
     if (item.type === 'bun') {
-      dispatch(addBun({ ...item, id: Math.random() }));
-    } else dispatch(addIngredient({ ...item, id: Math.random() }));
+      dispatch(addBun({ ...item, id: crypto.randomUUID() }));
+    } else dispatch(addIngredient({ ...item, id: crypto.randomUUID() }));
   }
 
   function moveSelectedIngredient(dragIndex, hoverIndex) {
