@@ -1,65 +1,46 @@
-import { useState, useContext } from 'react';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import { currentIngredientType } from '../../utils/prop-types';
-import Category from './category/category';
-import Modal from '../modal/modal';
-import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
-import { IngredientsListContext } from '../../contexts/ingredients-list-context';
+import Modal from '../modal/modal';
+import TabMenu from './tab-menu/tab-menu';
+import IngredientDetails from '../ingredient-details/ingredient-details';
+import IngredientsMenu from './ingredients-menu/ingredients-menu';
+import { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsIngredientDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { getCurrentIngredient, getIsIngredientDetailsModalOpen } from '../../utils/constants';
 
 function BurgerIngredients() {
-  const ingredientsList = useContext(IngredientsListContext);
-  const [current, setCurrent] = useState('one');
-  const [currentIngredient, setCurrentIngredient] = useState({});
-  const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
+  const currentIngredient = useSelector(getCurrentIngredient);
+  const isIngredientDetailsModalOpen = useSelector(getIsIngredientDetailsModalOpen);
+  const [currentTab, setCurrentTab] = useState('one');
 
-  function handleIngredientClick(item) {
-    setCurrentIngredient(item);
-    setIsIngredientDetailsModalOpen(true);
-  }
+  const dispatch = useDispatch();
+
+  const tabMenuRef = useRef();
+  const bunCategoryRef = useRef();
+  const saucesCategoryRef = useRef();
+  const mainCategoryRef = useRef();
 
   function closeModal() {
-    setIsIngredientDetailsModalOpen(false);
+    dispatch(setIsIngredientDetailsModalOpen(false));
   }
   
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
-      <div className={`${styles.tabs} mt-5 mb-10`}>
-        <Tab value="one" active={current === 'one'} onClick={(evt) => setCurrent(evt)}>
-          Булки
-        </Tab>
-        <Tab value="two" active={current === 'two'} onClick={(evt) => setCurrent(evt)}>
-          Соусы
-        </Tab>
-        <Tab value="three" active={current === 'three'} onClick={(evt) => setCurrent(evt)}>
-          Начинки
-        </Tab>
-      </div>
-      <ul className={styles.categories}>
-        <li className={styles.categoriesItem}>
-          <Category
-            title="Булка"
-            type="bun"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
-        </li>
-        <li className={styles.categoriesItem}>
-          <Category
-            title="Соусы"
-            type="sauce"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
-        </li>
-        <li className={styles.categoriesItem}>
-          <Category
-            title="Начинки"
-            type="main"
-            onIngredientClick={handleIngredientClick}
-            ingredientsList={ingredientsList} />
-        </li>
-      </ul>
+      <TabMenu 
+        currentTab={currentTab}
+        tabMenuRef={tabMenuRef}
+        bunCategoryRef={bunCategoryRef}
+        saucesCategoryRef={saucesCategoryRef}
+        mainCategoryRef={mainCategoryRef}
+      />
+      <IngredientsMenu
+        setCurrentTab={setCurrentTab}
+        tabMenuRef={tabMenuRef}
+        bunCategoryRef={bunCategoryRef}
+        saucesCategoryRef={saucesCategoryRef}
+        mainCategoryRef={mainCategoryRef}
+      />
       <Modal
         isOpen={isIngredientDetailsModalOpen}
         onClose={closeModal}
@@ -69,10 +50,6 @@ function BurgerIngredients() {
         </Modal>
     </section>
   )
-}
-
-BurgerIngredients.propTypes = {
-  ingredientsList: PropTypes.arrayOf(currentIngredientType)
 }
 
 export default BurgerIngredients;

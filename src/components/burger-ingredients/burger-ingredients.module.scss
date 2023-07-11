@@ -8,15 +8,3 @@
     $color: $color-text-1
   )
 }
-
-.tabs {
-  display: flex;
-  justify-content: space-between;
-}
-
-.categories {
-  // max-height: 750px;
-  height: calc(100vh - 285px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-}

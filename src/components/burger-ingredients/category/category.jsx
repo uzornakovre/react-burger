@@ -1,10 +1,13 @@
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { currentIngredientType } from '../../../utils/prop-types';
 import Item from '../item/item';
 import styles from './category.module.scss';
+import { useSelector } from 'react-redux';
+import { getAllIngredients } from '../../../utils/constants';
 
-function Category({ title, type, onIngredientClick, ingredientsList }) {
+function Category({ title, type, onIngredientClick }) {
+  const ingredientsList = useSelector(getAllIngredients);
+
   const ingredients = useMemo(() =>
     ingredientsList.filter(i => i.type === type).map((i) => (
       <li 
@@ -26,7 +29,7 @@ function Category({ title, type, onIngredientClick, ingredientsList }) {
     )), [ingredientsList]);
 
   return (
-    <div className={`${styles.category}`}>
+    <div className={`${styles.category}`} id={`category_${type}`}>
       <h3 className={styles.title}>{title}</h3>
       <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>
         {ingredients}
@@ -38,8 +41,7 @@ function Category({ title, type, onIngredientClick, ingredientsList }) {
 Category.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  onIngredientClick: PropTypes.func.isRequired,
-  ingredientsList: PropTypes.arrayOf(currentIngredientType)
+  onIngredientClick: PropTypes.func.isRequired
 }; 
 
 export default Category;

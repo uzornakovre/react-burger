@@ -6,10 +6,25 @@
   align-items: flex-end;
   gap: 16px;
   padding-right: 16px;
+
+  &_on_drop {
+    border-radius: 10px;
+    background-color: $color-background-1;
+  }
 }
 
 .item {
   min-height: 80px;
+
+  &_top,
+  &_bottom {
+    width: calc(100% - 50px);
+    padding-left: 50px;
+  }
+  
+  &_middle {
+    width: calc(100% - 20px);
+  }
 }
 
 .middle_list {
@@ -24,19 +39,6 @@
   overflow-x: hidden;
 }
 
-.item_top,
-.item_bottom {
-  transition: all .2s linear;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    opacity: .8;
-  }
-}
-
 .middle_item {
   display: flex;
   align-items: center;
@@ -47,9 +49,28 @@
   &:hover {
     cursor: grab;
   }
+}
 
-  &:active {
-    opacity: .8;
-    transform: scale(1.01);
+.element_empty {
+  display: flex;
+  max-width: 536px;
+  width: 100%;
+  min-height: 80px;
+  border-radius: 40px;
+  background: $color-background-1;
+  justify-content: center;
+  align-items: center;
+
+  &_top {
+    border-radius: 88px 88px 40px 40px;
+  }
+
+  &_bottom {
+    border-radius: 40px 40px 88px 88px;
+  }
+
+  &_middle {
+    width: calc(100% - 30px);
+    margin-left: 30px;
   }
 }
