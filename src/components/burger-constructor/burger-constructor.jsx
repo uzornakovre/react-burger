@@ -7,6 +7,7 @@ import ResultList from './result-list/result-list';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendOrderData, setTotalPrice } from '../../services/order/orderSlice';
 import { setIsErrorModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { clearSelected } from '../../services/constructor/constructorSlice';
 import { 
   getIsErrorModalOpen,
   getIsOrderDetailsModalOpen,
@@ -35,6 +36,7 @@ function BurgerConstructor() {
     if (selectedIngredients.length && selectedBun._id) {
       dispatch(setIsOrderDetailsModalOpen(true));
       submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
+      dispatch(clearSelected());
     } else {
       dispatch(setIsErrorModalOpen(true));
     }
