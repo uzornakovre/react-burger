@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
 import { useDrop } from 'react-dnd';
 import { addBun, addIngredient, moveIngredient } from '../../../services/constructor/constructorSlice';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function ResultList() {
   const selectedBun = useSelector(getSelectedBun);
@@ -66,15 +64,12 @@ function ResultList() {
               : <div className={`${styles.element_empty} ${styles.element_empty_top}`}>
                   <span className={styles.tip}>Перетащите булку</span>
                 </div>
-
           }
         </li>
         <li className={`${styles.item} ${styles.item_middle}`}>
           {
             selectedIngredients.length 
-              ? <DndProvider backend={HTML5Backend}>
-                  <ul className={styles.middle_list}>{currentIngredients}</ul>
-                </DndProvider>
+              ? <ul className={styles.middle_list}>{currentIngredients}</ul>
               : <div className={`${styles.element_empty} ${styles.element_empty_middle}`}>
                   <span className={styles.tip}>Перетащите ингредиент</span>
                 </div>
