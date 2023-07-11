@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { currentIngredientType } from '../../utils/prop-types';
@@ -6,8 +6,10 @@ import Category from './category/category';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import styles from './burger-ingredients.module.scss';
+import { IngredientsListContext } from '../../contexts/ingredients-list-context';
 
-function BurgerIngredients({ ingredientsList }) {
+function BurgerIngredients() {
+  const ingredientsList = useContext(IngredientsListContext);
   const [current, setCurrent] = useState('one');
   const [currentIngredient, setCurrentIngredient] = useState({});
   const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
@@ -22,7 +24,7 @@ function BurgerIngredients({ ingredientsList }) {
   }
   
   return (
-    <section className={`${styles.burgerIngredients} mt-10`}>
+    <section className={`${styles.burger_ingredients} mt-10`}>
       <h2 className={styles.title}>Соберите бургер</h2>
       <div className={`${styles.tabs} mt-5 mb-10`}>
         <Tab value="one" active={current === 'one'} onClick={(evt) => setCurrent(evt)}>

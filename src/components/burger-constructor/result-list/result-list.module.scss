@@ -1,0 +1,55 @@
+@import '../../../styles/index.scss';
+
+.result_list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+.item {
+  min-height: 80px;
+}
+
+.middle_list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  max-height: 465px;
+  margin-right: -16px;
+  padding-right: 8px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.item_top,
+.item_bottom {
+  transition: all .2s linear;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: .8;
+  }
+}
+
+.middle_item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  transition: all .2s linear;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    opacity: .8;
+    transform: scale(1.01);
+  }
+}
