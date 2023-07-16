@@ -2,8 +2,10 @@ import styles from './app.module.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/ingredients/ingredientsSlice';
-import AppHeader from '../app-header/app-header';
+import Layout from '../layout/layout';
+import NotFound from '../not-found/not-found';
 import BurgerConstructorPage from '../burger-constructor-page/burger-constructor-page';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,8 +16,12 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <AppHeader />
-      <BurgerConstructorPage />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<BurgerConstructorPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
