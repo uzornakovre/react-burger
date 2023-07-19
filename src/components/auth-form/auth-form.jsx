@@ -2,11 +2,11 @@ import styles from './auth-form.module.scss';
 import PropTypes from 'prop-types';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function AuthForm({ title, buttonText, children }) {
+function AuthForm({ title, buttonText, handleSubmit, children }) {
   return (
     <form 
       className={styles.form}
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       noValidate
     >
       <h2 className={styles.title}>{title}</h2>
@@ -18,7 +18,8 @@ function AuthForm({ title, buttonText, children }) {
 
 AuthForm.propTypes = {
   title: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired
+  buttonText: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default AuthForm;

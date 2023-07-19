@@ -1,16 +1,39 @@
 import styles from './login.module.scss';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 import useFormData from '../../hooks/useFormData';
 import FormInput from '../form-input/form-input';
 import { ShowIcon, HideIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import AuthForm from '../auth-form/auth-form';
+import { auth } from '../../utils/auth';
 
-function Login() {
+function Login({ handleLogin }) {
   const formData = useFormData();
+
+  const navigate = useNavigate();
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+
+    auth.login(formData.values.login_email, formData.values.login_password)
+      .then((res) => {
+        console.log(res);
+        // localStorage.setItem('jwt', res.token);
+        formData.setValues({
+          login_email: '',
+          login_password: ''
+        })
+        handleLogin();
+        navigate('/', {replace: true});
+      })
+      .catch((error) =>{
+        console.log('Неверный логин или пароль.');
+      })
+  }
 
   return (
     <div className={styles.container}>
-      <AuthForm title='Вход' buttonText='Войти'>
+      <AuthForm title='Вход' buttonText='Войти' handleSubmit={handleSubmit}>
         <FormInput 
           formData={formData}
           label="E-mail"
@@ -41,6 +64,10 @@ function Login() {
       </div>
     </div>
   )
+}
+
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired
 }
 
 export default Login;
