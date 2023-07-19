@@ -29,6 +29,7 @@ function Login() {
           name="login_password"
           isIcon={true}
           icons={[<ShowIcon type="primary" />, <HideIcon type="primary" />]}
+          maxLength={16}
         />      
         <Button htmlType="submit" type="primary" size="medium">Войти</Button>
       </form>
@@ -40,7 +41,7 @@ function Login() {
         </p>
         <p className={styles.tip}>
           Забыли пароль? {<Link to="/forgot-password" className={styles.tip_link}>
-                                  Зарегистрироваться
+                                  Восстановить пароль
                               </Link>}
         </p>
       </div>
