@@ -2,20 +2,16 @@ import styles from './login.module.scss';
 import { Link } from 'react-router-dom';
 import useFormData from '../../hooks/useFormData';
 import FormInput from '../form-input/form-input';
-import { ShowIcon, HideIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ShowIcon, HideIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import AuthForm from '../auth-form/auth-form';
 
 function Login() {
   const formData = useFormData();
 
   return (
     <div className={styles.container}>
-      <form 
-        className={styles.form}
-        // onSubmit={handleSubmit}
-        noValidate
-      >
-        <h2 className={styles.title}>Вход</h2>
-       <FormInput 
+      <AuthForm title='Вход' buttonText='Войти'>
+        <FormInput 
           formData={formData}
           label="E-mail"
           type="email"
@@ -30,9 +26,8 @@ function Login() {
           isIcon={true}
           icons={[<ShowIcon type="primary" />, <HideIcon type="primary" />]}
           maxLength={16}
-        />      
-        <Button htmlType="submit" type="primary" size="medium">Войти</Button>
-      </form>
+        />   
+      </AuthForm>
       <div className={styles.tips}>
         <p className={styles.tip}>
           Вы - новый пользователь? {<Link to="/register" className={styles.tip_link}>
