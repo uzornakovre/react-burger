@@ -2,7 +2,7 @@ import styles from './form-input.module.scss';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function FormInput({ formData, label, type, name, isIcon, icons, maxLength }) {
+function FormInput({ formData, label, type, name, isIcon, icons }) {
   const [currentIcon, setCurrentIcon] = useState(isIcon ? icons[0] : null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -29,8 +29,6 @@ function FormInput({ formData, label, type, name, isIcon, icons, maxLength }) {
         className={`${styles.input} ${formData.errors[name] && styles.input_error}`}
         onChange={formData.handleChange}
         value={formData.values[name] || ''}
-        minLength={4}
-        maxLength={maxLength}
         required
       />
       <label className={`${styles.input_label} ${formData.values[name] && styles.input_label_active}`}>{label}</label>
@@ -49,7 +47,6 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isIcon: PropTypes.bool.isRequired,
-  maxLength: PropTypes.number
 }
 
 export default FormInput;

@@ -20,7 +20,7 @@ function ForgotPassword() {
       </AuthForm>
       <div className={styles.tips}>
         <p className={styles.tip}>
-          Восстановили пароль? {<Link to="/login" className={styles.tip_link}>Войти</Link>}
+          Вспомнили пароль? {<Link to="/login" className={styles.tip_link}>Войти</Link>}
         </p>
       </div>
     </div>

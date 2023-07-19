@@ -25,7 +25,6 @@ function Login() {
           name="login_password"
           isIcon={true}
           icons={[<ShowIcon type="primary" />, <HideIcon type="primary" />]}
-          maxLength={16}
         />   
       </AuthForm>
       <div className={styles.tips}>
