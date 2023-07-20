@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<BurgerConstructorPage />} />
           <Route path="login" element={<Login handleLogin={handleLogin} />} />
-          <Route path="register" element={<Register />} />
+          <Route path="register" element={<Register handleLogin={handleLogin} />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="profile" element={<Profile />} />

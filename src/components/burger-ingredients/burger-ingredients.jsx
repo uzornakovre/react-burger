@@ -5,7 +5,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import IngredientsMenu from './ingredients-menu/ingredients-menu';
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsIngredientDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { closeAllModals } from '../../services/modals/modalsSlice';
 import { getCurrentIngredient, getIsIngredientDetailsModalOpen } from '../../utils/constants';
 
 function BurgerIngredients() {
@@ -19,10 +19,6 @@ function BurgerIngredients() {
   const bunCategoryRef = useRef();
   const saucesCategoryRef = useRef();
   const mainCategoryRef = useRef();
-
-  function closeModal() {
-    dispatch(setIsIngredientDetailsModalOpen(false));
-  }
   
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>
@@ -43,7 +39,7 @@ function BurgerIngredients() {
       />
       <Modal
         isOpen={isIngredientDetailsModalOpen}
-        onClose={closeModal}
+        onClose={() => dispatch(closeAllModals())}
         currentIngredient={currentIngredient}
         title="Детали ингредиента">
           <IngredientDetails currentIngredient={currentIngredient} />

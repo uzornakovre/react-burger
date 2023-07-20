@@ -31,6 +31,24 @@ class Auth {
       .then(data => data);
   }
 
+  getResetCode(email) {
+    return fetch(`${this._url}/password-reset`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ email })
+    }).then(this._checkStatus)
+      .then(data => data);
+  }
+
+  resetPassword(password, token) {
+    return fetch(`${this._url}/password-reset/reset`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ password, token })
+    }).then(this._checkStatus)
+      .then(data => data);
+  }
+
   // checkToken(token) {
   //   return fetch(`${this._url}/users/me`, {
   //     headers: {

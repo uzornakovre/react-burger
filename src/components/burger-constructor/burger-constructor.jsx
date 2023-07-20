@@ -6,10 +6,10 @@ import OrderDetails from '../order-details/order-details';
 import ResultList from './result-list/result-list';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendOrderData, setTotalPrice } from '../../services/order/orderSlice';
-import { setIsErrorModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
+import { setInfoModalText, setIsInfoModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
 import { clearSelected } from '../../services/constructor/constructorSlice';
+import { closeAllModals } from '../../services/modals/modalsSlice';
 import { 
-  getIsErrorModalOpen,
   getIsOrderDetailsModalOpen,
   getOrderId,
   getSelectedBun, 
@@ -24,7 +24,6 @@ function BurgerConstructor() {
   const totalPrice = useSelector(getTotalPrice);
   const orderNumber = useSelector(getOrderId);
   const isOrderDetailsModalOpen = useSelector(getIsOrderDetailsModalOpen);
-  const isErrorModalOpen = useSelector(getIsErrorModalOpen);
 
   const dispatch = useDispatch();
 
@@ -38,13 +37,9 @@ function BurgerConstructor() {
       submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
       dispatch(clearSelected());
     } else {
-      dispatch(setIsErrorModalOpen(true));
+      dispatch(setIsInfoModalOpen(true));
+      dispatch(setInfoModalText('Необходимо выбрать булку и как минимум один ингредент'));
     }
-  }
-
-  function closeModal() {
-    dispatch(setIsOrderDetailsModalOpen(false));
-    dispatch(setIsErrorModalOpen(false));
   }
 
   useEffect(() => {
@@ -70,17 +65,10 @@ function BurgerConstructor() {
       </div>
       <Modal
         isOpen={isOrderDetailsModalOpen}
-        onClose={closeModal}
+        onClose={() => dispatch(closeAllModals())}
         title=""
       >
         <OrderDetails orderNumber={orderNumber} />
-      </Modal>
-      <Modal
-        isOpen={isErrorModalOpen}
-        onClose={closeModal}
-        title="Ошибка"
-      >
-        <span className={styles.error}>Необходимо выбрать булку и как минимум один ингредент</span>
       </Modal>
     </section>
   )

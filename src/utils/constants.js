@@ -15,7 +15,8 @@ export const getOrderId = store => store.order.id;
 
 export const getIsIngredientDetailsModalOpen = store => store.modals.isIngredientDetailsModalOpen;
 export const getIsOrderDetailsModalOpen = store => store.modals.isOrderDetailsModalOpen
-export const getIsErrorModalOpen = store => store.modals.isErrorModalOpen;
+export const getIsInfoModalOpen = store => store.modals.isInfoModalOpen;
+export const getInfoModalText = store => store.modals.infoModalText;
 
 // SVG Pathes 
 
