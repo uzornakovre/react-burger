@@ -5,21 +5,26 @@ import FormInput from '../form-input/form-input';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShowIcon, HideIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { auth } from '../../utils/auth';
+import { useDispatch } from 'react-redux';
+import { setIsInfoModalOpen, setInfoModalText } from '../../services/modals/modalsSlice';
 
 function ResetPassword() {
   const formData = useFormData();
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    auth.resetPassword(formData.values.reset_password_password, formData.reset_password_token)
+    auth.resetPassword(formData.values.reset_password_password, formData.values.reset_password_token)
       .then((res) => {
         if (res.success) {
+          dispatch(setIsInfoModalOpen(true));
+          dispatch(setInfoModalText("Пароль успешно обновлен"));
           navigate('/login', {replace: true});
         } else {
-          console.log(res.error);
+          dispatch(setIsInfoModalOpen(true));
+          dispatch(setInfoModalText(res.error));
         }
       })
   }
