@@ -1,1 +1,48 @@
 @import '../../styles/index.scss';
+
+.container {
+  display: grid;
+  grid-template-columns: (320px 480px);
+  gap: 60px;
+  max-width: 1280px;
+  margin: 120px auto 0;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.side_container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.nav_menu_list_item {
+  height: 64px;
+}
+
+.nav_link {
+  background-color: transparent;
+  transition: all .2s linear;
+  cursor: pointer;
+
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $color: $color-text-2
+  );
+
+  &:hover {
+    color: $color-text-1;
+  }
+}
+
+.active {
+  color: $color-text-1;
+  cursor: default;
+}
+
+.tip {
+  @include renderFont($color: $color-text-2);
+
+  opacity: .4;
+}
