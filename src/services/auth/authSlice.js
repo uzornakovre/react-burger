@@ -5,6 +5,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   error: null,
+  allowPasswordReset: false,
   userInfo: {}
 }
 
@@ -30,6 +31,9 @@ const authSlice = createSlice({
     },
     setUserInfo: (state, action) => {
       return { ...state, userInfo: action.payload }
+    },
+    allowPasswordReset: (state, action) => {
+      return { ...state, allowPasswordReset: action.payload }
     }
   },
   extraReducers: builder => {
@@ -62,6 +66,6 @@ const authSlice = createSlice({
   }
 })
 
-export const { setLoggedIn, setLoggedOut, setUserInfo } = authSlice.actions
+export const { setLoggedIn, setLoggedOut, setUserInfo, allowPasswordReset } = authSlice.actions
 
 export default authSlice.reducer;

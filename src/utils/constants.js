@@ -21,6 +21,7 @@ export const getInfoModalText = store => store.modals.infoModalText;
 export const getUserInfo = store => store.auth.userInfo;
 export const getIsLoggedIn = store => store.auth.isLoggedIn;
 export const getAuthIsLoading = store => store.auth.isLoading;
+export const getIsAllowedPasswordReset = store => store.auth.allowPasswordReset;
 
 // SVG Pathes 
 

@@ -4,12 +4,14 @@ import styles from './burger-constructor.module.scss';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ResultList from './result-list/result-list';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendOrderData, setTotalPrice } from '../../services/order/orderSlice';
 import { setInfoModalText, setIsInfoModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
 import { clearSelected } from '../../services/constructor/constructorSlice';
 import { closeAllModals } from '../../services/modals/modalsSlice';
 import { 
+  getIsLoggedIn,
   getIsOrderDetailsModalOpen,
   getOrderId,
   getSelectedBun, 
@@ -24,22 +26,27 @@ function BurgerConstructor() {
   const totalPrice = useSelector(getTotalPrice);
   const orderNumber = useSelector(getOrderId);
   const isOrderDetailsModalOpen = useSelector(getIsOrderDetailsModalOpen);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function submitOrder(ingredients) {
     dispatch(sendOrderData(ingredients));
   }
 
   function handleOrderClick() {
-    if (selectedIngredients.length && selectedBun._id) {
-      dispatch(setIsOrderDetailsModalOpen(true));
-      submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
-      dispatch(clearSelected());
-    } else {
-      dispatch(setIsInfoModalOpen(true));
-      dispatch(setInfoModalText('Необходимо выбрать булку и как минимум один ингредент'));
-    }
+    if (isLoggedIn) {
+      if (selectedIngredients.length && selectedBun._id) {
+        dispatch(setIsOrderDetailsModalOpen(true));
+        submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
+        dispatch(clearSelected());
+      } else {
+        dispatch(setIsInfoModalOpen(true));
+        dispatch(setInfoModalText('Необходимо выбрать булку и как минимум один ингредент'));
+      }
+    } else navigate("/login");
+
   }
 
   useEffect(() => {
