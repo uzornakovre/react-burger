@@ -1,25 +1,29 @@
-import styles from './auth-form.module.scss';
-import PropTypes from 'prop-types';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from "./auth-form.module.scss";
+import PropTypes from "prop-types";
+import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function AuthForm({ title, buttonText, handleSubmit, children }) {
+function AuthForm({ title, buttonText, handleSubmit, formData, children }) {
   return (
-    <form 
-      className={styles.form}
-      onSubmit={handleSubmit}
-      noValidate
-    >
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <h2 className={styles.title}>{title}</h2>
       {children}
-      <Button htmlType="submit" type="primary" size="medium">{buttonText}</Button>
+      <Button
+        htmlType="submit"
+        type="primary"
+        size="medium"
+        disabled={!formData.isValid}
+      >
+        {buttonText}
+      </Button>
     </form>
-  )
+  );
 }
 
 AuthForm.propTypes = {
   title: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired
-}
+  handleSubmit: PropTypes.func.isRequired,
+  formData: PropTypes.object.isRequired,
+};
 
 export default AuthForm;

@@ -35,7 +35,12 @@ function Login({ handleLogin }) {
 
   return (
     <div className={styles.container}>
-      <AuthForm title="Вход" buttonText="Войти" handleSubmit={handleSubmit}>
+      <AuthForm
+        title="Вход"
+        buttonText="Войти"
+        handleSubmit={handleSubmit}
+        formData={formData}
+      >
         <FormInput
           formData={formData}
           label="E-mail"

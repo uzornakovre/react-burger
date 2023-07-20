@@ -76,6 +76,7 @@ function Register({ handleLogin }) {
         title="Регистрация"
         buttonText="Зарегистрироваться"
         handleSubmit={handleSubmit}
+        formData={formData}
       >
         <FormInput
           formData={formData}

@@ -32,6 +32,7 @@ function FormInput({ formData, label, type, name, isIcon, icons }) {
         onChange={formData.handleChange}
         value={formData.values[name] || ""}
         id={`${name}_id`}
+        minLength={(type === "password" || type === "text") ? 4 : 0}
         required
       />
       <label

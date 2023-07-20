@@ -31,12 +31,24 @@
 
   @include renderFont();
 
+  &_error {
+    outline: 2px solid $color-interface-error;
+  }
+
   &:focus {
     outline: 2px solid $color-interface-accent-1;
   }
 
   &:focus + .input_label {
     top: 10px;
+  }
+
+  &_error {
+    outline: 2px solid $color-interface-error;
+
+    &:focus {
+      outline: 2px solid $color-interface-error;
+    }
   }
 }
 
