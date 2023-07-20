@@ -35,20 +35,18 @@ function Register({ handleLogin }) {
         )
         .then((res) => {
           if (!res.error && !res.message) {
-            auth
-              .login(
+            auth.login(
                 formData.values.register_email,
                 formData.values.register_password
               )
               .then((res) => {
                 dispatch(setIsInfoModalOpen(true));
                 dispatch(setInfoModalText("Вы успешно зарегистрировались"));
-                // localStorage.setItem('jwt', res.token);
                 formData.setValues({
                   register_email: "",
                   register_password: "",
                 });
-                handleLogin();
+                handleLogin(res);
                 navigate("/", { replace: true });
               })
               .catch((error) => {

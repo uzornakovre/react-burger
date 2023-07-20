@@ -43,6 +43,10 @@
     top: 10px;
   }
 
+  &:disabled {
+    color: $color-text-2;
+  }
+
   &_error {
     outline: 2px solid $color-interface-error;
 
@@ -57,6 +61,14 @@
   top: 20px;
   right: 24px;
   cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &:active {
+    opacity: .5;
+  }
 }
 
 .error {

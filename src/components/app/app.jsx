@@ -1,34 +1,72 @@
-import styles from './app.module.scss';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
-import { getIngredients } from '../../services/ingredients/ingredientsSlice';
-import { setLoggedIn, setLoggedOut } from '../../services/auth/authSlice';
-import Layout from '../layout/layout';
-import NotFound from '../not-found/not-found';
-import BurgerConstructorPage from '../burger-constructor-page/burger-constructor-page';
-import Login from '../login/login';
-import Register from '../register/register';
-import ForgotPassword from '../forgot-password/forgot-password';
-import ResetPassword from '../reset-password/reset-password';
-import Profile from '../profile/profile';
-import IngredientInfo from '../ingredient-info/ingredient-info';
+import styles from "./app.module.scss";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import Layout from "../layout/layout";
+import NotFound from "../not-found/not-found";
+import BurgerConstructorPage from "../burger-constructor-page/burger-constructor-page";
+import Login from "../login/login";
+import Register from "../register/register";
+import ForgotPassword from "../forgot-password/forgot-password";
+import ResetPassword from "../reset-password/reset-password";
+import Profile from "../profile/profile";
+import IngredientInfo from "../ingredient-info/ingredient-info";
+import { getIngredients } from "../../services/ingredients/ingredientsSlice";
+import { getCookie, deleteCookie, setCookie } from "../../utils/cookies";
+import { auth } from "../../utils/auth";
+import {
+  setLoggedIn,
+  getUserInfo,
+  setUserInfo,
+} from "../../services/auth/authSlice";
+import { getIsLoggedIn } from "../../utils/constants";
 
 function App() {
   const dispatch = useDispatch();
+  const accessToken = getCookie('accessToken');
+  const token = getCookie('refreshToken');
+  const isLoggedIn = useSelector(getIsLoggedIn);
+
+  function handleLogin(data) {
+    dispatch(setLoggedIn(true));
+    setCookie('accessToken', data.accessToken.split("Bearer ")[1]);
+    setCookie('refreshToken', data.refreshToken);
+  }
+
+  function handleLogout() {
+    auth.logout(token)
+      .then(res => {
+        console.log(res)
+        dispatch(setLoggedIn(false));
+      })
+      .catch(err => console.log(err));
+    
+    deleteCookie('accessToken');
+    deleteCookie('refreshToken');
+  }
+
+  function refreshToken() {
+    if (token) {
+      auth.refreshToken(token)
+        .then((res) => {
+          if (res) {
+            handleLogin(res);
+          }
+        })
+        .catch((error) => {
+          console.log(`Ошибка при получении данных: ${error}`);
+        });
+    }
+  }
 
   useEffect(() => {
     dispatch(getIngredients());
-  }, [dispatch]);
-
-  function handleLogin() {
-    dispatch(setLoggedIn());
-  }
-
-  // function handleLogout() {
-  //   dispatch(setLoggedOut());
-  //   // localStorage.removeItem('jwt');
-  // }
+    if (!isLoggedIn) refreshToken();
+    if (accessToken) {
+      dispatch(getUserInfo(accessToken));
+    } else dispatch(setUserInfo({}));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, accessToken]);
 
   return (
     <div className={styles.app}>
@@ -36,10 +74,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<BurgerConstructorPage />} />
           <Route path="login" element={<Login handleLogin={handleLogin} />} />
-          <Route path="register" element={<Register handleLogin={handleLogin} />} />
+          <Route path="register" element={<Register handleLogin={handleLogin} />}
+          />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<Profile handleLogout={handleLogout} />} />
           <Route path="ingredient-info" element={<IngredientInfo />} />
         </Route>
         <Route path="*" element={<NotFound />} />

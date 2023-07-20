@@ -18,6 +18,10 @@ export const getIsOrderDetailsModalOpen = store => store.modals.isOrderDetailsMo
 export const getIsInfoModalOpen = store => store.modals.isInfoModalOpen;
 export const getInfoModalText = store => store.modals.infoModalText;
 
+export const getUserInfo = store => store.auth.userInfo;
+export const getIsLoggedIn = store => store.auth.isLoggedIn;
+export const getAuthIsLoading = store => store.auth.isLoading;
+
 // SVG Pathes 
 
 export const burgerIconPath = <path fillRule="evenodd" clipRule="evenodd" d="M22.0571 8.7H1.96905C1.44524 8.7 

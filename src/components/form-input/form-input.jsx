@@ -2,21 +2,23 @@ import styles from "./form-input.module.scss";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-function FormInput({ formData, label, type, name, isIcon, icons }) {
+function FormInput({ formData, label, type, name, isIcon, icons, place }) {
   const [currentIcon, setCurrentIcon] = useState(isIcon ? icons[0] : null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
-  function togglePasswordVisibility() {
+  function handleIconClick() {
     setIsPasswordVisible(!isPasswordVisible);
+    setDisabled(false);
   }
 
   useEffect(() => {
     setCurrentIcon(
-      icons && isPasswordVisible
+      icons && icons.length > 1 && isPasswordVisible
         ? icons[1]
         : icons && !isPasswordVisible
         ? icons[0]
-        : 0
+        : null
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPasswordVisible]);
@@ -33,18 +35,19 @@ function FormInput({ formData, label, type, name, isIcon, icons }) {
         value={formData.values[name] || ""}
         id={`${name}_id`}
         minLength={(type === "password" || type === "text") ? 4 : 0}
+        disabled={place === "profile" ? disabled : false}
         required
       />
       <label
         className={`${styles.input_label} ${
-          formData.values[name] && styles.input_label_active
+          (formData.values[name]) && styles.input_label_active
         }`}
         htmlFor={`${name}_id`}
       >
         {label}
       </label>
       {isIcon && (
-        <div className={styles.icon} onClick={togglePasswordVisibility}>
+        <div className={styles.icon} onClick={handleIconClick}>
           {currentIcon}
         </div>
       )}
@@ -54,12 +57,13 @@ function FormInput({ formData, label, type, name, isIcon, icons }) {
 }
 
 FormInput.propTypes = {
-  formData: PropTypes.object.isRequired,
+  formData: PropTypes.object,
   icons: PropTypes.array,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isIcon: PropTypes.bool.isRequired,
+  place: PropTypes.string
 };
 
 export default FormInput;
