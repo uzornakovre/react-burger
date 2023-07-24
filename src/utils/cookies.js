@@ -10,7 +10,7 @@ export function setCookie(name, value, props) {
     props.expires = exp.toUTCString();
   }
   value = encodeURIComponent(value);
-  let updatedCookie = name + "=" + value;
+  let updatedCookie = name + "=" + value + "; path=/;";
   for (const propName in props) {
     updatedCookie += "; " + propName;
     const propValue = props[propName];
