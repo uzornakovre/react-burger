@@ -4,19 +4,23 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setCurrentIngredient } from '../../../services/current-ingredient/currentIngredientSlice';
 import { setIsIngredientDetailsModalOpen } from '../../../services/modals/modalsSlice';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function IngredientsMenu({ 
   tabMenuRef, 
   bunCategoryRef,
   saucesCategoryRef,
   mainCategoryRef,
-  setCurrentTab,
+  setCurrentTab
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
-    dispatch(setIsIngredientDetailsModalOpen(true));
+    dispatch(setIsIngredientDetailsModalOpen(true))
+    navigate(`ingredients/${item._id}`, { state: { backgroundLocation: location }});
   }
 
   function handleScrollMenu() {

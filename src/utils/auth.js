@@ -83,16 +83,6 @@ class Auth {
     }).then(this._checkStatus);
   }
 
-  // checkToken(token) {
-  //   return fetch(`${this._url}/users/me`, {
-  //     headers: {
-  //       ...this._headers,
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   }).then(this._checkStatus)
-  //     .then(data => data);
-  // }
-
   logout(token) {
     return fetch(`${this._url}/auth/logout`, {
       method: "POST",
