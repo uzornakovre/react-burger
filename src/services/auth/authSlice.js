@@ -1,42 +1,49 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { auth } from '../../utils/auth';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchUserInfo, fetchUpdateUserInfo } from "../../utils/api";
 
 const initialState = {
   isLoggedIn: false,
   isLoading: false,
   error: null,
   allowPasswordReset: false,
-  userInfo: {}
-}
+  userInfo: {},
+};
 
-export const getUserInfo = createAsyncThunk('auth/userInfo', async (accessToken) => {
-  const res = await auth.getUserInfo(accessToken).then(res => res.user).catch(err => err);
-  return res;
-});
+export const getUserInfo = createAsyncThunk(
+  "auth/userInfo",
+  async (accessToken) => {
+    const res = await fetchUserInfo(accessToken)
+      .then((res) => res.user)
+      .catch((err) => err);
+    return res;
+  }
+);
 
-export const updateUserInfo = createAsyncThunk('auth/updateUserInfo', 
+export const updateUserInfo = createAsyncThunk(
+  "auth/updateUserInfo",
   async (data) => {
-  const res = await auth.updateUserInfo(data)
-    .then(res => res.user)
-    .catch(err => err);
-  return res;
-});
+    const res = await fetchUpdateUserInfo(data)
+      .then((res) => res.user)
+      .catch((err) => err);
+    return res;
+  }
+);
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setLoggedIn: (state, action) => {
-      return { ...state, isLoggedIn: action.payload}
+      return { ...state, isLoggedIn: action.payload };
     },
     setUserInfo: (state, action) => {
-      return { ...state, userInfo: action.payload }
+      return { ...state, userInfo: action.payload };
     },
     allowPasswordReset: (state, action) => {
-      return { ...state, allowPasswordReset: action.payload }
-    }
+      return { ...state, allowPasswordReset: action.payload };
+    },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(getUserInfo.pending, (state) => {
         state.isLoading = true;
@@ -62,10 +69,11 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.userInfo = {};
         state.error = action.error;
-      })
-  }
-})
+      });
+  },
+});
 
-export const { setLoggedIn, setLoggedOut, setUserInfo, allowPasswordReset } = authSlice.actions
+export const { setLoggedIn, setLoggedOut, setUserInfo, allowPasswordReset } =
+  authSlice.actions;
 
 export default authSlice.reducer;

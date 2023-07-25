@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { api } from '../../utils/api';
+import { fetchSendOrderData } from '../../utils/api';
 
 const initialState = {
   id: null,
@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export const sendOrderData = createAsyncThunk('order/setOrderData', async (ingredientsList) => {
-  const res = await api.sendOrderData(ingredientsList).then(res => res).catch(err => err);
+  const res = await fetchSendOrderData(ingredientsList).then(res => res).catch(err => err);
   return res;
 });
 

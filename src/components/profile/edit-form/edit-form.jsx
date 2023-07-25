@@ -48,7 +48,7 @@ function EditForm() {
       })
     ).then(() => {
       dispatch(setIsInfoModalOpen(true));
-      dispatch(setInfoModalText("Данные успешно обновлены"));
+      dispatch(setInfoModalText("Данные успешно обновлены")); // TODO:  Обработать ошибки
     });
   }
   return (

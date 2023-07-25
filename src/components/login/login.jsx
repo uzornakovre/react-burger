@@ -2,7 +2,7 @@ import styles from "./login.module.scss";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { auth } from "../../utils/auth";
+import { login } from "../../utils/api";
 import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import AuthForm from "../auth-form/auth-form";
@@ -19,14 +19,13 @@ function Login({ handleLogin }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-
-    auth.login(formData.values.login_email, formData.values.login_password)
+    login(formData.values.login_email, formData.values.login_password)
       .then((res) => {
         formData.setValues({
           login_email: "",
           login_password: "",
         });
-        handleLogin(res);
+        handleLogin();
         navigate("/", { replace: true });
       })
       .catch((error) => {

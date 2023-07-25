@@ -3,7 +3,7 @@ import useFormData from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../utils/auth";
+import { getResetCode } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import { allowPasswordReset } from "../../services/auth/authSlice";
 
@@ -15,7 +15,7 @@ function ForgotPassword() {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    auth.getResetCode(formData.values.forgot_password_email).then((res) => {
+    getResetCode(formData.values.forgot_password_email).then((res) => {
       dispatch(allowPasswordReset(true));
       if (res.success) {
         navigate("/reset-password", { replace: true });

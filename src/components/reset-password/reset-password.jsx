@@ -7,7 +7,7 @@ import {
   ShowIcon,
   HideIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { auth } from "../../utils/auth";
+import { resetPassword } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import {
   setIsInfoModalOpen,
@@ -22,8 +22,7 @@ function ResetPassword() {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    auth
-      .resetPassword(
+    resetPassword(
         formData.values.reset_password_password,
         formData.values.reset_password_token
       )

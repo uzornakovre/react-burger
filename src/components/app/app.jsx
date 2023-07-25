@@ -10,12 +10,12 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 // utils
 
-import { auth } from "../../utils/auth";
-import { getCookie, deleteCookie, setCookie } from "../../utils/cookies";
+import { getCookie } from "../../utils/cookies";
 import {
   getIsIngredientDetailsModalOpen,
   getIsLoggedIn,
 } from "../../utils/constants";
+import { logout } from "../../utils/api";
 
 // components
 
@@ -63,56 +63,31 @@ function App() {
     getIsIngredientDetailsModalOpen
   );
 
-  function handleLogin(data) {
+  function handleLogin() {
     dispatch(setLoggedIn(true));
-    setCookie("accessToken", data.accessToken.split("Bearer ")[1]);
-    setCookie("refreshToken", data.refreshToken);
   }
 
   function handleLogout() {
-    auth
-      .logout(token)
-      .then((res) => {
+    logout(token)
+      .then(() => {
         dispatch(setLoggedIn(false));
         navigate("/login", { replace: true });
       })
       .catch((err) => console.log(err));
-
-    deleteCookie("accessToken");
-    deleteCookie("refreshToken");
   }
 
-  function refreshToken() {
-    if (token) {
-      auth
-        .refreshToken(token)
-        .then((res) => {
-          if (res) {
-            handleLogin(res);
-          }
-        })
-        .catch((error) => {
-          console.log(`Ошибка при получении данных: ${error}`);
-        });
-    }
+  function checkUserAuth() {
+    if (accessToken) {
+      handleLogin();
+      dispatch(getUserInfo(accessToken));
+    } else dispatch(setUserInfo({}));
   }
-
-  useEffect(() => {
-    navigate(JSON.parse(getCookie('lastRoute') || '{}'))
-    window.onbeforeunload = () => {
-        setCookie('lastRoute', JSON.stringify(window.location.pathname))
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     dispatch(getIngredients());
-    if (!isLoggedIn) refreshToken();
-    if (accessToken) {
-      dispatch(getUserInfo(accessToken));
-    } else dispatch(setUserInfo({}));
+    checkUserAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, accessToken, isLoggedIn]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <div className={styles.app}>
@@ -159,14 +134,8 @@ function App() {
               />
             }
           >
-            <Route
-              index
-              element={<ProtectedRouteUnauthorized element={EditForm} />}
-            />
-            <Route
-              path="orders"
-              element={<ProtectedRouteUnauthorized element={Orders} />}
-            />
+            <Route index element={<EditForm />} />
+            <Route path="orders" element={<Orders />} />
           </Route>
           <Route path="ingredients/:id" element={<IngredientInfo />} />
         </Route>

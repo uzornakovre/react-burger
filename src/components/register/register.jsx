@@ -8,7 +8,7 @@ import {
   HideIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthForm from "../auth-form/auth-form";
-import { auth } from "../../utils/auth";
+import { login, register } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import {
   setIsInfoModalOpen,
@@ -27,15 +27,14 @@ function Register({ handleLogin }) {
       formData.values.register_password ===
       formData.values.register_confirm_password
     ) {
-      auth
-        .register(
+      register(
           formData.values.register_email,
           formData.values.register_password,
           formData.values.register_username
         )
         .then((res) => {
           if (!res.error && !res.message) {
-            auth.login(
+            login(
                 formData.values.register_email,
                 formData.values.register_password
               )
