@@ -1,0 +1,9 @@
+@import '../../styles/index.scss';
+
+.error {
+  display: flex;
+  align-items: center;
+  height: 100px;
+
+  @include renderFont();
+}

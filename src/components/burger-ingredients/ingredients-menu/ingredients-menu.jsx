@@ -1,22 +1,27 @@
 import styles from './ingredients-menu.module.scss';
-import Category from '../category/category';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Category from '../category/category';
 import { setCurrentIngredient } from '../../../services/current-ingredient/currentIngredientSlice';
 import { setIsIngredientDetailsModalOpen } from '../../../services/modals/modalsSlice';
+
 
 function IngredientsMenu({ 
   tabMenuRef, 
   bunCategoryRef,
   saucesCategoryRef,
   mainCategoryRef,
-  setCurrentTab,
+  setCurrentTab
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleIngredientClick(item) {
     dispatch(setCurrentIngredient(item));
-    dispatch(setIsIngredientDetailsModalOpen(true));
+    dispatch(setIsIngredientDetailsModalOpen(true))
+    navigate(`ingredients/${item._id}`, { state: { backgroundLocation: location }});
   }
 
   function handleScrollMenu() {

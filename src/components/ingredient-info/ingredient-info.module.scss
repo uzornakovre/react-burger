@@ -1,0 +1,16 @@
+@import '../../styles/index.scss';
+
+.container {
+  margin: 120px auto 0;
+  width: 720px;
+}
+
+.title {
+  text-align: center;
+  
+  @include renderFont(
+    $weight: 700,
+    $size: $font-size-heading-l,
+    $line-height: $font-line-height-heading-l,
+  )
+}

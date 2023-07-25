@@ -1,10 +1,13 @@
 import styles from './ingredient-details.module.scss';
-import { currentIngredientType } from '../../utils/prop-types';
+import { useSelector } from 'react-redux';
+import { getCurrentIngredient } from '../../utils/constants';
 
-function IngredientDetails({ currentIngredient }) {
+function IngredientDetails() {
+  const currentIngredient = useSelector(getCurrentIngredient);
+
   return (
     <div className={styles.content}>
-      <img className={styles.image} src={currentIngredient.image} alt={currentIngredient.name} />
+      <img className={styles.image} src={currentIngredient.image_large} alt={currentIngredient.name} />
       <h3 className={styles.name}>{currentIngredient.name}</h3>
       <div className={styles.nutrition_values}>
         <div className={styles.nutrition_value}>
@@ -27,7 +30,5 @@ function IngredientDetails({ currentIngredient }) {
     </div>
   );
 }
-
-IngredientDetails.propTypes = { currentIngredient: currentIngredientType }
 
 export default IngredientDetails;

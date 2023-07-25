@@ -1,34 +1,37 @@
 import styles from './app-header.module.scss';
-import { 
-  BurgerIcon,
-  ListIcon,
-  Logo,
-  ProfileIcon
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { NavLink } from 'react-router-dom';
+import { burgerIconPath, historyListIconPath, profileIconPath } from '../../utils/constants';
+import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function AppHeader() {
+  function navLinkDefaultClass({ isActive }) {
+    if (isActive) {
+      return `${styles.nav_link} ${styles.active}`;
+    } else return `${styles.nav_link}`;
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <nav className={styles.navigation}>
           <ul className={styles.nav_list}>
             <li className={`${styles.nav_item} p-5 mr-2`}>
-              <a className={styles.nav_link} href='#'>
-                <BurgerIcon type="primary" />
+              <NavLink to="/" className={navLinkDefaultClass}>
+                <svg className={styles.icon} viewBox="0 0 24 24">{burgerIconPath}</svg>
                 <span className={`${styles.nav_link_text} pl-2`}>Конструктор</span>
-              </a>               
+              </NavLink>               
             </li>
             <li className={`${styles.nav_item} p-5 mr-2`}>
-              <a className={`${styles.nav_link} ${styles.inactive}`} href='#'>
-                <ListIcon type="secondary" />
+              <NavLink to="/history" className={navLinkDefaultClass}>
+              <svg className={styles.icon} viewBox="0 0 24 24">{historyListIconPath}</svg>
                 <span className={`${styles.nav_link_text} pl-2`}>Лента заказов</span>
-              </a>               
+              </NavLink>               
             </li>
             <li className={`${styles.nav_item} p-5`}>
-              <a className={`${styles.nav_link} ${styles.inactive}`} href='#'>
-                <ProfileIcon type="secondary" />
+              <NavLink to="/profile/" className={navLinkDefaultClass}>
+                <svg className={styles.icon} viewBox="0 0 24 24">{profileIconPath}</svg>
                 <span className={`${styles.nav_link_text} pl-2`}>Личный кабинет</span>
-              </a>               
+              </NavLink>               
             </li>
           </ul>
         </nav>

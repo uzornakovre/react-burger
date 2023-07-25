@@ -1,0 +1,84 @@
+@import '../../styles/index.scss';
+
+.input_container {
+  position: relative;
+  width: 100%;
+
+  @include renderFont();
+}
+
+.input_label {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  transition: all .2s linear;
+
+  @include renderFont($color: $color-text-2);
+
+  &_active {
+    top: 8px;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 64px;
+  padding: 24px 24px 0;
+  box-sizing: border-box;
+  border-radius: 40px;
+  border: none;
+  background-color: $color-interface-input-1;
+
+  @include renderFont();
+
+  &_error {
+    outline: 2px solid $color-interface-error;
+  }
+
+  &:focus {
+    outline: 2px solid $color-interface-accent-1;
+  }
+
+  &:focus + .input_label {
+    top: 8px;
+  }
+
+  &:disabled {
+    color: $color-text-2;
+  }
+
+  &_error {
+    outline: 2px solid $color-interface-error;
+
+    &:focus {
+      outline: 2px solid $color-interface-error;
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &:active {
+    opacity: .5;
+  }
+}
+
+.error {
+  display: block;
+  padding: 2px 24px 0;
+  height: 22px;
+
+  @include renderFont(
+    $color: $color-interface-error,
+    $size: $font-size-xs,
+    $line-height: $font-line-height-xs,
+  );
+}

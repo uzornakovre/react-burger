@@ -1,0 +1,17 @@
+@import '../../styles/index.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 24px;
+
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading
+  )
+}
