@@ -46,6 +46,8 @@ import {
   getUserInfo,
   setUserInfo,
 } from "../../services/auth/authSlice";
+import EditForm from "../profile/edit-form/edit-form";
+import Orders from "../profile/orders/orders";
 
 function App() {
   const dispatch = useDispatch();
@@ -148,7 +150,16 @@ function App() {
                 handleLogout={handleLogout}
               />
             }
-          />
+          >
+            <Route
+              index
+              element={<ProtectedRouteUnauthorized element={EditForm} />}
+            />
+            <Route
+              path="orders"
+              element={<ProtectedRouteUnauthorized element={Orders} />}
+            />
+          </Route>
           <Route path="ingredients/:id" element={<IngredientInfo />} />
         </Route>
         <Route path="*" element={<NotFound />} />

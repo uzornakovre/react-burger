@@ -8,12 +8,12 @@ function FormInput({ formData, label, type, name, isIcon, icons, place }) {
   const [disabled, setDisabled] = useState(true);
 
   function handleIconClick() {
-    setIsPasswordVisible(!isPasswordVisible);
+    place !== "profile" && setIsPasswordVisible(!isPasswordVisible);
     setDisabled(false);
   }
 
   useEffect(() => {
-    setCurrentIcon(
+    place !== "profile" && setCurrentIcon(
       icons && icons.length > 1 && isPasswordVisible
         ? icons[1]
         : icons && !isPasswordVisible

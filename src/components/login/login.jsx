@@ -6,10 +6,13 @@ import FormInput from "../form-input/form-input";
 import { ShowIcon, HideIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthForm from "../auth-form/auth-form";
 import { auth } from "../../utils/auth";
+import { useDispatch } from "react-redux";
+import { setInfoModalText, setIsInfoModalOpen } from "../../services/modals/modalsSlice";
 
 function Login({ handleLogin }) {
   const formData = useFormData();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -24,7 +27,8 @@ function Login({ handleLogin }) {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        console.log("Неверный логин или пароль.");
+        dispatch(setIsInfoModalOpen(true))
+        dispatch(setInfoModalText("Неверный логин или пароль."))
       });
   }
 

@@ -28,7 +28,7 @@ function AppHeader() {
               </NavLink>               
             </li>
             <li className={`${styles.nav_item} p-5`}>
-              <NavLink to="/profile" className={navLinkDefaultClass}>
+              <NavLink to="/profile/" className={navLinkDefaultClass}>
                 <svg className={styles.icon} viewBox="0 0 24 24">{profileIconPath}</svg>
                 <span className={`${styles.nav_link_text} pl-2`}>Личный кабинет</span>
               </NavLink>               
