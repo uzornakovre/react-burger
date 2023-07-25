@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import Item from '../item/item';
 import styles from './category.module.scss';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getAllIngredients } from '../../../utils/constants';
+import Item from '../item/item';
+
 
 function Category({ title, type, onIngredientClick }) {
   const ingredientsList = useSelector(getAllIngredients);

@@ -1,27 +1,46 @@
-import { useEffect } from 'react';
-import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './burger-constructor.module.scss';
-import Modal from '../modal/modal';
-import OrderDetails from '../order-details/order-details';
-import ResultList from './result-list/result-list';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { sendOrderData, setTotalPrice } from '../../services/order/orderSlice';
-import { setInfoModalText, setIsInfoModalOpen, setIsOrderDetailsModalOpen } from '../../services/modals/modalsSlice';
-import { clearSelected } from '../../services/constructor/constructorSlice';
-import { closeAllModals } from '../../services/modals/modalsSlice';
-import { 
+// styles
+
+import styles from "./burger-constructor.module.scss";
+
+// libraries
+
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+// utils
+
+import {
   getIsLoggedIn,
   getIsOrderDetailsModalOpen,
   getOrderId,
-  getSelectedBun, 
-  getSelectedIngredients, 
+  getSelectedBun,
+  getSelectedIngredients,
   getTotalPrice,
-} from '../../utils/constants';
+} from "../../utils/constants";
+
+// components
+
+import {
+  CurrencyIcon,
+  Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details";
+import ResultList from "./result-list/result-list";
+
+// slices
+import { clearSelected } from "../../services/constructor/constructorSlice";
+import { closeAllModals } from "../../services/modals/modalsSlice";
+import { sendOrderData, setTotalPrice } from "../../services/order/orderSlice";
+import {
+  setInfoModalText,
+  setIsInfoModalOpen,
+  setIsOrderDetailsModalOpen,
+} from "../../services/modals/modalsSlice";
 
 function BurgerConstructor() {
-
-  const selectedBun = useSelector(getSelectedBun)
+  const selectedBun = useSelector(getSelectedBun);
   const selectedIngredients = useSelector(getSelectedIngredients);
   const totalPrice = useSelector(getTotalPrice);
   const orderNumber = useSelector(getOrderId);
@@ -39,21 +58,32 @@ function BurgerConstructor() {
     if (isLoggedIn) {
       if (selectedIngredients.length && selectedBun._id) {
         dispatch(setIsOrderDetailsModalOpen(true));
-        submitOrder(selectedIngredients.map(i => i._id).concat([selectedBun._id, selectedBun._id]));
+        submitOrder(
+          selectedIngredients
+            .map((i) => i._id)
+            .concat([selectedBun._id, selectedBun._id])
+        );
         dispatch(clearSelected());
       } else {
         dispatch(setIsInfoModalOpen(true));
-        dispatch(setInfoModalText('Необходимо выбрать булку и как минимум один ингредент'));
+        dispatch(
+          setInfoModalText(
+            "Необходимо выбрать булку и как минимум один ингредент"
+          )
+        );
       }
     } else navigate("/login");
-
   }
 
   useEffect(() => {
-    dispatch(setTotalPrice(
-      (selectedBun.id ? selectedBun.price * 2 : 0) + 
-      (selectedIngredients ? selectedIngredients.reduce((acc, item) => acc + item.price, 0) : 0)
-    ))
+    dispatch(
+      setTotalPrice(
+        (selectedBun.id ? selectedBun.price * 2 : 0) +
+          (selectedIngredients
+            ? selectedIngredients.reduce((acc, item) => acc + item.price, 0)
+            : 0)
+      )
+    );
   }, [dispatch, selectedBun, selectedIngredients]);
 
   return (
@@ -64,11 +94,14 @@ function BurgerConstructor() {
           <span className={styles.total_price_value}>{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button 
-          htmlType="button" 
-          type="primary" 
+        <Button
+          htmlType="button"
+          type="primary"
           size="large"
-          onClick={handleOrderClick}>Оформить заказ</Button>
+          onClick={handleOrderClick}
+        >
+          Оформить заказ
+        </Button>
       </div>
       <Modal
         isOpen={isOrderDetailsModalOpen}
@@ -78,7 +111,7 @@ function BurgerConstructor() {
         <OrderDetails orderNumber={orderNumber} />
       </Modal>
     </section>
-  )
+  );
 }
 
 export default BurgerConstructor;

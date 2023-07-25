@@ -1,10 +1,11 @@
 import styles from './ingredient.module.scss';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
-import { removeIngredient } from '../../../services/constructor/constructorSlice';
-import PropTypes from 'prop-types';
-import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useDrag, useDrop } from 'react-dnd';
+import PropTypes from 'prop-types';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { removeIngredient } from '../../../services/constructor/constructorSlice';
+
 
 function Ingredient({ name, price, image, id, index, moveSelectedIngredient }) {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import styles from "./auth-form.module.scss";
-import PropTypes from "prop-types";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { getAuthIsLoading } from "../../utils/constants";
+import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function AuthForm({ title, buttonText, handleSubmit, formData, children }) {
   const isLoading = useSelector(getAuthIsLoading);

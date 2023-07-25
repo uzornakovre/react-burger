@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './item.module.scss';
-import { useSelector } from 'react-redux';
-import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
 import { useEffect, useState } from 'react';
 import { useDrag } from 'react-dnd';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getSelectedBun, getSelectedIngredients } from '../../../utils/constants';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function Item({ name, price, image, _id, type }) {
   const [, dragRef] = useDrag({

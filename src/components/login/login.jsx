@@ -1,12 +1,15 @@
 import styles from "./login.module.scss";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { auth } from "../../utils/auth";
 import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
-import { ShowIcon, HideIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthForm from "../auth-form/auth-form";
-import { auth } from "../../utils/auth";
-import { useDispatch } from "react-redux";
+import { ShowIcon, HideIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+
+
+
 import { setInfoModalText, setIsInfoModalOpen } from "../../services/modals/modalsSlice";
 
 function Login({ handleLogin }) {
