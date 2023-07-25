@@ -98,6 +98,14 @@ function App() {
   }
 
   useEffect(() => {
+    navigate(JSON.parse(getCookie('lastRoute') || '{}'))
+    window.onbeforeunload = () => {
+        setCookie('lastRoute', JSON.stringify(window.location.pathname))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     dispatch(getIngredients());
     if (!isLoggedIn) refreshToken();
     if (accessToken) {
