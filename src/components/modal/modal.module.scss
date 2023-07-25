@@ -12,6 +12,7 @@
   align-items: center;
   flex-shrink: 0;
 
+  transition: all .2s linear;
   border-radius: 40px;
   border: 1px solid var(--interface-modal-edge, rgba(76, 76, 255, 0.20));
   background: var(--interface-modal-bg, #1C1C21);
