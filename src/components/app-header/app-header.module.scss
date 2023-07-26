@@ -16,45 +16,6 @@
   margin: 0 auto;
 }
 
-.navigation {
-  width: 100%;
-}
-
-.nav_list {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.nav_item {
-  margin: 12px 0;
-  border-radius: 40px;
-
-  &:last-of-type {
-    margin-left: auto;
-  }
-}
-
-.nav_link {
-  display: flex;
-  align-items: center;
-  color: $color-text-2;
-  fill: $color-text-2;
-  cursor: pointer;
-  transition: all .2s linear;
-
-  &:hover {
-    color: $color-interface-accent-1;
-    fill: $color-interface-accent-1;
-  }
-
-  &:active {
-    color: $color-interface-accent-1;
-    fill: $color-interface-accent-1;
-    opacity: .6;
-  }
-}
-
 .logo {
   position: absolute;
   left: 50%;
@@ -72,28 +33,4 @@
   height: 0;
   transform: scale(0);
   visibility: hidden;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  fill: inherit;
-}
-
-.active {
-  color: $color-text-1;
-  fill: $color-text-1;
-  cursor: default;
-
-  &:hover {
-    color: $color-text-1;
-    fill: $color-text-1;
-    opacity: 1;
-  }
-
-  &:active {
-    color: $color-text-1;
-    fill: $color-text-1;
-    opacity: 1;
-  }
 }
