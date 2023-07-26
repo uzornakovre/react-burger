@@ -25,6 +25,8 @@ export const getIsLoggedIn = store => store.auth.isLoggedIn;
 export const getAuthIsLoading = store => store.auth.isLoading;
 export const getIsAllowedPasswordReset = store => store.auth.allowPasswordReset;
 
+export const getIsBurgerMenuOpen = store => store.burgerMenu.isBurgerMenuOpen;
+
 // SVG Pathes 
 
 export const burgerIconPath = <path fillRule="evenodd" clipRule="evenodd" d="M22.0571 8.7H1.96905C1.44524 8.7 

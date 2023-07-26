@@ -18,6 +18,16 @@
   max-width: 1280px;
   height: inherit;
   margin: 0 auto;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    min-height: 40px;
+    padding: 16px 16px;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    box-sizing: border-box;
+    padding: 12px 8px;
+  }
 }
 
 .logo {
@@ -43,7 +53,7 @@
 
 .logo_mobile {
   display: none;
-  padding-left: 20px;
+  height: 40px;
 
   @media screen and (max-width: calc($screen-width-tablet - 1px)) {
     display: block;
@@ -59,7 +69,6 @@
 
 .burger_button {
   display: none;
-  padding: 20px;
   background-color: transparent;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
@@ -72,4 +81,8 @@
   width: 24px;
   height: 24px;
   fill: $color-text-1;
+
+  &:active {
+    opacity: .7;
+  }
 }

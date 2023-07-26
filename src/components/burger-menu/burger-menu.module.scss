@@ -1,0 +1,81 @@
+@import '../../styles/index.scss';
+
+.menu {
+  position: relative;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s linear, visibility .2s linear;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  justify-content: flex-end;
+
+  &_opened {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 8px;
+}
+
+.title {
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $weight: 700
+  )
+}
+
+.close_button {
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+  // position: absolute;
+  // top: 23px;
+  // right: 23px;
+  background-image: url('../../images/close_icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity .2s linear;
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &:active {
+    opacity: .6;
+  }
+}
+
+.container {
+  position: relative;
+  box-sizing: border-box;
+  width: 520px;
+  background: $color-background-1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-left: auto;
+  transition: all .3s linear;
+  right: -50%;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+
+  &_opened {
+    right: 0
+  }
+}

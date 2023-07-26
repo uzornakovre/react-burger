@@ -5,6 +5,7 @@ import currentIngredientSlice from './current-ingredient/currentIngredientSlice'
 import orderSlice from './order/orderSlice';
 import modalsSlice from './modals/modalsSlice';
 import authSlice from './auth/authSlice';
+import burgerMenuSlice from './burger-menu/burgerMenuSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     selected: constructorSlice,
     order: orderSlice,
     modals: modalsSlice,
-    auth: authSlice
+    auth: authSlice,
+    burgerMenu: burgerMenuSlice
   }
 })
 

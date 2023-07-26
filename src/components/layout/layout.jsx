@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AppHeader from "../app-header/app-header";
 import Modal from "../modal/modal";
 import Preloader from "../preloader/preloader";
+import BurgerMenu from "../burger-menu/burger-menu";
 import {
   getAuthIsLoading,
   getInfoModalText,
@@ -24,7 +25,7 @@ function Layout() {
   return (
     <>
       <AppHeader />
-      {/* <Outlet />
+      <Outlet />
       <Modal
         isOpen={isInfoModalOpen}
         onClose={() => dispatch(closeAllModals())}
@@ -32,7 +33,8 @@ function Layout() {
       >
         <span className={styles.error}>{infoModalText}</span>
       </Modal>
-      {isLoading && <Preloader />} */}
+      <BurgerMenu />
+      {isLoading && <Preloader />}
     </>
   );
 }
