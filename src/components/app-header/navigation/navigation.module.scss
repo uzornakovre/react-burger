@@ -2,6 +2,10 @@
 
 .navigation {
   width: 100%;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: none;
+  }
 }
 
 .nav_list {

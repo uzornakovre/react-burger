@@ -54,3 +54,8 @@ export const profileIconPath =  <path fillRule="evenodd" clipRule="evenodd" d="M
   23 12 23C18.5944 23 20.4608 21.4607 20.8947 20.9572C20.9792 20.8593 21.0103 20.7362 20.9971 
   20.6088C20.8969 19.638 20.0015 15.3 12 15.3C3.99848 15.3 3.10311 19.638 3.00291 20.6088C2.98975 
   20.7362 3.02077 20.8593 3.10524 20.9572Z" fill="inherit"/>
+
+export const burgerMenuIconPath = <>
+  <rect x="3" y="6" width="18" height="2" rx="1" fill="inherit"/>
+  <rect x="3" y="11" width="18" height="2" rx="1" fill="inherit"/>
+  <rect x="3" y="16" width="18" height="2" rx="1" fill="inherit"/></>

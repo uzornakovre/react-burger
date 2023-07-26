@@ -24,7 +24,7 @@ function Layout() {
   return (
     <>
       <AppHeader />
-      <Outlet />
+      {/* <Outlet />
       <Modal
         isOpen={isInfoModalOpen}
         onClose={() => dispatch(closeAllModals())}
@@ -32,7 +32,7 @@ function Layout() {
       >
         <span className={styles.error}>{infoModalText}</span>
       </Modal>
-      {isLoading && <Preloader />}
+      {isLoading && <Preloader />} */}
     </>
   );
 }

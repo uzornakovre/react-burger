@@ -5,6 +5,10 @@
   background-color: $color-background-1;
   
   @include renderFont();
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    min-height: 40px;
+  }
 }
 
 .container {
@@ -26,6 +30,24 @@
   @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
     left: 58%;
   }
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    left: 20px;
+    transform: none;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    display: none;
+  }
+}
+
+.logo_mobile {
+  display: none;
+  padding-left: 20px;
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    display: block;
+  }
 }
 
 .title {
@@ -33,4 +55,21 @@
   height: 0;
   transform: scale(0);
   visibility: hidden;
+}
+
+.burger_button {
+  display: none;
+  padding: 20px;
+  background-color: transparent;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+.burger_icon {
+  width: 24px;
+  height: 24px;
+  fill: $color-text-1;
 }
