@@ -15,6 +15,12 @@ type TMoveIndex = {
   hoverIndex: number;
 }
 
+type TOrderResponse = {
+  name: string;
+  order: { number: number };
+  success: boolean;
+}
+
 type TIngredient = {
   _id: string;
   id?: string;
