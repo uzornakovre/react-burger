@@ -10,8 +10,14 @@ type TError = {
   stack: string;
 }
 
-type TCurrentIngredient = {
+type TMoveIndex = {
+  dragIndex: number;
+  hoverIndex: number;
+}
+
+type TIngredient = {
   _id: string;
+  id?: string;
   name: string;
   type: string;
   proteins: number;

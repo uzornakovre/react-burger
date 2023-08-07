@@ -10,8 +10,8 @@ export const getAllIngredients = (store: RootState) => store.allIngredients.ingr
 export const getCurrentIngredient = (store: RootState) => store.currentIngredient;
 export const getIngredientsIsLoading = (store: RootState) => store.allIngredients.isLoading;
 
-export const getSelectedBun = (store: any) => store.selected.bun;
-export const getSelectedIngredients = (store: any) => store.selected.ingredients;
+export const getSelectedBun = (store: RootState) => store.selected.bun;
+export const getSelectedIngredients = (store: RootState) => store.selected.ingredients;
 
 export const getTotalPrice = (store: RootState) => store.order.totalPrice;
 export const getOrderId = (store: RootState) => store.order.id;
