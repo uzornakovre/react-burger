@@ -1,7 +1,7 @@
 import styles from './navigation.module.scss';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { burgerIconPath, historyListIconPath, profileIconPath } from '../../../utils/constants';
+import { burgerIconPath, historyListIconPath, profileIconPath } from '../../../utils/svg-pathes';
 
 function Navigation({ place }) {
   function navLinkDefaultClass({ isActive }) {

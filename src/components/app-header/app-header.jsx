@@ -1,6 +1,6 @@
 import styles from "./app-header.module.scss";
 import Navigation from "./navigation/navigation";
-import { burgerMenuIconPath } from "../../utils/constants";
+import { burgerMenuIconPath } from "../../utils/svg-pathes";
 
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import logoMobile from '../../images/logo.svg';
