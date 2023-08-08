@@ -2,13 +2,14 @@ import styles from "./reset-password.module.scss";
 import useFormData from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
+import { MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ShowIcon,
   HideIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { resetPassword } from "../../utils/api";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../services/hooks";
 import {
   setIsInfoModalOpen,
   setInfoModalText,
@@ -17,9 +18,9 @@ import {
 function ResetPassword() {
   const formData = useFormData();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  function handleSubmit(evt) {
+  function handleSubmit(evt: MouseEvent<HTMLButtonElement>) {
     evt.preventDefault();
 
     resetPassword(

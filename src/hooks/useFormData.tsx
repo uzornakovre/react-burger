@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
+
+// interface IFormValue {
+//   [name: string]: string;
+// }
 
 function useFormValues() {
-  const [values,  setValues ] = useState({});
-  const [errors,  setErrors ] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [values,  setValues ] = useState<any>({});
+  const [errors,  setErrors ] = useState<any>({});
+  const [isValid, setIsValid] = useState<boolean>(false);
 
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>) {
     const form = evt.target;
     const { value, name, type } = form;
     const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
@@ -25,7 +29,7 @@ function useFormValues() {
       [name]: evt.target.validationMessage
     })
 
-    setIsValid(evt.target.closest('form').checkValidity());
+    setIsValid(evt.target.closest('form')!.checkValidity());
   }
 
   function resetFormValues() {
