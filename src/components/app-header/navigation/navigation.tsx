@@ -1,10 +1,13 @@
 import styles from './navigation.module.scss';
-import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { burgerIconPath, historyListIconPath, profileIconPath } from '../../../utils/svg-pathes';
 
-function Navigation({ place }) {
-  function navLinkDefaultClass({ isActive }) {
+interface INavigationProps {
+  place?: string;
+}
+
+function Navigation({ place }: INavigationProps) {
+  function navLinkDefaultClass({ isActive }: { isActive: boolean }) {
     if (isActive) {
       return `${styles.nav_link} ${styles.active}`;
     } else return `${styles.nav_link}`;
@@ -34,10 +37,6 @@ function Navigation({ place }) {
       </ul>
     </nav>
   )
-}
-
-Navigation.propTypes = {
-  place: PropTypes.string
 }
 
 export default Navigation;

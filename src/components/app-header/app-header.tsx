@@ -4,11 +4,11 @@ import { burgerMenuIconPath } from "../../utils/svg-pathes";
 
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import logoMobile from '../../images/logo.svg';
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../services/hooks";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
 
 function AppHeader() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleBurgerButtonClick() {
     dispatch(toggleBurgerMenu(true));
