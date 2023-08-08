@@ -103,7 +103,7 @@ export const resetPassword = (password: string, token: string) => {
     .then((data) => data);
 };
 
-export const logout = (token: string) => {
+export const logout = (token?: string) => {
   return fetch(`${baseUrl}/auth/logout`, {
     method: "POST",
     headers,

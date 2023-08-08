@@ -5,8 +5,11 @@ import styles from "./app.module.scss";
 // libraries
 
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+
+// hooks
+
+import { useAppDispatch, useAppSelector } from "../../services/hooks";
 
 // utils
 
@@ -50,16 +53,16 @@ import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const accessToken = getCookie("accessToken");
   const token = getCookie("refreshToken");
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
   const state = location.state
     ? location.state
     : { backgroundLocation: undefined };
-  const isIngredientDetailsModalOpen = useSelector(
+  const isIngredientDetailsModalOpen = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
 
@@ -80,7 +83,7 @@ function App() {
     if (accessToken) {
       handleLogin();
       dispatch(getUserInfo(accessToken));
-    } else dispatch(setUserInfo({}));
+    } else dispatch(setUserInfo({ name: '', email: '' }));
   }
 
   useEffect(() => {
