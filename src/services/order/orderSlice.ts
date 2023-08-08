@@ -4,7 +4,7 @@ import { UnknownAsyncThunkRejectedAction } from "@reduxjs/toolkit/dist/matchers"
 
 interface IOrderState {
   id: number | null;
-  ingredientsList: Array<TIngredient>;
+  ingredientsList: Array<string>;
   totalPrice: number;
   error: string;
   isLoading: boolean;
@@ -20,7 +20,7 @@ const initialState: IOrderState = {
 
 export const sendOrderData = createAsyncThunk(
   "order/setOrderData",
-  async (ingredientsList: Array<TIngredient>) => {
+  async (ingredientsList: Array<string>) => {
     const res = await fetchSendOrderData(ingredientsList);
     return res;
   }

@@ -1,6 +1,6 @@
 import styles from "./result-list.module.scss";
 import { useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { useDrop } from "react-dnd";
 import {
   getSelectedBun,
@@ -15,14 +15,14 @@ import {
 } from "../../../services/constructor/constructorSlice";
 
 function ResultList() {
-  const selectedBun = useSelector(getSelectedBun);
-  const selectedIngredients = useSelector(getSelectedIngredients);
+  const selectedBun = useAppSelector(getSelectedBun);
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{ isHover }, ingredientDropRef] = useDrop(() => ({
     accept: "ingredient",
-    drop(item) {
+    drop(item: TIngredient) {
       handleIngredientDrop(item);
     },
     collect: (monitor) => ({
@@ -30,13 +30,13 @@ function ResultList() {
     }),
   }));
 
-  function handleIngredientDrop(item) {
+  function handleIngredientDrop(item: TIngredient) {
     if (item.type === "bun") {
       dispatch(addBun({ ...item, id: crypto.randomUUID() }));
     } else dispatch(addIngredient({ ...item, id: crypto.randomUUID() }));
   }
 
-  function moveSelectedIngredient(dragIndex, hoverIndex) {
+  function moveSelectedIngredient(dragIndex: number, hoverIndex: number) {
     dispatch(moveIngredient({ dragIndex, hoverIndex }));
   }
 
@@ -47,7 +47,7 @@ function ResultList() {
         <li
           className={styles.middle_item}
           key={`ingredient-${item.id}`}
-          index={index}
+          // index={index}
         >
           <Ingredient
             name={item.name}

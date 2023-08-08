@@ -122,7 +122,7 @@ export const fetchIngredients = () => {
   }).then(checkResponse);
 };
 
-export const fetchSendOrderData = (data: Array<TIngredient>) => {
+export const fetchSendOrderData = (data: Array<string>) => {
   return fetch(`${baseUrl}/orders`, {
     method: "POST",
     headers,

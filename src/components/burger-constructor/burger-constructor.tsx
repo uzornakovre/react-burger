@@ -6,7 +6,10 @@ import styles from "./burger-constructor.module.scss";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+
+// hooks
+
+import { useAppDispatch, useAppSelector } from "../../services/hooks";
 
 // utils
 
@@ -40,17 +43,17 @@ import {
 } from "../../services/modals/modalsSlice";
 
 function BurgerConstructor() {
-  const selectedBun = useSelector(getSelectedBun);
-  const selectedIngredients = useSelector(getSelectedIngredients);
-  const totalPrice = useSelector(getTotalPrice);
-  const orderNumber = useSelector(getOrderId);
-  const isOrderDetailsModalOpen = useSelector(getIsOrderDetailsModalOpen);
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  const selectedBun = useAppSelector(getSelectedBun);
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
+  const totalPrice = useAppSelector(getTotalPrice);
+  const orderNumber = useAppSelector(getOrderId);
+  const isOrderDetailsModalOpen = useAppSelector(getIsOrderDetailsModalOpen);
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function submitOrder(ingredients) {
+  function submitOrder(ingredients: Array<string>) {
     dispatch(sendOrderData(ingredients));
   }
 
@@ -88,7 +91,7 @@ function BurgerConstructor() {
 
   return (
     <section className={`${styles.burger_constructor} mt-25`}>
-      <ResultList bun={selectedBun} />
+      <ResultList />
       <div className={`${styles.order_info} mt-10`}>
         <div className={styles.total_price}>
           <span className={styles.total_price_value}>{totalPrice}</span>
