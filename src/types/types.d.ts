@@ -33,3 +33,9 @@ type TIngredient = {
   price: number;
   image: string;
 };
+
+type TRequestOptions = {
+  headers: {
+    [name: string]: string;
+  }
+}

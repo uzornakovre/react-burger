@@ -3,6 +3,9 @@ import { RootState } from "../services/store";
 // API
 
 export const baseUrl: string = 'https://norma.nomoreparties.space/api';
+export const headers = {
+  "Content-Type": "application/json",
+};
 
 // Redux Store
 

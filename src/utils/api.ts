@@ -1,15 +1,11 @@
-import { baseUrl } from "./constants";
+import { baseUrl, headers } from "./constants";
 import { getCookie, setCookie, deleteCookie } from "./cookies";
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
-const checkResponse = (res) => {
+const checkResponse = (res: any) => {
   if (res.ok) {
     return res.json();
   } else {
-    return res.json().then((err) => Promise.reject(err));
+    return res.json().then((err: any) => Promise.reject(err));
   }
 };
 
@@ -21,11 +17,14 @@ export const refreshToken = () => {
   }).then(checkResponse);
 };
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async (
+  url: string,
+  options: TRequestOptions
+) => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === "jwt expired" || err.message === "jwt maloformed") {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
@@ -42,7 +41,7 @@ export const fetchWithRefresh = async (url, options) => {
   }
 };
 
-export const fetchUserInfo = (token) => {
+export const fetchUserInfo = (token: string) => {
   return fetchWithRefresh(`${baseUrl}/auth/user`, {
     headers: {
       ...headers,
@@ -51,7 +50,7 @@ export const fetchUserInfo = (token) => {
   });
 };
 
-export const register = (email, password, name) => {
+export const register = (email: string, password: string, name: string) => {
   return fetch(`${baseUrl}/auth/register`, {
     method: "POST",
     headers,
@@ -59,7 +58,7 @@ export const register = (email, password, name) => {
   }).then(checkResponse);
 };
 
-export const login = (email, password) => {
+export const login = (email: string, password: string) => {
   return fetch(`${baseUrl}/auth/login`, {
     method: "POST",
     headers,
@@ -72,7 +71,7 @@ export const login = (email, password) => {
     });
 };
 
-export const fetchUpdateUserInfo = (data) => {
+export const fetchUpdateUserInfo = (data: TUserInfo & { token: string }) => {
   const { name, email, password, token } = data;
   return fetch(`${baseUrl}/auth/user`, {
     method: "PATCH",
@@ -84,7 +83,7 @@ export const fetchUpdateUserInfo = (data) => {
   }).then(checkResponse);
 };
 
-export const getResetCode = (email) => {
+export const getResetCode = (email: string) => {
   return fetch(`${baseUrl}/password-reset`, {
     method: "POST",
     headers,
@@ -94,7 +93,7 @@ export const getResetCode = (email) => {
     .then((data) => data);
 };
 
-export const resetPassword = (password, token) => {
+export const resetPassword = (password: string, token: string) => {
   return fetch(`${baseUrl}/password-reset/reset`, {
     method: "POST",
     headers,
@@ -104,7 +103,7 @@ export const resetPassword = (password, token) => {
     .then((data) => data);
 };
 
-export const logout = (token) => {
+export const logout = (token: string) => {
   return fetch(`${baseUrl}/auth/logout`, {
     method: "POST",
     headers,
@@ -121,14 +120,14 @@ export const fetchIngredients = () => {
   return fetch(`${baseUrl}/ingredients`, {
     headers,
   }).then(checkResponse);
-}
+};
 
-export const fetchSendOrderData = (data) => {
+export const fetchSendOrderData = (data: Array<TIngredient>) => {
   return fetch(`${baseUrl}/orders`, {
-    method: 'POST',
+    method: "POST",
     headers,
     body: JSON.stringify({
       ingredients: data,
-    })
-  }).then(checkResponse)
-}
+    }),
+  }).then(checkResponse);
+};
