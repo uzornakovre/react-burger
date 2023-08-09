@@ -41,10 +41,10 @@ type TRequestOptions = {
 };
 
 type TFormData = {
-  values?: {
+  values: {
     [name: string]: string;
   };
-  errors?: {
+  errors: {
     [name: string]: string;
   };
   isValid?: boolean;
