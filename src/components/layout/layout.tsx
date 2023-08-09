@@ -1,6 +1,6 @@
 import styles from "./layout.module.scss";
 import { Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import AppHeader from "../app-header/app-header";
 import Modal from "../modal/modal";
 import Preloader from "../preloader/preloader";
@@ -15,10 +15,10 @@ import {
 import { closeAllModals } from "../../services/modals/modalsSlice";
 
 function Layout() {
-  const dispatch = useDispatch();
-  const isInfoModalOpen = useSelector(getIsInfoModalOpen);
-  const infoModalText = useSelector(getInfoModalText);
-  const isLoading = useSelector(
+  const dispatch = useAppDispatch();
+  const isInfoModalOpen: boolean = useAppSelector(getIsInfoModalOpen);
+  const infoModalText: string = useAppSelector(getInfoModalText);
+  const isLoading: boolean = useAppSelector(
     getAuthIsLoading || getOrderIsLoading || getIngredientsIsLoading
   );
 
