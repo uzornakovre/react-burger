@@ -47,7 +47,6 @@ function ResultList() {
         <li
           className={styles.middle_item}
           key={`ingredient-${item.id}`}
-          // index={index}
         >
           <Ingredient
             name={item.name}

@@ -4,12 +4,12 @@ import IngredientsMenu from './ingredients-menu/ingredients-menu';
 import { useState, useRef } from 'react';
 
 function BurgerIngredients() {
-  const [currentTab, setCurrentTab] = useState('one');
+  const [currentTab, setCurrentTab] = useState<string>('one');
 
-  const tabMenuRef = useRef();
-  const bunCategoryRef = useRef();
-  const saucesCategoryRef = useRef();
-  const mainCategoryRef = useRef();
+  const tabMenuRef = useRef<HTMLDivElement>();
+  const bunCategoryRef = useRef<HTMLDivElement>();
+  const saucesCategoryRef = useRef<HTMLDivElement>();
+  const mainCategoryRef = useRef<HTMLDivElement>();
   
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>

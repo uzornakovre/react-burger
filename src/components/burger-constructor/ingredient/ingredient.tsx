@@ -44,8 +44,7 @@ function Ingredient({
 
       if (!ref.current) return;
       if (dragIndex === hoverIndex) return;
-
-      // @ts-ignore
+     
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;

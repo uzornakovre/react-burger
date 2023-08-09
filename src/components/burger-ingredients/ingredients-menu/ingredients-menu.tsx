@@ -1,11 +1,17 @@
 import styles from './ingredients-menu.module.scss';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Category from '../category/category';
 import { setCurrentIngredient } from '../../../services/current-ingredient/currentIngredientSlice';
 import { setIsIngredientDetailsModalOpen } from '../../../services/modals/modalsSlice';
 
+interface IIngredientsMenuProps {
+  setCurrentTab: any;
+  tabMenuRef: any;
+  bunCategoryRef: any;
+  saucesCategoryRef: any;
+  mainCategoryRef: any;
+}
 
 function IngredientsMenu({ 
   tabMenuRef, 
@@ -13,12 +19,12 @@ function IngredientsMenu({
   saucesCategoryRef,
   mainCategoryRef,
   setCurrentTab
-}) {
+}: IIngredientsMenuProps) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  function handleIngredientClick(item) {
+  function handleIngredientClick(item: TIngredient) {
     dispatch(setCurrentIngredient(item));
     dispatch(setIsIngredientDetailsModalOpen(true))
     navigate(`ingredients/${item._id}`, { state: { backgroundLocation: location }});
@@ -65,14 +71,6 @@ function IngredientsMenu({
       </li>
     </ul>
   )
-}
-
-IngredientsMenu.propTypes = {
-  tabMenuRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
-  bunCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
-  saucesCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
-  mainCategoryRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
-  setCurrentTab: PropTypes.func.isRequired
 }
 
 export default IngredientsMenu;
