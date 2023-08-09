@@ -1,27 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: TIngredient = {
-  _id: '',
-  name: '',
-  type: '',
+  _id: "",
+  name: "",
+  type: "",
   proteins: 0,
   fat: 0,
   carbohydrates: 0,
   calories: 0,
   price: 0,
-  image: '',
-}
+  image: "",
+};
 
 const currentIngredientSlice = createSlice({
-  name: 'currentIngredient',
+  name: "currentIngredient",
   initialState,
   reducers: {
-    setCurrentIngredient: (state, action: PayloadAction<TIngredient>) => {
+    setCurrentIngredient: (
+      state,
+      action: PayloadAction<TIngredient | undefined>
+    ) => {
       return action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
-export const { setCurrentIngredient } = currentIngredientSlice.actions
+export const { setCurrentIngredient } = currentIngredientSlice.actions;
 
 export default currentIngredientSlice.reducer;
