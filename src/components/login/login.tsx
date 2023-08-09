@@ -1,26 +1,34 @@
 import styles from "./login.module.scss";
-import { useDispatch } from "react-redux";
+import { FormEvent } from "react";
+import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../utils/api";
 import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import AuthForm from "../auth-form/auth-form";
-import { ShowIcon, HideIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  ShowIcon,
+  HideIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  setInfoModalText,
+  setIsInfoModalOpen,
+} from "../../services/modals/modalsSlice";
 
+interface ILoginProps {
+  handleLogin: () => void;
+}
 
-
-import { setInfoModalText, setIsInfoModalOpen } from "../../services/modals/modalsSlice";
-
-function Login({ handleLogin }) {
-  const formData = useFormData();
+function Login({ handleLogin }: ILoginProps) {
+  const formData: TFormData = useFormData();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  function handleSubmit(evt) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     login(formData.values.login_email, formData.values.login_password)
-      .then((res) => {
+      .then(() => {
         formData.setValues({
           login_email: "",
           login_password: "",
@@ -29,8 +37,8 @@ function Login({ handleLogin }) {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        dispatch(setIsInfoModalOpen(true))
-        dispatch(setInfoModalText("Неверный логин или пароль."))
+        dispatch(setIsInfoModalOpen(true));
+        dispatch(setInfoModalText("Неверный логин или пароль."));
       });
   }
 
