@@ -2,7 +2,7 @@ import styles from "./forgot-password.module.scss";
 import useFormData from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
-import { MouseEvent } from "react";
+import { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getResetCode } from "../../utils/api";
 import { useAppDispatch } from "../../services/hooks";
@@ -13,7 +13,7 @@ function ForgotPassword() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function handleSubmit(evt: MouseEvent<HTMLButtonElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     getResetCode(formData.values.forgot_password_email).then((res) => {

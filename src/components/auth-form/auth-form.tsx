@@ -1,11 +1,25 @@
 import styles from "./auth-form.module.scss";
-import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
+import { useAppSelector } from "../../services/hooks";
 import { getAuthIsLoading } from "../../utils/constants";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { FormEvent, ReactNode } from "react";
 
-function AuthForm({ title, buttonText, handleSubmit, formData, children }) {
-  const isLoading = useSelector(getAuthIsLoading);
+interface IAuthFormProps {
+  title: string;
+  buttonText: string;
+  handleSubmit: (evt: FormEvent<HTMLFormElement>) => void;
+  formData: TFormData;
+  children?: ReactNode;
+}
+
+function AuthForm({
+  title,
+  buttonText,
+  handleSubmit,
+  formData,
+  children,
+}: IAuthFormProps) {
+  const isLoading = useAppSelector(getAuthIsLoading);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -22,12 +36,5 @@ function AuthForm({ title, buttonText, handleSubmit, formData, children }) {
     </form>
   );
 }
-
-AuthForm.propTypes = {
-  title: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  formData: PropTypes.object.isRequired,
-};
 
 export default AuthForm;
