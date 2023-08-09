@@ -32,3 +32,6 @@ export const getIsAllowedPasswordReset = (store: RootState) => store.auth.allowP
 
 export const getIsBurgerMenuOpen = (store: RootState) => store.burgerMenu.isBurgerMenuOpen;
 
+// Проверка на HTML элемент
+
+export const isHtmlElement = (elem: any): elem is HTMLElement => elem instanceof HTMLElement;

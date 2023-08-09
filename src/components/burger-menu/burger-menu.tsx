@@ -1,23 +1,27 @@
 import styles from "./burger-menu.module.scss";
 import Navigation from "../app-header/navigation/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { getIsBurgerMenuOpen } from "../../utils/constants";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
+import { MouseEvent } from "react";
+import { isHtmlElement } from "../../utils/constants";
 
 function BurgerMenu() {
-  const dispatch = useDispatch();
-  const isBurgerMenuOpen = useSelector(getIsBurgerMenuOpen);
+  const dispatch = useAppDispatch();
+  const isBurgerMenuOpen = useAppSelector(getIsBurgerMenuOpen);
 
-  function closeBurgerMenu() {
+  function closeBurgerMenu(): void {
     dispatch(toggleBurgerMenu(false));
   }
 
-  function handleMenuOverlayClick(evt) {
-    evt.target.classList.forEach((className) => {
-      if (className.includes("menu_opened")) {
-        closeBurgerMenu();
-      }
-    });
+  function handleMenuOverlayClick(evt: MouseEvent<HTMLDivElement>): void {
+    if (isHtmlElement(evt.target)) {
+      evt.target.classList.forEach((className: string) => {
+        if (className.includes("menu_opened")) {
+          closeBurgerMenu();
+        }
+      });
+    }
   }
 
   return (
