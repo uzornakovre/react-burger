@@ -7,13 +7,18 @@ interface IModalOverlayProps {
   children: ReactNode;
 }
 
-function ModalOverlay({ isOpen, onOverlayClick, children }: IModalOverlayProps) {
-
+function ModalOverlay({
+  isOpen,
+  onOverlayClick,
+  children,
+}: IModalOverlayProps) {
   return (
     <div
       className={`${styles.modal_overlay} ${isOpen ? styles.opened : ""}`}
       onMouseDown={onOverlayClick}
-    >{children}</div>
+    >
+      {children}
+    </div>
   );
 }
 

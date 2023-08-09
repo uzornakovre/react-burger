@@ -4,7 +4,7 @@ import styles from './not-found.module.scss';
 function NotFound() {
   const navigate = useNavigate();
 
-  function goBack() {
+  function goBack(): void {
     return navigate(-1);
   }
 
