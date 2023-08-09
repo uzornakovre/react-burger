@@ -35,12 +35,6 @@ type TIngredient = {
   image_large?: string;
 };
 
-type TRequestOptions = {
-  headers: {
-    [name: string]: string;
-  };
-};
-
 type TFormData = {
   values: {
     [name: string]: string;

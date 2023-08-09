@@ -12,10 +12,6 @@ interface IModalProps {
   children: ReactNode;
 }
 
-interface KeyboardEvent {
-  key: string;
-}
-
 const modalRoot: any = document.getElementById("react-modals");
 
 function Modal({ isOpen, onClose, title, children }: IModalProps) {
@@ -30,7 +26,7 @@ function Modal({ isOpen, onClose, title, children }: IModalProps) {
   }
 
   useEffect(() => {
-    function handleEscClick(evt: KeyboardEvent) {
+    function handleEscClick(evt: IKeyboardEvent) {
       if (evt.key === "Escape") {
         onClose();
       }

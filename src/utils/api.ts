@@ -19,7 +19,7 @@ export const refreshToken = () => {
 
 export const fetchWithRefresh = async (
   url: string,
-  options: TRequestOptions
+  options: IRequestOptions
 ) => {
   try {
     const res = await fetch(url, options);
