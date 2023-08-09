@@ -9,18 +9,23 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthForm from "../auth-form/auth-form";
 import { login, register } from "../../utils/api";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../services/hooks";
 import {
   setIsInfoModalOpen,
   setInfoModalText,
 } from "../../services/modals/modalsSlice";
+import { FormEvent } from "react";
 
-function Register({ handleLogin }) {
-  const formData = useFormData();
+interface IRegisterProps {
+  handleLogin: () => void;
+}
+
+function Register({ handleLogin }: IRegisterProps) {
+  const formData: TFormData = useFormData();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  function handleSubmit(evt) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     if (
@@ -28,39 +33,38 @@ function Register({ handleLogin }) {
       formData.values.register_confirm_password
     ) {
       register(
-          formData.values.register_email,
-          formData.values.register_password,
-          formData.values.register_username
-        )
-        .then((res) => {
-          if (!res.error && !res.message) {
-            login(
-                formData.values.register_email,
-                formData.values.register_password
-              )
-              .then((res) => {
-                dispatch(setIsInfoModalOpen(true));
-                dispatch(setInfoModalText("Вы успешно зарегистрировались"));
-                formData.setValues({
-                  register_email: "",
-                  register_password: "",
-                });
-                handleLogin(res);
-                navigate("/", { replace: true });
-              })
-              .catch((error) => {
-                console.log(error);
+        formData.values.register_email,
+        formData.values.register_password,
+        formData.values.register_username
+      ).then((res) => {
+        if (!res.error && !res.message) {
+          login(
+            formData.values.register_email,
+            formData.values.register_password
+          )
+            .then(() => {
+              dispatch(setIsInfoModalOpen(true));
+              dispatch(setInfoModalText("Вы успешно зарегистрировались"));
+              formData.setValues({
+                register_email: "",
+                register_password: "",
               });
-          } else if (!res.error) {
-            dispatch(setIsInfoModalOpen(true));
-            dispatch(
-              setInfoModalText("Пользователь с таким email уже существует")
-            );
-          } else {
-            dispatch(setIsInfoModalOpen(true));
-            dispatch(setInfoModalText(res.error));
-          }
-        });
+              handleLogin();
+              navigate("/", { replace: true });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else if (!res.error) {
+          dispatch(setIsInfoModalOpen(true));
+          dispatch(
+            setInfoModalText("Пользователь с таким email уже существует")
+          );
+        } else {
+          dispatch(setIsInfoModalOpen(true));
+          dispatch(setInfoModalText(res.error));
+        }
+      });
     } else {
       dispatch(setIsInfoModalOpen(true));
       dispatch(setInfoModalText("Пароли не совпадают. Попробуйте еще раз"));
