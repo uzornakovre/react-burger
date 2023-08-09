@@ -32,6 +32,7 @@ type TIngredient = {
   calories: number;
   price: number;
   image: string;
+  image_large?: string;
 };
 
 type TRequestOptions = {

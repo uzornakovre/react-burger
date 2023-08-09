@@ -1,9 +1,9 @@
 import styles from './ingredient-details.module.scss';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../services/hooks';
 import { getCurrentIngredient } from '../../utils/constants';
 
 function IngredientDetails() {
-  const currentIngredient = useSelector(getCurrentIngredient);
+  const currentIngredient = useAppSelector(getCurrentIngredient);
 
   return (
     <div className={styles.content}>
