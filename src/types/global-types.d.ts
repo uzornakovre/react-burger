@@ -7,3 +7,7 @@ interface IRequestOptions {
 interface IKeyboardEvent {
   key: string;
 }
+
+interface IProtectedRouteProps {
+  [name: string]: any;
+}
