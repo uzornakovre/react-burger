@@ -1,6 +1,6 @@
 import styles from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
-import { burgerIconPath, historyListIconPath, profileIconPath } from '../../../utils/svg-pathes';
+import { burgerIconPath, historyListIconPath, profileIconPath } from '../../../images/svg-pathes';
 
 interface INavigationProps {
   place?: string;
