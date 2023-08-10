@@ -1,11 +1,13 @@
 import styles from "./profile.module.scss";
-import PropTypes from "prop-types";
 import { NavLink, Outlet } from "react-router-dom";
 
+interface IProfileProps {
+  handleLogout: () => void;
+}
 
-function Profile({ handleLogout }) {
+function Profile({ handleLogout }: IProfileProps) {
 
-  function navLinkDefaultClass({ isActive }) {
+  function navLinkDefaultClass({ isActive }: { isActive: boolean }) {
     if (isActive) {
       return `${styles.nav_link} ${styles.active}`;
     } else return `${styles.nav_link}`;
@@ -41,9 +43,5 @@ function Profile({ handleLogout }) {
     </div>
   );
 }
-
-Profile.propTypes = {
-  handleLogout: PropTypes.func.isRequired,
-};
 
 export default Profile;

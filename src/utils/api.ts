@@ -71,7 +71,7 @@ export const login = (email: string, password: string) => {
     });
 };
 
-export const fetchUpdateUserInfo = (data: TUserInfo & { token: string }) => {
+export const fetchUpdateUserInfo = (data: TUserInfo & { token?: string }) => {
   const { name, email, password, token } = data;
   return fetch(`${baseUrl}/auth/user`, {
     method: "PATCH",

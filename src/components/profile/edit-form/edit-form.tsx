@@ -5,8 +5,8 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import useFormData from "../../../hooks/useFormData";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../services/hooks";
+import { FormEvent, useEffect } from "react";
 import { getUserInfo } from "../../../utils/constants";
 import { updateUserInfo } from "../../../services/auth/authSlice";
 import {
@@ -16,10 +16,10 @@ import {
 import { getCookie } from "../../../utils/cookies";
 
 function EditForm() {
-  const formData = useFormData();
-  const userInfo = useSelector(getUserInfo);
-  const dispatch = useDispatch();
-  const accessToken = getCookie("accessToken");
+  const formData: TFormData = useFormData();
+  const userInfo = useAppSelector(getUserInfo);
+  const dispatch = useAppDispatch();
+  const accessToken: string | undefined = getCookie("accessToken");
 
   function setInitialValues() {
     formData.setValues({
@@ -34,16 +34,16 @@ function EditForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
 
-  function handleUpdateUserInfo(evt) {
+  function handleUpdateUserInfo(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
 
     dispatch(
       updateUserInfo({
         name: formData.values.profile_name,
         email: formData.values.profile_email,
-        password:
-          formData.values.profile_password.length &&
-          formData.values.profile_password,
+        password: formData.values.profile_password.length
+          ? formData.values.profile_password
+          : undefined,
         token: accessToken,
       })
     ).then(() => {

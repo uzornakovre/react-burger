@@ -28,7 +28,7 @@ export const getUserInfo = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
   "auth/updateUserInfo",
-  async (data: TUserInfo & { token: string }) => {
+  async (data: TUserInfo & { token?: string }) => {
     const res = await fetchUpdateUserInfo(data).then((res) => res.user);
     return res;
   }
