@@ -1,7 +1,9 @@
+interface IRequestHeaders {
+  [name: string]: string;
+}
+
 interface IRequestOptions {
-  headers: {
-    [name: string]: string;
-  };
+  headers: IRequestHeaders;
 };
 
 interface IKeyboardEvent {
