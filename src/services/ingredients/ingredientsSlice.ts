@@ -4,8 +4,8 @@ import { UnknownAsyncThunkRejectedAction } from '@reduxjs/toolkit/dist/matchers'
 
 interface IIngredientsState {
   ingredients: Array<TIngredient>;
-  error: String;
-  isLoading: Boolean;
+  error: string;
+  isLoading: boolean;
 }
 
 const initialState: IIngredientsState = {
