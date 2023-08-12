@@ -56,13 +56,14 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const accessToken = getCookie("accessToken");
-  const token = getCookie("refreshToken");
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const state = location.state
-    ? location.state
+  const accessToken: string | undefined = getCookie("accessToken");
+  const token: string | undefined = getCookie("refreshToken");
+  const isLoggedIn: boolean = useAppSelector(getIsLoggedIn);
+  const locationState = location.state as { backgroundLocation?: Location };
+  const backgroundState = locationState
+    ? locationState
     : { backgroundLocation: undefined };
-  const isIngredientDetailsModalOpen = useAppSelector(
+  const isIngredientDetailsModalOpen: boolean = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
 
@@ -94,7 +95,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <Routes location={state.backgroundLocation || location}>
+      <Routes location={backgroundState.backgroundLocation || location}>
         <Route path="/" element={<Layout />}>
           <Route index element={<BurgerConstructorPage />} />
           <Route
@@ -145,7 +146,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {state.backgroundLocation && (
+      {backgroundState.backgroundLocation && (
         <Routes>
           <Route
             path="/ingredients/:id"

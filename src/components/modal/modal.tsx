@@ -12,7 +12,7 @@ interface IModalProps {
   children: ReactNode;
 }
 
-const modalRoot: any = document.getElementById("react-modals");
+const modalRoot = document.getElementById("react-modals") as Element;
 
 function Modal({ isOpen, onClose, title, children }: IModalProps) {
   function handleModalOverlayClick(evt: MouseEvent<HTMLDivElement>) {
@@ -26,7 +26,7 @@ function Modal({ isOpen, onClose, title, children }: IModalProps) {
   }
 
   useEffect(() => {
-    function handleEscClick(evt: IKeyboardEvent) {
+    function handleEscClick(evt: KeyboardEvent) {
       if (evt.key === "Escape") {
         onClose();
       }
