@@ -1,5 +1,5 @@
 import styles from "./item.module.scss";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 import {
@@ -16,11 +16,9 @@ interface IItemProps {
   type: string;
 }
 
-function Item({ name, price, image, _id, type }: IItemProps) {
+const Item: FC<IItemProps> = ({ name, price, image, _id, type }) => {
   const selectedBun = useSelector(getSelectedBun);
-  const selectedIngredients = useSelector(
-    getSelectedIngredients
-  );
+  const selectedIngredients = useSelector(getSelectedIngredients);
 
   const [counter, setCounter] = useState(0);
 
@@ -65,6 +63,6 @@ function Item({ name, price, image, _id, type }: IItemProps) {
       )}
     </div>
   );
-}
+};
 
 export default Item;

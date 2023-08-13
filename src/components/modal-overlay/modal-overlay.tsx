@@ -1,17 +1,16 @@
 import styles from "./modal-overlay.module.scss";
-import { MouseEvent, ReactNode } from "react";
+import { FC, MouseEvent, PropsWithChildren } from "react";
 
 interface IModalOverlayProps {
   isOpen: boolean;
   onOverlayClick: (evt: MouseEvent<HTMLDivElement>) => void;
-  children: ReactNode;
 }
 
-function ModalOverlay({
+const ModalOverlay: FC<PropsWithChildren<IModalOverlayProps>> = ({
   isOpen,
   onOverlayClick,
   children,
-}: IModalOverlayProps) {
+}) => {
   return (
     <div
       className={`${styles.modal_overlay} ${isOpen ? styles.opened : ""}`}
@@ -20,6 +19,6 @@ function ModalOverlay({
       {children}
     </div>
   );
-}
+};
 
 export default ModalOverlay;

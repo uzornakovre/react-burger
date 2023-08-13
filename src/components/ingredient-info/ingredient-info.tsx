@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { setCurrentIngredient } from "../../services/current-ingredient/currentIngredientSlice";
 import { useEffect } from "react";
 
-function IngredientInfo() {
+const IngredientInfo = () => {
   const dispatch = useAppDispatch();
   const allIngredients = useAppSelector(getAllIngredients);
   const currentIngredient = useAppSelector(getCurrentIngredient);

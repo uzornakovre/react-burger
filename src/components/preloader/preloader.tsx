@@ -1,6 +1,6 @@
 import styles from './preloader.module.scss';
 
-function Preloader() {
+const Preloader = () => {
   return (
     <div className={styles.overlay}>
       <div className={styles.preloader} />

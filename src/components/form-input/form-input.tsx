@@ -1,5 +1,5 @@
 import styles from "./form-input.module.scss";
-import { ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { TFormData, TFormValues } from "../../hooks/useFormData";
 
 interface IFormInputProps {
@@ -12,7 +12,7 @@ interface IFormInputProps {
   icons?: Array<ReactNode>;
 }
 
-function FormInput({
+const FormInput: FC<IFormInputProps> = ({
   formData,
   label,
   type,
@@ -20,7 +20,7 @@ function FormInput({
   isIcon,
   icons,
   place,
-}: IFormInputProps) {
+}) => {
   const [currentIcon, setCurrentIcon] = useState<ReactNode | null>(
     isIcon && icons ? icons[0] : null
   );

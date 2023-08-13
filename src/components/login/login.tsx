@@ -1,8 +1,7 @@
 import styles from "./login.module.scss";
-import { FormEvent } from "react";
+import { FormEvent, FC } from "react";
 import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { login } from "../../utils/api";
 import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
@@ -20,7 +19,7 @@ interface ILoginProps {
   handleLogin: () => void;
 }
 
-function Login({ handleLogin }: ILoginProps) {
+const Login: FC<ILoginProps> = ({ handleLogin }) => {
   const formData = useFormData({
     login_email: '',
     login_password: ''
@@ -89,9 +88,5 @@ function Login({ handleLogin }: ILoginProps) {
     </div>
   );
 }
-
-Login.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-};
 
 export default Login;

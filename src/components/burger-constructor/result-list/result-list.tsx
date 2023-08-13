@@ -14,7 +14,7 @@ import {
   moveIngredient,
 } from "../../../services/constructor/constructorSlice";
 
-function ResultList() {
+const ResultList = () => {
   const dispatch = useAppDispatch();
   const selectedBun = useAppSelector(getSelectedBun);
   const selectedIngredients = useAppSelector(

@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 
-function BurgerConstructorPage() {
+const BurgerConstructorPage = () => {
   return (
     <main className={styles.main}>
       <DndProvider backend={HTML5Backend}>

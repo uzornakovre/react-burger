@@ -6,7 +6,7 @@ import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
 import { MouseEvent } from "react";
 import { isHtmlElement } from "../../utils/constants";
 
-function BurgerMenu() {
+const BurgerMenu = () => {
   const dispatch = useAppDispatch();
   const isBurgerMenuOpen = useAppSelector(getIsBurgerMenuOpen);
 

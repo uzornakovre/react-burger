@@ -1,4 +1,4 @@
-function Orders() {
+const Orders = () => {
   return (
     <>
       

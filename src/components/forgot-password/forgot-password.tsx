@@ -8,7 +8,7 @@ import { getResetCode } from "../../utils/api";
 import { useAppDispatch } from "../../services/hooks";
 import { allowPasswordReset } from "../../services/auth/authSlice";
 
-function ForgotPassword() {
+const ForgotPassword = () => {
   const formData = useFormData({
     forgot_password_email: '',
   });

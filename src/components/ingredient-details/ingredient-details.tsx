@@ -2,7 +2,7 @@ import styles from "./ingredient-details.module.scss";
 import { useAppSelector } from "../../services/hooks";
 import { getCurrentIngredient } from "../../utils/constants";
 
-function IngredientDetails() {
+const IngredientDetails = () => {
   const currentIngredient = useAppSelector(getCurrentIngredient);
 
   return (

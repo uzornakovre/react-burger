@@ -14,13 +14,13 @@ import {
   setIsInfoModalOpen,
   setInfoModalText,
 } from "../../services/modals/modalsSlice";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 
 interface IRegisterProps {
   handleLogin: () => void;
 }
 
-function Register({ handleLogin }: IRegisterProps) {
+const Register: FC<IRegisterProps> = ({ handleLogin }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const formData = useFormData({

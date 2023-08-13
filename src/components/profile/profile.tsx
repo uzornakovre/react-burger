@@ -1,3 +1,4 @@
+import { FC } from "react";
 import styles from "./profile.module.scss";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -5,7 +6,7 @@ interface IProfileProps {
   handleLogout: () => void;
 }
 
-function Profile({ handleLogout }: IProfileProps) {
+const Profile: FC<IProfileProps> = ({ handleLogout }) => {
 
   function navLinkDefaultClass({ isActive }: { isActive: boolean }): string {
     if (isActive) {

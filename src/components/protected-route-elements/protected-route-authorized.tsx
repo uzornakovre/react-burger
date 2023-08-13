@@ -1,11 +1,12 @@
 import { useAppSelector } from "../../services/hooks";
 import { Navigate, useLocation } from "react-router-dom";
 import { getIsLoggedIn } from "../../utils/constants";
+import { TProtectedRouteUnauthorizedProps } from "../../types/protected-route";
 
 const ProtectedRouteAuthorized = ({
   element: Component,
   ...props
-}: TProtectedRouteProps) => {
+}: TProtectedRouteUnauthorizedProps) => {
   const location = useLocation();
   const { from } = location.state || { from: "/" };
   const loggedIn = useAppSelector(getIsLoggedIn);

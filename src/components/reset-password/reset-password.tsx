@@ -15,7 +15,7 @@ import {
   setInfoModalText,
 } from "../../services/modals/modalsSlice";
 
-function ResetPassword() {
+const ResetPassword = () => {
   const formData = useFormData({
     reset_password_password: '',
     reset_password_token: '',

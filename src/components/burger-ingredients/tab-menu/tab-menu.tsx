@@ -1,5 +1,6 @@
-import styles from './tab-menu.module.scss';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { FC } from "react";
+import styles from "./tab-menu.module.scss";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface ITabMenuProps {
   currentTab: any;
@@ -9,35 +10,45 @@ interface ITabMenuProps {
   mainCategoryRef: any;
 }
 
-function TabMenu({ 
-  currentTab, 
-  tabMenuRef, 
-  bunCategoryRef, 
-  saucesCategoryRef, 
-  mainCategoryRef 
-}: ITabMenuProps) {
-  
+const TabMenu: FC<ITabMenuProps> = ({
+  currentTab,
+  tabMenuRef,
+  bunCategoryRef,
+  saucesCategoryRef,
+  mainCategoryRef,
+}) => {
   function handleTabClick(ref: any): void {
     ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
+      behavior: "smooth",
+      block: "start",
     });
   }
 
   return (
     <div className={`${styles.tabs} mt-5 mb-10`} ref={tabMenuRef}>
-      <Tab value="one" active={currentTab === 'one'} onClick={() => handleTabClick(bunCategoryRef)}>
+      <Tab
+        value="one"
+        active={currentTab === "one"}
+        onClick={() => handleTabClick(bunCategoryRef)}
+      >
         Булки
       </Tab>
-      <Tab value="two" active={currentTab === 'two'} onClick={() => handleTabClick(saucesCategoryRef)}>
+      <Tab
+        value="two"
+        active={currentTab === "two"}
+        onClick={() => handleTabClick(saucesCategoryRef)}
+      >
         Соусы
       </Tab>
-      <Tab value="three" active={currentTab === 'three'} onClick={() => handleTabClick(mainCategoryRef)}>
+      <Tab
+        value="three"
+        active={currentTab === "three"}
+        onClick={() => handleTabClick(mainCategoryRef)}
+      >
         Начинки
       </Tab>
     </div>
-  )
-}
+  );
+};
 
 export default TabMenu;
-

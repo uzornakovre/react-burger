@@ -15,7 +15,7 @@ import {
 } from "../../../services/modals/modalsSlice";
 import { getCookie } from "../../../utils/cookies";
 
-function EditForm() {
+const EditForm = () => {
   const userInfo = useAppSelector(getUserInfo);
   const formData = useFormData({
     profile_name: '',

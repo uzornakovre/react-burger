@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './not-found.module.scss';
 
-function NotFound() {
+const NotFound = () => {
   const navigate = useNavigate();
 
   function goBack(): void {

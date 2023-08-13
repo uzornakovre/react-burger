@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, MouseEvent } from "react";
+import { useEffect, MouseEvent, FC, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import styles from "./modal.module.scss";
 import ModalOverlay from "../modal-overlay/modal-overlay";
@@ -9,12 +9,16 @@ interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: ReactNode;
 }
 
 const modalRoot = document.getElementById("react-modals") as Element;
 
-function Modal({ isOpen, onClose, title, children }: IModalProps) {
+const Modal: FC<PropsWithChildren<IModalProps>> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+}) => {
   function handleModalOverlayClick(evt: MouseEvent<HTMLDivElement>): void {
     if (isHtmlElement(evt.target)) {
       evt.target.classList.forEach((className: string) => {
@@ -58,6 +62,6 @@ function Modal({ isOpen, onClose, title, children }: IModalProps) {
     </ModalOverlay>,
     modalRoot
   );
-}
+};
 
 export default Modal;

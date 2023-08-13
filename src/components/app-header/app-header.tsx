@@ -7,7 +7,7 @@ import logoMobile from '../../images/logo.svg';
 import { useAppDispatch } from "../../services/hooks";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
 
-function AppHeader() {
+const AppHeader = () => {
   const dispatch = useAppDispatch();
 
   function handleBurgerButtonClick(): void {

@@ -2,7 +2,7 @@ import styles from "./auth-form.module.scss";
 import { useAppSelector } from "../../services/hooks";
 import { getAuthIsLoading } from "../../utils/constants";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { FormEvent, ReactNode } from "react";
+import { FC, FormEvent, ReactNode } from "react";
 import { TFormData, TFormValues } from "../../hooks/useFormData";
 
 interface IAuthFormProps {
@@ -13,13 +13,13 @@ interface IAuthFormProps {
   children?: ReactNode;
 }
 
-function AuthForm({
+const AuthForm: FC<IAuthFormProps> = ({
   title,
   buttonText,
   handleSubmit,
   formData,
   children,
-}: IAuthFormProps) {
+}) => {
   const isLoading = useAppSelector(getAuthIsLoading);
 
   return (

@@ -42,7 +42,7 @@ import {
   setIsOrderDetailsModalOpen,
 } from "../../services/modals/modalsSlice";
 
-function BurgerConstructor() {
+const BurgerConstructor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const selectedBun = useAppSelector(getSelectedBun);

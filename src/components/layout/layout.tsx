@@ -14,7 +14,7 @@ import {
 } from "../../utils/constants";
 import { closeAllModals } from "../../services/modals/modalsSlice";
 
-function Layout() {
+const Layout = () => {
   const dispatch = useAppDispatch();
   const isInfoModalOpen = useAppSelector(getIsInfoModalOpen);
   const infoModalText = useAppSelector(getInfoModalText);

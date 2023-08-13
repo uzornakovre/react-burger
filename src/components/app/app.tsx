@@ -52,7 +52,7 @@ import {
 import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
 
-function App() {
+const App = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();

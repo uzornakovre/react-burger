@@ -1,5 +1,5 @@
 import styles from "./ingredient.module.scss";
-import { useRef } from "react";
+import { FC, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import {
@@ -18,14 +18,14 @@ interface IIngredientProps {
   moveSelectedIngredient: (dragIndex: number, hoverIndex: number) => void;
 }
 
-function Ingredient({
+const Ingredient: FC<IIngredientProps> = ({
   name,
   price,
   image,
   id,
   index,
   moveSelectedIngredient,
-}: IIngredientProps) {
+}) => {
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
 

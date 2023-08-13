@@ -1,5 +1,5 @@
 import styles from "./category.module.scss";
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getAllIngredients } from "../../../utils/constants";
 import Item from "../item/item";
@@ -10,7 +10,7 @@ interface ICategoryProps {
   onIngredientClick: (item: TIngredient) => void;
 }
 
-function Category({ title, type, onIngredientClick }: ICategoryProps) {
+const Category: FC<ICategoryProps> = ({ title, type, onIngredientClick }) => {
   const ingredientsList = useSelector(getAllIngredients);
 
   const ingredients = useMemo(
@@ -42,6 +42,6 @@ function Category({ title, type, onIngredientClick }: ICategoryProps) {
       <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>{ingredients}</ul>
     </div>
   );
-}
+};
 
 export default Category;
