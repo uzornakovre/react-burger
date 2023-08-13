@@ -21,7 +21,7 @@ function EditForm() {
   const dispatch = useAppDispatch();
   const accessToken: string | undefined = getCookie("accessToken");
 
-  function setInitialValues() {
+  function setInitialValues(): void {
     formData.setValues({
       profile_name: userInfo.name,
       profile_email: userInfo.email,

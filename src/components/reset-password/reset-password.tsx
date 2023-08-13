@@ -16,11 +16,11 @@ import {
 } from "../../services/modals/modalsSlice";
 
 function ResetPassword() {
-  const formData = useFormData();
+  const formData: TFormData = useFormData();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
 
     resetPassword(

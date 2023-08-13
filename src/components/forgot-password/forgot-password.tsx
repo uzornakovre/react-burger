@@ -13,7 +13,7 @@ function ForgotPassword() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
 
     getResetCode(formData.values.forgot_password_email).then((res: TResMessage) => {

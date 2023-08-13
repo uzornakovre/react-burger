@@ -20,9 +20,13 @@ function ResultList() {
 
   const dispatch = useAppDispatch();
 
-  const [{ isHover }, ingredientDropRef] = useDrop(() => ({
+  const [{ isHover }, ingredientDropRef] = useDrop<
+    TIngredient,
+    unknown,
+    { isHover: boolean }
+  >(() => ({
     accept: "ingredient",
-    drop(item: TIngredient) {
+    drop(item) {
       handleIngredientDrop(item);
     },
     collect: (monitor) => ({
@@ -30,13 +34,13 @@ function ResultList() {
     }),
   }));
 
-  function handleIngredientDrop(item: TIngredient) {
+  function handleIngredientDrop(item: TIngredient): void {
     if (item.type === "bun") {
       dispatch(addBun({ ...item, id: crypto.randomUUID() }));
     } else dispatch(addIngredient({ ...item, id: crypto.randomUUID() }));
   }
 
-  function moveSelectedIngredient(dragIndex: number, hoverIndex: number) {
+  function moveSelectedIngredient(dragIndex: number, hoverIndex: number): void {
     dispatch(moveIngredient({ dragIndex, hoverIndex }));
   }
 
@@ -44,10 +48,7 @@ function ResultList() {
     () =>
       selectedIngredients &&
       selectedIngredients.map((item, index) => (
-        <li
-          className={styles.middle_item}
-          key={`ingredient-${item.id}`}
-        >
+        <li className={styles.middle_item} key={`ingredient-${item.id}`}>
           <Ingredient
             name={item.name}
             price={item.price}

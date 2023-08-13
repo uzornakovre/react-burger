@@ -7,7 +7,7 @@ interface IProfileProps {
 
 function Profile({ handleLogout }: IProfileProps) {
 
-  function navLinkDefaultClass({ isActive }: { isActive: boolean }) {
+  function navLinkDefaultClass({ isActive }: { isActive: boolean }): string {
     if (isActive) {
       return `${styles.nav_link} ${styles.active}`;
     } else return `${styles.nav_link}`;

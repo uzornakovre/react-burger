@@ -25,7 +25,7 @@ function Login({ handleLogin }: ILoginProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
     login(formData.values.login_email, formData.values.login_password)
       .then(() => {

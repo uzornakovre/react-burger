@@ -20,17 +20,17 @@ function Item({ name, price, image, _id, type }: IItemProps) {
   const [, dragRef] = useDrag({
     type: "ingredient",
     item: { name, price, image, _id, type },
-    collect: (monitor) => ({
+    collect: (monitor: any) => ({
       isDrag: monitor.isDragging(),
     }),
   });
   const selectedBun = useSelector(getSelectedBun);
   const selectedIngredients = useSelector(getSelectedIngredients);
 
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState<number>(0);
 
   useEffect(() => {
-    let ingredCount = 0;
+    let ingredCount: number = 0;
 
     selectedIngredients.forEach((i) =>
       i._id === _id ? ingredCount++ : ingredCount

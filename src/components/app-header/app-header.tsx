@@ -10,7 +10,7 @@ import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
 function AppHeader() {
   const dispatch = useAppDispatch();
 
-  function handleBurgerButtonClick() {
+  function handleBurgerButtonClick(): void {
     dispatch(toggleBurgerMenu(true));
   }
 

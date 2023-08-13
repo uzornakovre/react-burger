@@ -31,14 +31,14 @@ function IngredientsMenu({
   }
 
   function handleScrollMenu() {
-    const tabMenuPosition = tabMenuRef.current.getBoundingClientRect().bottom;
-    const bunsPosition = bunCategoryRef.current.getBoundingClientRect().top;
-    const saucesPosition = saucesCategoryRef.current.getBoundingClientRect().top;
-    const mainPosition = mainCategoryRef.current.getBoundingClientRect().top;
+    const tabMenuPosition: number = tabMenuRef.current.getBoundingClientRect().bottom;
+    const bunsPosition: number = bunCategoryRef.current.getBoundingClientRect().top;
+    const saucesPosition: number = saucesCategoryRef.current.getBoundingClientRect().top;
+    const mainPosition: number = mainCategoryRef.current.getBoundingClientRect().top;
 
-    let bunsDistance = Math.abs(tabMenuPosition - bunsPosition);
-    let saucesDistance = Math.abs(tabMenuPosition - saucesPosition);
-    let mainDistance = Math.abs(tabMenuPosition - mainPosition);
+    let bunsDistance: number = Math.abs(tabMenuPosition - bunsPosition);
+    let saucesDistance: number = Math.abs(tabMenuPosition - saucesPosition);
+    let mainDistance: number = Math.abs(tabMenuPosition - mainPosition);
 
     if (bunsDistance <= saucesDistance && bunsDistance <= mainDistance) {
       setCurrentTab('one');

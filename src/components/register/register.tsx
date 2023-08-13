@@ -25,7 +25,7 @@ function Register({ handleLogin }: IRegisterProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
 
     if (

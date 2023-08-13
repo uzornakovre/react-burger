@@ -7,6 +7,7 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { removeIngredient } from "../../../services/constructor/constructorSlice";
+import { Identifier } from "dnd-core";
 
 interface IIngredientProps {
   name: string;
@@ -28,23 +29,27 @@ function Ingredient({
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
 
-  function handleDeleteClick() {
+  function handleDeleteClick(): void {
     if (id) dispatch(removeIngredient(id));
   }
 
-  const [{ handlerId, isHover }, dropRef] = useDrop({
+  const [{ handlerId, isHover }, dropRef] = useDrop<
+    { ingredient: TIngredient; index: number },
+    unknown,
+    { handlerId: Identifier | null; isHover: boolean }
+  >({
     accept: "filling",
     collect: (monitor) => ({
       handlerId: monitor.getHandlerId(),
       isHover: monitor.isOver(),
     }),
-    hover(item: any, monitor) {
+    hover(item, monitor) {
       const dragIndex = item.index;
       const hoverIndex = index;
 
       if (!ref.current) return;
       if (dragIndex === hoverIndex) return;
-     
+
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
@@ -63,7 +68,7 @@ function Ingredient({
   const [{ isDrag }, dragRef] = useDrag({
     type: "filling",
     item: { id, index },
-    collect: (monitor) => ({
+    collect: (monitor: any) => ({
       isDrag: monitor.isDragging(),
     }),
   });

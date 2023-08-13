@@ -15,7 +15,7 @@ interface IModalProps {
 const modalRoot = document.getElementById("react-modals") as Element;
 
 function Modal({ isOpen, onClose, title, children }: IModalProps) {
-  function handleModalOverlayClick(evt: MouseEvent<HTMLDivElement>) {
+  function handleModalOverlayClick(evt: MouseEvent<HTMLDivElement>): void {
     if (isHtmlElement(evt.target)) {
       evt.target.classList.forEach((className: string) => {
         if (className.includes("opened")) {

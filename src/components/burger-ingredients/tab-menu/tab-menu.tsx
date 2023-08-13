@@ -17,7 +17,7 @@ function TabMenu({
   mainCategoryRef 
 }: ITabMenuProps) {
   
-  function handleTabClick(ref: any) {
+  function handleTabClick(ref: any): void {
     ref.current.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
