@@ -3,7 +3,7 @@ import { RootState } from "../services/store";
 // API
 
 export const baseUrl: string = "https://norma.nomoreparties.space/api";
-export const headers: IRequestHeaders = {
+export const headers: HeadersInit = {
   "Content-Type": "application/json",
 };
 

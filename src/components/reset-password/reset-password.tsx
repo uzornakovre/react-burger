@@ -24,18 +24,21 @@ function ResetPassword() {
     evt.preventDefault();
 
     resetPassword(
-        formData.values.reset_password_password,
-        formData.values.reset_password_token
-      )
-      .then((res) => {
-        if (res.success) {
-          dispatch(setIsInfoModalOpen(true));
-          dispatch(setInfoModalText("Пароль успешно обновлен"));
-          navigate("/login", { replace: true });
+      formData.values.reset_password_password,
+      formData.values.reset_password_token
+    )
+      .then(() => {
+        dispatch(setIsInfoModalOpen(true));
+        dispatch(setInfoModalText("Пароль успешно обновлен"));
+        navigate("/login", { replace: true });
+      })
+      .catch((err: TResMessage) => {
+        dispatch(setIsInfoModalOpen(true));
+        if (err.message === 'Incorrect reset token') {
+          dispatch(setInfoModalText('Неверный код'));
         } else {
-          dispatch(setIsInfoModalOpen(true));
-          dispatch(setInfoModalText(res.error));
-        }
+          dispatch(setInfoModalText(err.message));
+        }     
       });
   }
 

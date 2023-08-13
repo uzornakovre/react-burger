@@ -36,7 +36,7 @@ function Login({ handleLogin }: ILoginProps) {
         handleLogin();
         navigate("/", { replace: true });
       })
-      .catch((error) => {
+      .catch((err: TResMessage) => {
         dispatch(setIsInfoModalOpen(true));
         dispatch(setInfoModalText("Неверный логин или пароль."));
       });

@@ -21,7 +21,7 @@ const initialState: IAuthState = {
 export const getUserInfo = createAsyncThunk(
   "auth/userInfo",
   async (token: string) => {
-    const res = await fetchUserInfo(token).then((res) => res.user);
+    const res = await fetchUserInfo(token);
     return res;
   }
 );
@@ -29,7 +29,7 @@ export const getUserInfo = createAsyncThunk(
 export const updateUserInfo = createAsyncThunk(
   "auth/updateUserInfo",
   async (data: TUserInfo & { token?: string }) => {
-    const res = await fetchUpdateUserInfo(data).then((res) => res.user);
+    const res = await fetchUpdateUserInfo(data);
     return res;
   }
 );

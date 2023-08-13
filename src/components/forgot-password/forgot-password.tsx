@@ -16,14 +16,14 @@ function ForgotPassword() {
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
-    getResetCode(formData.values.forgot_password_email).then((res) => {
+    getResetCode(formData.values.forgot_password_email).then((res: TResMessage) => {
       dispatch(allowPasswordReset(true));
       if (res.success) {
         navigate("/reset-password", { replace: true });
-      } else {
-        console.log(res.error);
       }
-    });
+    }).catch((err: TResMessage) => {
+      console.log(err)
+    })
   }
 
   return (

@@ -36,8 +36,8 @@ function Register({ handleLogin }: IRegisterProps) {
         formData.values.register_email,
         formData.values.register_password,
         formData.values.register_username
-      ).then((res) => {
-        if (!res.error && !res.message) {
+      )
+        .then(() => {
           login(
             formData.values.register_email,
             formData.values.register_password
@@ -52,19 +52,20 @@ function Register({ handleLogin }: IRegisterProps) {
               handleLogin();
               navigate("/", { replace: true });
             })
-            .catch((error) => {
-              console.log(error);
+            .catch((err: TResMessage) => {
+              console.log(err);
             });
-        } else if (!res.error) {
+        })
+        .catch((err: TResMessage) => {
           dispatch(setIsInfoModalOpen(true));
-          dispatch(
-            setInfoModalText("Пользователь с таким email уже существует")
-          );
-        } else {
-          dispatch(setIsInfoModalOpen(true));
-          dispatch(setInfoModalText(res.error));
-        }
-      });
+          if (err.message === "User already exists") {
+            dispatch(
+              setInfoModalText("Пользователь с таким email уже существует")
+            );
+          } else {
+            dispatch(setInfoModalText(err.message));
+          }
+        });
     } else {
       dispatch(setIsInfoModalOpen(true));
       dispatch(setInfoModalText("Пароли не совпадают. Попробуйте еще раз"));
