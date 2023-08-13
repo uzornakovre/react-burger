@@ -1,7 +1,3 @@
-type TProtectedRouteProps = {
-  [name: string]: any;
-}
-
 type TUserInfo = {
   email: string;
   name: string;

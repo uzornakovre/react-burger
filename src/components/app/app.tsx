@@ -18,7 +18,6 @@ import {
   getIsIngredientDetailsModalOpen,
   getIsLoggedIn,
 } from "../../utils/constants";
-import { logout } from "../../utils/api";
 
 // components
 
@@ -33,12 +32,7 @@ import Profile from "../profile/profile";
 import Modal from "../modal/modal";
 import IngredientInfo from "../ingredient-info/ingredient-info";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-
-// protected routes
-
-import ProtectedRouteUnauthorized from "../protected-route-elements/protected-route-unauthorized";
-import ProtectedRouteAuthorized from "../protected-route-elements/protected-route-authorized";
-import ProtectedRoutePasswordReset from "../protected-route-elements/protected-route-password-reset";
+import ProtectedRouteElement from "../protected-route-element/protected-route-element";
 
 // slices
 
@@ -57,9 +51,8 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
-  const token: string | undefined = getCookie("refreshToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const isIngredientDetailsModalOpen= useAppSelector(
+  const isIngredientDetailsModalOpen = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
   const locationState = location.state as { backgroundLocation?: Location };
@@ -67,22 +60,9 @@ const App = () => {
     ? locationState
     : { backgroundLocation: undefined };
 
-  function handleLogin(): void {
-    dispatch(setLoggedIn(true));
-  }
-
-  function handleLogout(): void {
-    logout(token)
-      .then(() => {
-        dispatch(setLoggedIn(false));
-        navigate("/login", { replace: true });
-      })
-      .catch((err) => console.log(err));
-  }
-
   function checkUserAuth(): void {
     if (accessToken) {
-      handleLogin();
+      dispatch(setLoggedIn(true));
       dispatch(getUserInfo(accessToken));
     } else dispatch(setUserInfo({ name: "", email: "" }));
   }
@@ -101,42 +81,37 @@ const App = () => {
           <Route
             path="login"
             element={
-              <ProtectedRouteAuthorized
-                element={Login}
-                handleLogin={handleLogin}
-              />
+              <ProtectedRouteElement element={<Login />} onlyUnAuth={true} />
             }
           />
           <Route
             path="register"
             element={
-              <ProtectedRouteAuthorized
-                element={Register}
-                handleLogin={handleLogin}
-              />
+              <ProtectedRouteElement element={<Register />} onlyUnAuth={true} />
             }
           />
           <Route
             path="forgot-password"
-            element={<ProtectedRouteAuthorized element={ForgotPassword} />}
+            element={
+              <ProtectedRouteElement
+                element={<ForgotPassword />}
+                onlyUnAuth={true}
+              />
+            }
           />
           <Route
             path="reset-password"
             element={
-              <ProtectedRouteAuthorized
-                element={ProtectedRoutePasswordReset}
-                elem={ResetPassword}
+              <ProtectedRouteElement
+                element={<ResetPassword />}
+                onlyUnAuth={true}
+                onlyAllowed={true}
               />
             }
           />
           <Route
             path="profile"
-            element={
-              <ProtectedRouteUnauthorized
-                element={Profile}
-                handleLogout={handleLogout}
-              />
-            }
+            element={<ProtectedRouteElement element={<Profile />} />}
           >
             <Route index element={<EditForm />} />
             <Route path="orders" element={<Orders />} />
@@ -167,6 +142,6 @@ const App = () => {
       )}
     </div>
   );
-}
+};
 
 export default App;

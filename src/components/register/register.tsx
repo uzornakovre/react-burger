@@ -1,5 +1,4 @@
 import styles from "./register.module.scss";
-import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
@@ -14,13 +13,10 @@ import {
   setIsInfoModalOpen,
   setInfoModalText,
 } from "../../services/modals/modalsSlice";
-import { FC, FormEvent } from "react";
+import { FormEvent } from "react";
+import { setLoggedIn } from "../../services/auth/authSlice";
 
-interface IRegisterProps {
-  handleLogin: () => void;
-}
-
-const Register: FC<IRegisterProps> = ({ handleLogin }) => {
+const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const formData = useFormData({
@@ -51,7 +47,7 @@ const Register: FC<IRegisterProps> = ({ handleLogin }) => {
               dispatch(setIsInfoModalOpen(true));
               dispatch(setInfoModalText("Вы успешно зарегистрировались"));
               formData.resetFormValues();
-              handleLogin();
+              dispatch(setLoggedIn(true));
               navigate("/", { replace: true });
             })
             .catch((err: TResMessage) => {
@@ -126,9 +122,5 @@ const Register: FC<IRegisterProps> = ({ handleLogin }) => {
     </div>
   );
 }
-
-Register.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-};
 
 export default Register;

@@ -1,5 +1,5 @@
 import styles from "./login.module.scss";
-import { FormEvent, FC } from "react";
+import { FormEvent } from "react";
 import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/api";
@@ -14,12 +14,9 @@ import {
   setInfoModalText,
   setIsInfoModalOpen,
 } from "../../services/modals/modalsSlice";
+import { setLoggedIn } from "../../services/auth/authSlice";
 
-interface ILoginProps {
-  handleLogin: () => void;
-}
-
-const Login: FC<ILoginProps> = ({ handleLogin }) => {
+const Login = () => {
   const formData = useFormData({
     login_email: '',
     login_password: ''
@@ -33,7 +30,7 @@ const Login: FC<ILoginProps> = ({ handleLogin }) => {
       login(formData.values.login_email, formData.values.login_password)
       .then(() => {
         formData.resetFormValues();
-        handleLogin();
+        dispatch(setLoggedIn(true));
         navigate("/", { replace: true });
       })
       .catch((err: TResMessage) => {
