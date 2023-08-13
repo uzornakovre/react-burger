@@ -4,7 +4,7 @@ import {
   EditIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import useFormData, { TFormData } from "../../../hooks/useFormData";
+import useFormData, { TFormData, TFormValues } from "../../../hooks/useFormData";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FormEvent, useEffect } from "react";
 import { getUserInfo } from "../../../utils/constants";
@@ -16,7 +16,7 @@ import {
 import { getCookie } from "../../../utils/cookies";
 
 function EditForm() {
-  const formData: TFormData = useFormData();
+  const formData: TFormData<TFormValues> = useFormData();
   const userInfo: TUserInfo = useAppSelector(getUserInfo);
   const dispatch = useAppDispatch();
   const accessToken: string | undefined = getCookie("accessToken");

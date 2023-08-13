@@ -1,7 +1,7 @@
 import styles from "./register.module.scss";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
-import useFormData, { TFormData } from "../../hooks/useFormData";
+import useFormData, { TFormData, TFormValues } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import {
   ShowIcon,
@@ -21,7 +21,7 @@ interface IRegisterProps {
 }
 
 function Register({ handleLogin }: IRegisterProps) {
-  const formData: TFormData = useFormData();
+  const formData: TFormData<TFormValues> = useFormData();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

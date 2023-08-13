@@ -1,5 +1,5 @@
 import styles from "./reset-password.module.scss";
-import useFormData, { TFormData } from "../../hooks/useFormData";
+import useFormData, { TFormData, TFormValues } from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
 import { FormEvent } from "react";
@@ -16,7 +16,7 @@ import {
 } from "../../services/modals/modalsSlice";
 
 function ResetPassword() {
-  const formData: TFormData = useFormData();
+  const formData: TFormData<TFormValues> = useFormData();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

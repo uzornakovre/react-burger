@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../utils/api";
-import useFormData, { TFormData } from "../../hooks/useFormData";
+import useFormData, { TFormData, TFormValues } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import AuthForm from "../auth-form/auth-form";
 import {
@@ -21,7 +21,7 @@ interface ILoginProps {
 }
 
 function Login({ handleLogin }: ILoginProps) {
-  const formData: TFormData = useFormData();
+  const formData: TFormData<TFormValues> = useFormData();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

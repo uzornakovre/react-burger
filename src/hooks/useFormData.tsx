@@ -1,22 +1,22 @@
 import { useState, ChangeEvent } from 'react';
 
-interface IFormValues {
+export type TFormValues = {
   [name: string]: string;
 }
 
-export type TFormData = {
-  values: IFormValues;
-  errors: IFormValues;
+export type TFormData<T> = {
+  values: T;
+  errors: T;
   isValid: boolean;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  setValues: (v: IFormValues) => void;
+  setValues: (v: T) => void;
   setIsValid: (v: boolean) => void;
   resetFormValues: () => void;
 };
 
-function useFormValues(): TFormData {
-  const [values,  setValues ] = useState<IFormValues>({});
-  const [errors,  setErrors ] = useState<IFormValues>({});
+function useFormValues(): TFormData<TFormValues> {
+  const [values,  setValues ] = useState<TFormValues>({});
+  const [errors,  setErrors ] = useState<TFormValues>({});
   const [isValid, setIsValid] = useState<boolean>(false);
 
   function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
