@@ -3,16 +3,19 @@
 export function setCookie(
   name: string,
   value: string,
-  props?: { [key: string]: any }
+  props: { [key: string]: string | number | Date | boolean } = {}
 ): void {
-  props = props || {};
+  props = {
+    path: '/',
+    ...props,
+  };
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
     const d = new Date();
     d.setTime(d.getTime() + exp * 1000);
     exp = props.expires = d;
   }
-  if (exp && exp.toUTCString) {
+  if (exp && exp instanceof Date) {
     props.expires = exp.toUTCString();
   }
   value = encodeURIComponent(value);
