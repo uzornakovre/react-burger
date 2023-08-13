@@ -15,10 +15,11 @@ import {
 } from "../../../services/constructor/constructorSlice";
 
 function ResultList() {
-  const selectedBun = useAppSelector(getSelectedBun);
-  const selectedIngredients = useAppSelector(getSelectedIngredients);
-
   const dispatch = useAppDispatch();
+  const selectedBun: TIngredient = useAppSelector(getSelectedBun);
+  const selectedIngredients: Array<TIngredient> = useAppSelector(
+    getSelectedIngredients
+  );
 
   const [{ isHover }, ingredientDropRef] = useDrop<
     TIngredient,

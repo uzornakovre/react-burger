@@ -1,7 +1,7 @@
 import styles from "./register.module.scss";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
-import useFormData from "../../hooks/useFormData";
+import useFormData, { TFormData } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import {
   ShowIcon,

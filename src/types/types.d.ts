@@ -1,3 +1,7 @@
+type TProtectedRouteProps = {
+  [name: string]: any;
+}
+
 type TUserInfo = {
   email: string;
   name: string;
@@ -26,18 +30,4 @@ type TIngredient = {
   price: number;
   image: string;
   image_large?: string;
-};
-
-type TFormData = {
-  values: {
-    [name: string]: string;
-  };
-  errors: {
-    [name: string]: string;
-  };
-  isValid?: boolean;
-  handleChange: (evt: any) => void;
-  setValues: any;
-  setIsValid: any;
-  resetFormValues: () => void;
 };

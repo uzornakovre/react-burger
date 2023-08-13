@@ -58,20 +58,20 @@ function App() {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const token: string | undefined = getCookie("refreshToken");
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
+  const isLoggedIn: boolean = useAppSelector(getIsLoggedIn);
+  const isIngredientDetailsModalOpen: boolean = useAppSelector(
+    getIsIngredientDetailsModalOpen
+  );
   const locationState = location.state as { backgroundLocation?: Location };
   const backgroundState = locationState
     ? locationState
     : { backgroundLocation: undefined };
-  const isIngredientDetailsModalOpen = useAppSelector(
-    getIsIngredientDetailsModalOpen
-  );
 
-  function handleLogin() {
+  function handleLogin(): void {
     dispatch(setLoggedIn(true));
   }
 
-  function handleLogout() {
+  function handleLogout(): void {
     logout(token)
       .then(() => {
         dispatch(setLoggedIn(false));
@@ -80,11 +80,11 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function checkUserAuth() {
+  function checkUserAuth(): void {
     if (accessToken) {
       handleLogin();
       dispatch(getUserInfo(accessToken));
-    } else dispatch(setUserInfo({ name: '', email: '' }));
+    } else dispatch(setUserInfo({ name: "", email: "" }));
   }
 
   useEffect(() => {

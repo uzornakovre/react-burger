@@ -43,21 +43,24 @@ import {
 } from "../../services/modals/modalsSlice";
 
 function BurgerConstructor() {
-  const selectedBun = useAppSelector(getSelectedBun);
-  const selectedIngredients = useAppSelector(getSelectedIngredients);
-  const totalPrice = useAppSelector(getTotalPrice);
-  const orderNumber = useAppSelector(getOrderId);
-  const isOrderDetailsModalOpen = useAppSelector(getIsOrderDetailsModalOpen);
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const selectedBun: TIngredient = useAppSelector(getSelectedBun);
+  const selectedIngredients: Array<TIngredient> = useAppSelector(
+    getSelectedIngredients
+  );
+  const totalPrice: number = useAppSelector(getTotalPrice);
+  const orderNumber: number | null = useAppSelector(getOrderId);
+  const isOrderDetailsModalOpen: boolean = useAppSelector(
+    getIsOrderDetailsModalOpen
+  );
+  const isLoggedIn: boolean = useAppSelector(getIsLoggedIn);
 
-  function submitOrder(ingredients: Array<string>) {
+  function submitOrder(ingredients: Array<string>): void {
     dispatch(sendOrderData(ingredients));
   }
 
-  function handleOrderClick() {
+  function handleOrderClick(): void {
     if (isLoggedIn) {
       if (selectedIngredients.length && selectedBun._id) {
         dispatch(setIsOrderDetailsModalOpen(true));

@@ -4,7 +4,7 @@ export function setCookie(
   name: string,
   value: string,
   props?: { [key: string]: any }
-) {
+): void {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
@@ -27,7 +27,7 @@ export function setCookie(
   document.cookie = updatedCookie;
 }
 
-export function getCookie(name: string) {
+export function getCookie(name: string): string | undefined {
   const matches = document.cookie.match(
     new RegExp(
       "(?:^|; )" +
@@ -38,7 +38,7 @@ export function getCookie(name: string) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function deleteCookie(name: string) {
+export function deleteCookie(name: string): void {
   setCookie(name, "", {
     "max-age": -1,
   });

@@ -3,6 +3,7 @@ import { useAppSelector } from "../../services/hooks";
 import { getAuthIsLoading } from "../../utils/constants";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { FormEvent, ReactNode } from "react";
+import { TFormData } from "../../hooks/useFormData";
 
 interface IAuthFormProps {
   title: string;

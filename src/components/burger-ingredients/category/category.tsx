@@ -11,7 +11,7 @@ interface ICategoryProps {
 }
 
 function Category({ title, type, onIngredientClick }: ICategoryProps) {
-  const ingredientsList = useSelector(getAllIngredients);
+  const ingredientsList: Array<TIngredient> = useSelector(getAllIngredients);
 
   const ingredients = useMemo(
     () =>

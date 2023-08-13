@@ -1,5 +1,6 @@
 import styles from "./form-input.module.scss";
 import { ReactNode, useEffect, useState } from "react";
+import { TFormData } from "../../hooks/useFormData";
 
 interface IFormInputProps {
   formData: TFormData;

@@ -1,13 +1,17 @@
-import styles from './ingredient-details.module.scss';
-import { useAppSelector } from '../../services/hooks';
-import { getCurrentIngredient } from '../../utils/constants';
+import styles from "./ingredient-details.module.scss";
+import { useAppSelector } from "../../services/hooks";
+import { getCurrentIngredient } from "../../utils/constants";
 
 function IngredientDetails() {
-  const currentIngredient = useAppSelector(getCurrentIngredient);
+  const currentIngredient: TIngredient = useAppSelector(getCurrentIngredient);
 
   return (
     <div className={styles.content}>
-      <img className={styles.image} src={currentIngredient.image_large} alt={currentIngredient.name} />
+      <img
+        className={styles.image}
+        src={currentIngredient.image_large}
+        alt={currentIngredient.name}
+      />
       <h3 className={styles.name}>{currentIngredient.name}</h3>
       <div className={styles.nutrition_values}>
         <div className={styles.nutrition_value}>
@@ -24,7 +28,9 @@ function IngredientDetails() {
         </div>
         <div className={styles.nutrition_value}>
           <span className={styles.type}>Углеводы, г</span>
-          <span className={styles.value}>{currentIngredient.carbohydrates}</span>
+          <span className={styles.value}>
+            {currentIngredient.carbohydrates}
+          </span>
         </div>
       </div>
     </div>

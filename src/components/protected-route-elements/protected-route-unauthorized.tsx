@@ -5,9 +5,9 @@ import { getIsLoggedIn } from "../../utils/constants";
 const ProtectedRouteUnauthorized = ({
   element: Component,
   ...props
-}: IProtectedRouteProps) => {
+}: TProtectedRouteProps) => {
   const location = useLocation();
-  const loggedIn = useAppSelector(getIsLoggedIn);
+  const loggedIn: boolean = useAppSelector(getIsLoggedIn);
   return !loggedIn ? (
     <Navigate to="/login" state={{ from: location }} replace />
   ) : (

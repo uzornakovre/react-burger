@@ -1,5 +1,5 @@
 import styles from "./reset-password.module.scss";
-import useFormData from "../../hooks/useFormData";
+import useFormData, { TFormData } from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
 import { FormEvent } from "react";

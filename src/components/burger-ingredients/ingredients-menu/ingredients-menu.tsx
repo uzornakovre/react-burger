@@ -24,7 +24,7 @@ function IngredientsMenu({
   const navigate = useNavigate();
   const location = useLocation();
 
-  function handleIngredientClick(item: TIngredient) {
+  function handleIngredientClick(item: TIngredient): void {
     dispatch(setCurrentIngredient(item));
     dispatch(setIsIngredientDetailsModalOpen(true))
     navigate(`ingredients/${item._id}`, { state: { backgroundLocation: location }});
