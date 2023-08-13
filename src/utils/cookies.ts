@@ -6,7 +6,7 @@ export function setCookie(
   props: { [key: string]: string | number | Date | boolean } = {}
 ): void {
   props = {
-    path: '/',
+    path: "/",
     ...props,
   };
   let exp = props.expires;
