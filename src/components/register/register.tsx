@@ -1,7 +1,7 @@
 import styles from "./register.module.scss";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
-import useFormData, { TFormData, TFormValues } from "../../hooks/useFormData";
+import useFormData from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import {
   ShowIcon,
@@ -21,9 +21,14 @@ interface IRegisterProps {
 }
 
 function Register({ handleLogin }: IRegisterProps) {
-  const formData: TFormData<TFormValues> = useFormData();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const formData = useFormData({
+    register_email: '',
+    register_username: '',
+    register_password: '',
+    register_confirm_password: ''
+  });
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
@@ -45,10 +50,7 @@ function Register({ handleLogin }: IRegisterProps) {
             .then(() => {
               dispatch(setIsInfoModalOpen(true));
               dispatch(setInfoModalText("Вы успешно зарегистрировались"));
-              formData.setValues({
-                register_email: "",
-                register_password: "",
-              });
+              formData.resetFormValues();
               handleLogin();
               navigate("/", { replace: true });
             })

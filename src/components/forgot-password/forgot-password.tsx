@@ -9,7 +9,9 @@ import { useAppDispatch } from "../../services/hooks";
 import { allowPasswordReset } from "../../services/auth/authSlice";
 
 function ForgotPassword() {
-  const formData = useFormData();
+  const formData = useFormData({
+    forgot_password_email: '',
+  });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

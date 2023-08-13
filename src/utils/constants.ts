@@ -53,3 +53,4 @@ export const getIsBurgerMenuOpen: (store: RootState) => boolean =
 
 export const isHtmlElement = (elem: any): elem is HTMLElement =>
   elem instanceof HTMLElement;
+

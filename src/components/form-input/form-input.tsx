@@ -50,10 +50,10 @@ function FormInput({
         type={isPasswordVisible ? "text" : type}
         name={name}
         className={`${styles.input} ${
-          formData.errors[name] && styles.input_error
+          formData.errors?.[name] && styles.input_error
         }`}
         onChange={formData.handleChange}
-        value={formData.values[name] || ""}
+        value={formData.values?.[name] || ""}
         id={`${name}_id`}
         minLength={type === "password" || type === "text" ? 4 : 0}
         disabled={place === "profile" ? disabled : false}
@@ -61,7 +61,7 @@ function FormInput({
       />
       <label
         className={`${styles.input_label} ${
-          formData.values[name] && styles.input_label_active
+          formData.values?.[name] && styles.input_label_active
         }`}
         htmlFor={`${name}_id`}
       >
@@ -72,7 +72,7 @@ function FormInput({
           {currentIcon}
         </div>
       )}
-      <span className={styles.error}>{formData.errors[name]}</span>
+      <span className={styles.error}>{formData.errors?.[name]}</span>
     </div>
   );
 }

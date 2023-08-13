@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 export type TFormValues = {
   [name: string]: string;
@@ -9,20 +9,20 @@ export type TFormData<T> = {
   errors: T;
   isValid: boolean;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  setValues: (v: T) => void;
+  setValues: Dispatch<SetStateAction<any>>;
   setIsValid: (v: boolean) => void;
   resetFormValues: () => void;
 };
 
-function useFormValues(): TFormData<TFormValues> {
-  const [values,  setValues ] = useState<TFormValues>({});
-  const [errors,  setErrors ] = useState<TFormValues>({});
-  const [isValid, setIsValid] = useState<boolean>(false);
+function useFormValues<T>(initial: T): TFormData<T> {
+  const [values,  setValues ] = useState(initial);
+  const [errors,  setErrors ] = useState(initial);
+  const [isValid, setIsValid] = useState(false);
 
   function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const form = evt.target;
     const { value, name, type } = form;
-    const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
+    const regexEmail = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     if (type === 'email') {
       const errorEmail = value.match(regexEmail) ? '' : 'Необходимо ввести email в формате email@username.domain'
@@ -43,8 +43,8 @@ function useFormValues(): TFormData<TFormValues> {
   }
 
   function resetFormValues(): void {
-    setValues({});
-    setErrors({});
+    setValues(initial);
+    setErrors(initial);
     setIsValid(false);
   }
 

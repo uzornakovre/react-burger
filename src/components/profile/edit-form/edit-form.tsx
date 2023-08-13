@@ -4,7 +4,7 @@ import {
   EditIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import useFormData, { TFormData, TFormValues } from "../../../hooks/useFormData";
+import useFormData from "../../../hooks/useFormData";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FormEvent, useEffect } from "react";
 import { getUserInfo } from "../../../utils/constants";
@@ -16,8 +16,12 @@ import {
 import { getCookie } from "../../../utils/cookies";
 
 function EditForm() {
-  const formData: TFormData<TFormValues> = useFormData();
   const userInfo: TUserInfo = useAppSelector(getUserInfo);
+  const formData = useFormData({
+    profile_name: '',
+    profile_email: '',
+    profile_password: "",
+  });
   const dispatch = useAppDispatch();
   const accessToken: string | undefined = getCookie("accessToken");
 
@@ -41,7 +45,7 @@ function EditForm() {
       updateUserInfo({
         name: formData.values.profile_name,
         email: formData.values.profile_email,
-        password: formData.values.profile_password.length
+        password: formData.values?.profile_password.length
           ? formData.values.profile_password
           : undefined,
         token: accessToken,

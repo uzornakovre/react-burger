@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../utils/api";
-import useFormData, { TFormData, TFormValues } from "../../hooks/useFormData";
+import useFormData, { TFormData } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import AuthForm from "../auth-form/auth-form";
 import {
@@ -21,18 +21,19 @@ interface ILoginProps {
 }
 
 function Login({ handleLogin }: ILoginProps) {
-  const formData: TFormData<TFormValues> = useFormData();
+  const formData: TFormData<any> = useFormData({
+    login_email: '',
+    login_password: ''
+  });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
-    login(formData.values.login_email, formData.values.login_password)
+    if (formData.values?.login_email && formData.values?.login_password) {
+      login(formData.values.login_email, formData.values.login_password)
       .then(() => {
-        formData.setValues({
-          login_email: "",
-          login_password: "",
-        });
+        formData.resetFormValues();
         handleLogin();
         navigate("/", { replace: true });
       })
@@ -40,6 +41,7 @@ function Login({ handleLogin }: ILoginProps) {
         dispatch(setIsInfoModalOpen(true));
         dispatch(setInfoModalText("Неверный логин или пароль."));
       });
+    }
   }
 
   return (
