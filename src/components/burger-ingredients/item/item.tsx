@@ -17,12 +17,12 @@ interface IItemProps {
 }
 
 function Item({ name, price, image, _id, type }: IItemProps) {
-  const selectedBun: TIngredient = useSelector(getSelectedBun);
-  const selectedIngredients: Array<TIngredient> = useSelector(
+  const selectedBun = useSelector(getSelectedBun);
+  const selectedIngredients = useSelector(
     getSelectedIngredients
   );
 
-  const [counter, setCounter] = useState<number>(0);
+  const [counter, setCounter] = useState(0);
 
   const [, dragRef] = useDrag({
     type: "ingredient",

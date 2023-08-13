@@ -16,8 +16,8 @@ import {
 
 function ResultList() {
   const dispatch = useAppDispatch();
-  const selectedBun: TIngredient = useAppSelector(getSelectedBun);
-  const selectedIngredients: Array<TIngredient> = useAppSelector(
+  const selectedBun = useAppSelector(getSelectedBun);
+  const selectedIngredients = useAppSelector(
     getSelectedIngredients
   );
 

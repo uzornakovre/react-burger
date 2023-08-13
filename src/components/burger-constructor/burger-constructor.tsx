@@ -45,16 +45,16 @@ import {
 function BurgerConstructor() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const selectedBun: TIngredient = useAppSelector(getSelectedBun);
-  const selectedIngredients: Array<TIngredient> = useAppSelector(
+  const selectedBun = useAppSelector(getSelectedBun);
+  const selectedIngredients = useAppSelector(
     getSelectedIngredients
   );
-  const totalPrice: number = useAppSelector(getTotalPrice);
-  const orderNumber: number | null = useAppSelector(getOrderId);
-  const isOrderDetailsModalOpen: boolean = useAppSelector(
+  const totalPrice = useAppSelector(getTotalPrice);
+  const orderNumber = useAppSelector(getOrderId);
+  const isOrderDetailsModalOpen = useAppSelector(
     getIsOrderDetailsModalOpen
   );
-  const isLoggedIn: boolean = useAppSelector(getIsLoggedIn);
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
 
   function submitOrder(ingredients: Array<string>): void {
     dispatch(sendOrderData(ingredients));

@@ -8,7 +8,7 @@ import { isHtmlElement } from "../../utils/constants";
 
 function BurgerMenu() {
   const dispatch = useAppDispatch();
-  const isBurgerMenuOpen: boolean = useAppSelector(getIsBurgerMenuOpen);
+  const isBurgerMenuOpen = useAppSelector(getIsBurgerMenuOpen);
 
   function closeBurgerMenu(): void {
     dispatch(toggleBurgerMenu(false));

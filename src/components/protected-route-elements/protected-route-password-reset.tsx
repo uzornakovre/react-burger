@@ -6,7 +6,7 @@ const ProtectedRoutePasswordReset = ({
   elem: Component,
   ...props
 }: TProtectedRouteProps) => {
-  const allowPasswordReset: boolean = useAppSelector(getIsAllowedPasswordReset);
+  const allowPasswordReset = useAppSelector(getIsAllowedPasswordReset);
   return !allowPasswordReset ? (
     <Navigate to="/forgot-password" replace />
   ) : (

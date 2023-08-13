@@ -4,7 +4,7 @@ import IngredientsMenu from './ingredients-menu/ingredients-menu';
 import { useState, useRef } from 'react';
 
 function BurgerIngredients() {
-  const [currentTab, setCurrentTab] = useState<string>('one');
+  const [currentTab, setCurrentTab] = useState('one');
 
   const tabMenuRef = useRef<HTMLDivElement>();
   const bunCategoryRef = useRef<HTMLDivElement>();

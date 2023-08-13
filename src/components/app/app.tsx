@@ -58,8 +58,8 @@ function App() {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const token: string | undefined = getCookie("refreshToken");
-  const isLoggedIn: boolean = useAppSelector(getIsLoggedIn);
-  const isIngredientDetailsModalOpen: boolean = useAppSelector(
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
+  const isIngredientDetailsModalOpen= useAppSelector(
     getIsIngredientDetailsModalOpen
   );
   const locationState = location.state as { backgroundLocation?: Location };

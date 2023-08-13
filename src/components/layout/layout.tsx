@@ -16,9 +16,9 @@ import { closeAllModals } from "../../services/modals/modalsSlice";
 
 function Layout() {
   const dispatch = useAppDispatch();
-  const isInfoModalOpen: boolean = useAppSelector(getIsInfoModalOpen);
-  const infoModalText: string = useAppSelector(getInfoModalText);
-  const isLoading: boolean = useAppSelector(
+  const isInfoModalOpen = useAppSelector(getIsInfoModalOpen);
+  const infoModalText = useAppSelector(getInfoModalText);
+  const isLoading = useAppSelector(
     getAuthIsLoading || getOrderIsLoading || getIngredientsIsLoading
   );
 

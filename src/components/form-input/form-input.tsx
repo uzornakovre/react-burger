@@ -24,8 +24,8 @@ function FormInput({
   const [currentIcon, setCurrentIcon] = useState<ReactNode | null>(
     isIcon && icons ? icons[0] : null
   );
-  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-  const [disabled, setDisabled] = useState<boolean>(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   function handleIconClick(): void {
     place !== "profile" && setIsPasswordVisible(!isPasswordVisible);

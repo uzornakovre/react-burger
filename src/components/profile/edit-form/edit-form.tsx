@@ -16,7 +16,7 @@ import {
 import { getCookie } from "../../../utils/cookies";
 
 function EditForm() {
-  const userInfo: TUserInfo = useAppSelector(getUserInfo);
+  const userInfo = useAppSelector(getUserInfo);
   const formData = useFormData({
     profile_name: '',
     profile_email: '',

@@ -20,7 +20,7 @@ function AuthForm({
   formData,
   children,
 }: IAuthFormProps) {
-  const isLoading: boolean = useAppSelector(getAuthIsLoading);
+  const isLoading = useAppSelector(getAuthIsLoading);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>

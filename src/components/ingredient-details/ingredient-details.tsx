@@ -3,7 +3,7 @@ import { useAppSelector } from "../../services/hooks";
 import { getCurrentIngredient } from "../../utils/constants";
 
 function IngredientDetails() {
-  const currentIngredient: TIngredient = useAppSelector(getCurrentIngredient);
+  const currentIngredient = useAppSelector(getCurrentIngredient);
 
   return (
     <div className={styles.content}>

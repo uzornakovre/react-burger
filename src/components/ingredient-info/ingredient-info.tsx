@@ -8,9 +8,9 @@ import { useEffect } from "react";
 
 function IngredientInfo() {
   const dispatch = useAppDispatch();
-  const allIngredients: Array<TIngredient> = useAppSelector(getAllIngredients);
-  const currentIngredient: TIngredient = useAppSelector(getCurrentIngredient);
-  const currentIngredientId: string | undefined = useParams().id;
+  const allIngredients = useAppSelector(getAllIngredients);
+  const currentIngredient = useAppSelector(getCurrentIngredient);
+  const currentIngredientId = useParams().id;
 
   useEffect(() => {
     dispatch(

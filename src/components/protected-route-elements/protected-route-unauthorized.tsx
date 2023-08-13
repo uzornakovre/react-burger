@@ -7,7 +7,7 @@ const ProtectedRouteUnauthorized = ({
   ...props
 }: TProtectedRouteProps) => {
   const location = useLocation();
-  const loggedIn: boolean = useAppSelector(getIsLoggedIn);
+  const loggedIn = useAppSelector(getIsLoggedIn);
   return !loggedIn ? (
     <Navigate to="/login" state={{ from: location }} replace />
   ) : (
