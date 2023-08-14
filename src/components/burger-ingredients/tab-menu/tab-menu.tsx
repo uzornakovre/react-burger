@@ -17,8 +17,8 @@ const TabMenu: FC<ITabMenuProps> = ({
   saucesCategoryRef,
   mainCategoryRef,
 }) => {
-  function handleTabClick(ref: any): void {
-    ref.current.scrollIntoView({
+  function handleTabClick(ref: RefObject<HTMLLIElement>): void {
+    ref.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -29,21 +29,21 @@ const TabMenu: FC<ITabMenuProps> = ({
       <Tab
         value="one"
         active={currentTab === "one"}
-        onClick={() => handleTabClick(bunCategoryRef)}
+        onClick={() => handleTabClick(bunCategoryRef as RefObject<HTMLLIElement>)}
       >
         Булки
       </Tab>
       <Tab
         value="two"
         active={currentTab === "two"}
-        onClick={() => handleTabClick(saucesCategoryRef)}
+        onClick={() => handleTabClick(saucesCategoryRef as RefObject<HTMLLIElement>)}
       >
         Соусы
       </Tab>
       <Tab
         value="three"
         active={currentTab === "three"}
-        onClick={() => handleTabClick(mainCategoryRef)}
+        onClick={() => handleTabClick(mainCategoryRef as RefObject<HTMLLIElement>)}
       >
         Начинки
       </Tab>
