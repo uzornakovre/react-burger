@@ -7,9 +7,9 @@ const BurgerIngredients = () => {
   const [currentTab, setCurrentTab] = useState('one');
 
   const tabMenuRef = useRef<HTMLDivElement>();
-  const bunCategoryRef = useRef<HTMLDivElement>();
-  const saucesCategoryRef = useRef<HTMLDivElement>();
-  const mainCategoryRef = useRef<HTMLDivElement>();
+  const bunCategoryRef = useRef<HTMLLIElement>();
+  const saucesCategoryRef = useRef<HTMLLIElement>();
+  const mainCategoryRef = useRef<HTMLLIElement>();
   
   return (
     <section className={`${styles.burger_ingredients} mt-10`}>

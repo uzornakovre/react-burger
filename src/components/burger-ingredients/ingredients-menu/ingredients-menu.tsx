@@ -4,14 +4,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Category from "../category/category";
 import { setCurrentIngredient } from "../../../services/current-ingredient/currentIngredientSlice";
 import { setIsIngredientDetailsModalOpen } from "../../../services/modals/modalsSlice";
-import { FC } from "react";
+import { FC, SetStateAction, Dispatch, RefObject } from "react";
 
 interface IIngredientsMenuProps {
-  setCurrentTab: any;
-  tabMenuRef: any;
-  bunCategoryRef: any;
-  saucesCategoryRef: any;
-  mainCategoryRef: any;
+  setCurrentTab: Dispatch<SetStateAction<string>>
+  tabMenuRef: RefObject<HTMLDivElement | undefined>;
+  bunCategoryRef: RefObject<HTMLLIElement | undefined>;
+  saucesCategoryRef: RefObject<HTMLLIElement | undefined>;
+  mainCategoryRef: RefObject<HTMLLIElement | undefined>;
 }
 
 const IngredientsMenu: FC<IIngredientsMenuProps> = ({
@@ -34,18 +34,14 @@ const IngredientsMenu: FC<IIngredientsMenuProps> = ({
   }
 
   function handleScrollMenu() {
-    const tabMenuPosition: number =
-      tabMenuRef.current.getBoundingClientRect().bottom;
-    const bunsPosition: number =
-      bunCategoryRef.current.getBoundingClientRect().top;
-    const saucesPosition: number =
-      saucesCategoryRef.current.getBoundingClientRect().top;
-    const mainPosition: number =
-      mainCategoryRef.current.getBoundingClientRect().top;
+    const tabMenuPosition = tabMenuRef.current?.getBoundingClientRect().bottom || 0;
+    const bunsPosition = bunCategoryRef.current?.getBoundingClientRect().top || 0;
+    const saucesPosition = saucesCategoryRef.current?.getBoundingClientRect().top || 0;
+    const mainPosition = mainCategoryRef.current?.getBoundingClientRect().top || 0;
 
-    let bunsDistance: number = Math.abs(tabMenuPosition - bunsPosition);
-    let saucesDistance: number = Math.abs(tabMenuPosition - saucesPosition);
-    let mainDistance: number = Math.abs(tabMenuPosition - mainPosition);
+    let bunsDistance = Math.abs(tabMenuPosition - bunsPosition);
+    let saucesDistance = Math.abs(tabMenuPosition - saucesPosition);
+    let mainDistance = Math.abs(tabMenuPosition - mainPosition);
 
     if (bunsDistance <= saucesDistance && bunsDistance <= mainDistance) {
       setCurrentTab("one");
@@ -61,21 +57,21 @@ const IngredientsMenu: FC<IIngredientsMenuProps> = ({
 
   return (
     <ul className={styles.categories} onScroll={handleScrollMenu}>
-      <li className={styles.categoriesItem} ref={bunCategoryRef}>
+      <li className={styles.categoriesItem} ref={bunCategoryRef as RefObject<HTMLLIElement>}>
         <Category
           title="Булка"
           type="bun"
           onIngredientClick={handleIngredientClick}
         />
       </li>
-      <li className={styles.categoriesItem} ref={saucesCategoryRef}>
+      <li className={styles.categoriesItem} ref={saucesCategoryRef as RefObject<HTMLLIElement>}>
         <Category
           title="Соусы"
           type="sauce"
           onIngredientClick={handleIngredientClick}
         />
       </li>
-      <li className={styles.categoriesItem} ref={mainCategoryRef}>
+      <li className={styles.categoriesItem} ref={mainCategoryRef as RefObject<HTMLLIElement>}>
         <Category
           title="Начинки"
           type="main"

@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC, RefObject } from "react";
 import styles from "./tab-menu.module.scss";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface ITabMenuProps {
-  currentTab: any;
-  tabMenuRef: any;
-  bunCategoryRef: any;
-  saucesCategoryRef: any;
-  mainCategoryRef: any;
+  currentTab: string;
+  tabMenuRef: RefObject<HTMLDivElement | undefined>;
+  bunCategoryRef: RefObject<HTMLLIElement | undefined>;
+  saucesCategoryRef: RefObject<HTMLLIElement | undefined>;
+  mainCategoryRef: RefObject<HTMLLIElement | undefined>;
 }
 
 const TabMenu: FC<ITabMenuProps> = ({
@@ -25,7 +25,7 @@ const TabMenu: FC<ITabMenuProps> = ({
   }
 
   return (
-    <div className={`${styles.tabs} mt-5 mb-10`} ref={tabMenuRef}>
+    <div className={`${styles.tabs} mt-5 mb-10`} ref={tabMenuRef as RefObject<HTMLDivElement>}>
       <Tab
         value="one"
         active={currentTab === "one"}
