@@ -1,6 +1,6 @@
 import styles from "./register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import useFormData from "../../hooks/useFormData";
+import useFormData, { TFormValues } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import {
   ShowIcon,
@@ -19,7 +19,7 @@ import { setLoggedIn } from "../../services/auth/authSlice";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const formData = useFormData({
+  const formData = useFormData<TFormValues>({
     register_email: '',
     register_username: '',
     register_password: '',

@@ -4,7 +4,7 @@ import {
   EditIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import useFormData from "../../../hooks/useFormData";
+import useFormData, { TFormValues } from "../../../hooks/useFormData";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FormEvent, useEffect } from "react";
 import { getUserInfo } from "../../../utils/constants";
@@ -17,9 +17,9 @@ import { getCookie } from "../../../utils/cookies";
 
 const EditForm = () => {
   const userInfo = useAppSelector(getUserInfo);
-  const formData = useFormData({
-    profile_name: '',
-    profile_email: '',
+  const formData = useFormData<TFormValues>({
+    profile_name: "",
+    profile_email: "",
     profile_password: "",
   });
   const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ const EditForm = () => {
       })
     ).then(() => {
       dispatch(setIsInfoModalOpen(true));
-      dispatch(setInfoModalText("Данные успешно обновлены")); // TODO:  Обработать ошибки
+      dispatch(setInfoModalText("Данные успешно обновлены"));
     });
   }
   return (
@@ -120,6 +120,6 @@ const EditForm = () => {
       )}
     </form>
   );
-}
+};
 
 export default EditForm;

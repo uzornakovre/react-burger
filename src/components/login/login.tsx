@@ -3,7 +3,7 @@ import { FormEvent } from "react";
 import { useAppDispatch } from "../../services/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/api";
-import useFormData from "../../hooks/useFormData";
+import useFormData, { TFormValues } from "../../hooks/useFormData";
 import FormInput from "../form-input/form-input";
 import AuthForm from "../auth-form/auth-form";
 import {
@@ -17,7 +17,7 @@ import {
 import { setLoggedIn } from "../../services/auth/authSlice";
 
 const Login = () => {
-  const formData = useFormData({
+  const formData = useFormData<TFormValues>({
     login_email: '',
     login_password: ''
   });

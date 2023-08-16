@@ -1,5 +1,5 @@
 import styles from "./forgot-password.module.scss";
-import useFormData from "../../hooks/useFormData";
+import useFormData, { TFormValues } from "../../hooks/useFormData";
 import AuthForm from "../auth-form/auth-form";
 import FormInput from "../form-input/form-input";
 import { FormEvent } from "react";
@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../services/hooks";
 import { allowPasswordReset } from "../../services/auth/authSlice";
 
 const ForgotPassword = () => {
-  const formData = useFormData({
+  const formData = useFormData<TFormValues>({
     forgot_password_email: '',
   });
   const dispatch = useAppDispatch();

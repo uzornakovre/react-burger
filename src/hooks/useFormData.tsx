@@ -9,14 +9,14 @@ export type TFormData<T> = {
   errors: T;
   isValid: boolean;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  setValues: Dispatch<SetStateAction<any>>;
+  setValues: Dispatch<SetStateAction<T>>;
   setIsValid: (v: boolean) => void;
   resetFormValues: () => void;
 };
 
 function useFormValues<T>(initial: T): TFormData<T> {
-  const [values,  setValues ] = useState(initial);
-  const [errors,  setErrors ] = useState(initial);
+  const [values,  setValues ] = useState<T>(initial);
+  const [errors,  setErrors ] = useState<T>(initial);
   const [isValid, setIsValid] = useState(false);
 
   function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
