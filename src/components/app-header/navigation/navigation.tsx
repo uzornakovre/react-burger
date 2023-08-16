@@ -60,7 +60,7 @@ const Navigation: FC<INavigationProps> = ({ place }) => {
             place === "burger" && styles.nav_item_place_burger
           }`}
         >
-          <NavLink to="/profile/" className={navLinkDefaultClass}>
+          <NavLink to="/profile" className={navLinkDefaultClass}>
             <svg className={styles.icon} viewBox="0 0 24 24">
               {profileIconPath}
             </svg>

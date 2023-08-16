@@ -31,7 +31,7 @@ const Profile = () => {
         <nav className={styles.nav_menu}>
           <ul className={styles.nav_menu_list}>
             <li className={styles.nav_menu_list_item}>
-              <NavLink to="/profile/" className={navLinkDefaultClass}>
+              <NavLink to="/profile" end className={navLinkDefaultClass}>
                 Профиль
               </NavLink>
             </li>
