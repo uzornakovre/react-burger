@@ -37,7 +37,6 @@ import ProtectedRouteElement from "../protected-route-element/protected-route-el
 
 // slices
 
-import { closeAllModals } from "../../services/modals/modalsSlice";
 import { getIngredients } from "../../services/ingredients/ingredientsSlice";
 import {
   setLoggedIn,
