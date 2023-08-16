@@ -7,7 +7,7 @@ import {
 import useFormData, { TFormValues } from "../../../hooks/useFormData";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FormEvent, useEffect } from "react";
-import { getUserInfo } from "../../../utils/constants";
+import { getUserInfo } from "../../../services/auth/selectors";
 import { updateUserInfo } from "../../../services/auth/authSlice";
 import {
   setIsInfoModalOpen,

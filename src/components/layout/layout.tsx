@@ -5,21 +5,19 @@ import AppHeader from "../app-header/app-header";
 import Modal from "../modal/modal";
 import Preloader from "../preloader/preloader";
 import BurgerMenu from "../burger-menu/burger-menu";
+import { getAuthIsLoading } from "../../services/auth/selectors";
+import { getIngredientsIsLoading } from "../../services/ingredients/selectors";
 import {
-  getAuthIsLoading,
   getInfoModalText,
-  getIngredientsIsLoading,
   getIsInfoModalOpen,
-} from "../../utils/constants";
+} from "../../services/modals/selectors";
 import { closeAllModals } from "../../services/modals/modalsSlice";
 
 const Layout = () => {
   const dispatch = useAppDispatch();
   const isInfoModalOpen = useAppSelector(getIsInfoModalOpen);
   const infoModalText = useAppSelector(getInfoModalText);
-  const isLoading = useAppSelector(
-    getAuthIsLoading || getIngredientsIsLoading
-  );
+  const isLoading = useAppSelector(getAuthIsLoading || getIngredientsIsLoading);
 
   return (
     <>
@@ -36,6 +34,6 @@ const Layout = () => {
       {isLoading && <Preloader />}
     </>
   );
-}
+};
 
 export default Layout;

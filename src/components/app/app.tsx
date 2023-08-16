@@ -14,10 +14,11 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 // utils
 
 import { getCookie } from "../../utils/cookies";
-import {
-  getIsIngredientDetailsModalOpen,
-  getIsLoggedIn,
-} from "../../utils/constants";
+
+// store
+
+import { getIsIngredientDetailsModalOpen } from "../../services/modals/selectors";
+import { getIsLoggedIn } from "../../services/auth/selectors";
 
 // components
 

@@ -2,7 +2,7 @@ import styles from "./order-details.module.scss";
 import orderCompleteImage from "../../images/done.png";
 import { FC } from "react";
 import { useAppSelector } from "../../services/hooks";
-import { getOrderIsLoading } from "../../utils/constants";
+import { getOrderIsLoading } from "../../services/order/selectors";
 import Preloader from "../preloader/preloader";
 
 interface IOrderDetails {

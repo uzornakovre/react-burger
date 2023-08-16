@@ -1,6 +1,6 @@
 import styles from "./auth-form.module.scss";
 import { useAppSelector } from "../../services/hooks";
-import { getAuthIsLoading } from "../../utils/constants";
+import { getAuthIsLoading } from "../../services/auth/selectors";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { FC, FormEvent, PropsWithChildren } from "react";
 import { TFormData, TFormValues } from "../../hooks/useFormData";

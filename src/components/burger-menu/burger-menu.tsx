@@ -1,7 +1,7 @@
 import styles from "./burger-menu.module.scss";
 import Navigation from "../app-header/navigation/navigation";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
-import { getIsBurgerMenuOpen } from "../../utils/constants";
+import { getIsBurgerMenuOpen } from "../../services/burger-menu/selectors";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
 import { MouseEvent } from "react";
 import { isHtmlElement } from "../../utils/constants";
