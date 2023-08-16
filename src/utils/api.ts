@@ -138,16 +138,18 @@ export const fetchIngredients = () => {
     });
 };
 
-export const fetchSendOrderData = (data: Array<string>) => {
-  return fetch(`${baseUrl}/orders`, {
+export const fetchSendOrderData = async (
+  orderData: { ingredientsList: Array<string> } & { token?: string }
+) => {
+  const data = await fetchWithRefresh<TOrderResponse>(`${baseUrl}/orders`, {
     method: "POST",
-    headers,
+    headers: {
+      ...headers,
+      authorization: `Bearer ${orderData.token}`,
+    },
     body: JSON.stringify({
-      ingredients: data,
+      ingredients: orderData.ingredientsList,
     }),
-  })
-    .then((res) => checkResponse<TOrderResponse>(res))
-    .then((data) => {
-      return data?.success ? data : Promise.reject(data);
-    });
+  });
+  return data?.success ? data : Promise.reject(data);
 };

@@ -41,10 +41,12 @@ import {
   setIsInfoModalOpen,
   setIsOrderDetailsModalOpen,
 } from "../../services/modals/modalsSlice";
+import { getCookie } from "../../utils/cookies";
 
 const BurgerConstructor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const accessToken: string | undefined = getCookie("accessToken");
   const selectedBun = useAppSelector(getSelectedBun);
   const selectedIngredients = useAppSelector(
     getSelectedIngredients
@@ -57,7 +59,7 @@ const BurgerConstructor = () => {
   const isLoggedIn = useAppSelector(getIsLoggedIn);
 
   function submitOrder(ingredients: Array<string>): void {
-    dispatch(sendOrderData(ingredients));
+    dispatch(sendOrderData({ ingredientsList: ingredients, token: accessToken }));
   }
 
   function handleOrderClick(): void {

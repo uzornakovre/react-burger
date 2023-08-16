@@ -20,8 +20,8 @@ const initialState: IOrderState = {
 
 export const sendOrderData = createAsyncThunk(
   "order/setOrderData",
-  async (ingredientsList: Array<string>) => {
-    const res = await fetchSendOrderData(ingredientsList);
+  async (orderData: {ingredientsList: Array<string>} & { token?: string }) => {
+    const res = await fetchSendOrderData(orderData);
     return res;
   }
 );

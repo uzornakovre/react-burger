@@ -10,7 +10,6 @@ import {
   getInfoModalText,
   getIngredientsIsLoading,
   getIsInfoModalOpen,
-  getOrderIsLoading,
 } from "../../utils/constants";
 import { closeAllModals } from "../../services/modals/modalsSlice";
 
@@ -19,7 +18,7 @@ const Layout = () => {
   const isInfoModalOpen = useAppSelector(getIsInfoModalOpen);
   const infoModalText = useAppSelector(getInfoModalText);
   const isLoading = useAppSelector(
-    getAuthIsLoading || getOrderIsLoading || getIngredientsIsLoading
+    getAuthIsLoading || getIngredientsIsLoading
   );
 
   return (
