@@ -129,10 +129,7 @@ const App = () => {
             element={
               <Modal
                 isOpen={isIngredientDetailsModalOpen}
-                onClose={() => {
-                  navigate(-1);
-                  dispatch(closeAllModals());
-                }}
+                onClose={() => navigate(-1)}
                 title="Детали ингредиента"
               >
                 <IngredientDetails />
