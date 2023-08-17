@@ -11,16 +11,15 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 
-// utils
+// store
 
+import { getIsOrderDetailsModalOpen } from "../../services/modals/selectors";
+import { getOrderId, getTotalPrice } from "../../services/order/selectors";
+import { getIsLoggedIn } from "../../services/auth/selectors";
 import {
-  getIsLoggedIn,
-  getIsOrderDetailsModalOpen,
-  getOrderId,
   getSelectedBun,
   getSelectedIngredients,
-  getTotalPrice,
-} from "../../utils/constants";
+} from "../../services/constructor/selectors";
 
 // components
 
@@ -48,18 +47,16 @@ const BurgerConstructor = () => {
   const navigate = useNavigate();
   const accessToken: string | undefined = getCookie("accessToken");
   const selectedBun = useAppSelector(getSelectedBun);
-  const selectedIngredients = useAppSelector(
-    getSelectedIngredients
-  );
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
   const totalPrice = useAppSelector(getTotalPrice);
   const orderNumber = useAppSelector(getOrderId);
-  const isOrderDetailsModalOpen = useAppSelector(
-    getIsOrderDetailsModalOpen
-  );
+  const isOrderDetailsModalOpen = useAppSelector(getIsOrderDetailsModalOpen);
   const isLoggedIn = useAppSelector(getIsLoggedIn);
 
   function submitOrder(ingredients: Array<string>): void {
-    dispatch(sendOrderData({ ingredientsList: ingredients, token: accessToken }));
+    dispatch(
+      sendOrderData({ ingredientsList: ingredients, token: accessToken })
+    );
   }
 
   function handleOrderClick(): void {
@@ -120,6 +117,6 @@ const BurgerConstructor = () => {
       </Modal>
     </section>
   );
-}
+};
 
 export default BurgerConstructor;

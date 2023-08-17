@@ -1,9 +1,6 @@
 import { useAppSelector } from "../../services/hooks";
 import { Navigate, useLocation } from "react-router-dom";
-import {
-  getIsLoggedIn,
-  getIsAllowedPasswordReset,
-} from "../../utils/constants";
+import { getIsLoggedIn, getIsAllowedPasswordReset } from "../../services/auth/selectors";
 import { FC } from "react";
 import { TProtectedRouteElementProps } from "../../types/protected-route";
 

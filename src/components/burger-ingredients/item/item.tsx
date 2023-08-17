@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import {
   getSelectedBun,
   getSelectedIngredients,
-} from "../../../utils/constants";
+} from "../../../services/constructor/selectors";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface IItemProps {

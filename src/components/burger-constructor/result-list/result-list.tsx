@@ -5,7 +5,7 @@ import { useDrop } from "react-dnd";
 import {
   getSelectedBun,
   getSelectedIngredients,
-} from "../../../utils/constants";
+} from "../../../services/constructor/selectors";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../ingredient/ingredient";
 import {
@@ -17,9 +17,7 @@ import {
 const ResultList = () => {
   const dispatch = useAppDispatch();
   const selectedBun = useAppSelector(getSelectedBun);
-  const selectedIngredients = useAppSelector(
-    getSelectedIngredients
-  );
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
 
   const [{ isHover }, ingredientDropRef] = useDrop<
     TIngredient,
@@ -118,6 +116,6 @@ const ResultList = () => {
       </li>
     </ul>
   );
-}
+};
 
 export default ResultList;

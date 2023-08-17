@@ -1,7 +1,7 @@
 import styles from "./category.module.scss";
 import { FC, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { getAllIngredients } from "../../../utils/constants";
+import { getAllIngredients } from "../../../services/ingredients/selectors";
 import Item from "../item/item";
 
 interface ICategoryProps {

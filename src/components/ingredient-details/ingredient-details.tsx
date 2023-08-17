@@ -1,6 +1,6 @@
 import styles from "./ingredient-details.module.scss";
 import { useAppSelector } from "../../services/hooks";
-import { getCurrentIngredient } from "../../utils/constants";
+import { getCurrentIngredient } from "../../services/current-ingredient/selectors";
 
 const IngredientDetails = () => {
   const currentIngredient = useAppSelector(getCurrentIngredient);
