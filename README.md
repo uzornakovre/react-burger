@@ -2,7 +2,7 @@
 *Проектная работа на курсе в Яндекс Практикум*  
 ______
 
-[![Скриншот страницы](https://i.ibb.co/17dynmt/burger.jpg)]()
+[![Скриншот страницы](https://i.ibb.co/17dynmt/burger.jpg)](https://stellar-burgers.website)
 
 Stellar Burgers - это приложение вымышленного ресторана, с помощью которого можно ознакомиться с ассортиментом, собирать и заказывать бургеры.
 
@@ -19,12 +19,13 @@ Stellar Burgers - это приложение вымышленного рест�
 Используемые технологии: 
 * :heavy_check_mark: HTML5    
 * :heavy_check_mark: CSS3 (**Препроцессор SCSS**)      
-* :heavy_check_mark: JavaScript ES6 (**Библиотека React.js**)
+* :heavy_check_mark: TypeScript
+* :heavy_check_mark: React.js
 * :heavy_check_mark: Redux Toolkit
 
-:bulb: В следующих версиях прокета будет добавлены лента и история заказов, по технической части будет произведен рефакторинг на **TypeScript**.
+:bulb: В следующих версиях прокета будет добавлены лента и история заказов.
  
-[:link: Открыть веб-сайт приложения (появится позже)]()   
+[:link: Открыть веб-сайт приложения](https://stellar-burgers.website)   
 [:link: Открыть макет в Figma](https://www.figma.com/file/zFGN2O5xktHl9VmoOieq5E/React-_-Проектные-задачи_external_link?type=design&node-id=0-1&mode=design)
 ------
 ![GitHub repo size](https://img.shields.io/github/repo-size/uzornakovre/react-burger?color=yellow&style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/uzornakovre/react-burger?color=blue&style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/uzornakovre/react-burger?color=pink&style=flat-square)  
