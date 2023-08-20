@@ -1,0 +1,9 @@
+@import '../../../styles/index.scss';
+
+.item {
+  width: calc(100% - 8px);
+  height: 200px;
+
+  background-color: $color-background-1;
+  border-radius: 40px;
+}
