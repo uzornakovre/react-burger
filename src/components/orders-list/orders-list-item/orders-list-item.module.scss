@@ -17,6 +17,71 @@
   justify-content: space-between;
 }
 
+.id {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price
+  )
+}
+
+.date {
+  @include renderFont(
+    $color: $color-text-2,
+  )
+}
+
+.dish {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include renderFont();
+}
+
+.dish_name {
+  font-size: $font-size-heading;
+  line-height: $font-line-height-heading;
+}
+
 .ingredients {
   display: flex;
+}
+
+.ingredient {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  
+
+  background-color: $color-background-2;
+  border: 2px solid $color-interface-accent-1;
+
+  &:first-child {
+    z-index: 6;
+  }
+
+  &:nth-child(2) {
+    z-index: 5;
+  }
+
+  &:nth-child(3) {
+    z-index: 4;
+  }
+
+  &:nth-child(4) {
+    z-index: 3;
+  }
+
+  &:nth-child(5) {
+    z-index: 2;
+  }
+
+  &:nth-child(6) {
+    z-index: 1;
+  }
+
+  &:not(:first-child) {
+    margin-left: -24px;
+  }
 }

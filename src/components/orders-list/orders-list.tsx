@@ -8,6 +8,9 @@ const OrdersList = () => {
       <li className={styles.list_item}><OrdersListItem /></li>
       <li className={styles.list_item}><OrdersListItem /></li>
       <li className={styles.list_item}><OrdersListItem /></li>
+      <li className={styles.list_item}><OrdersListItem /></li>
+      <li className={styles.list_item}><OrdersListItem /></li>
+      <li className={styles.list_item}><OrdersListItem /></li>
     </ul>
   )
 }

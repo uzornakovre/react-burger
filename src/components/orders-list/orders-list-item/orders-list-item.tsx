@@ -10,7 +10,9 @@ const OrdersListItem = () => {
     <div className={styles.item}>
       <div className={styles.top}>
         <h2 className={styles.id}>#1234567</h2>
-        <FormattedDate date={new Date(dateFromServer)} />
+        <p className={styles.date}>
+          <FormattedDate date={new Date(dateFromServer)} />
+        </p>
       </div>
       <div className={styles.dish}>
         <h3 className={styles.dish_name}>Бургер</h3>
@@ -20,11 +22,14 @@ const OrdersListItem = () => {
       </div>
       <div className={styles.bottom}>
         <ul className={styles.ingredients}>
-          <li className={styles.ingredient}>1</li>
-          <li className={styles.ingredient}>2</li>
-          <li className={styles.ingredient}>3</li>
+          <li className={styles.ingredient}></li>
+          <li className={styles.ingredient}></li>
+          <li className={styles.ingredient}></li>
+          <li className={styles.ingredient}></li>
+          <li className={styles.ingredient}></li>
+          <li className={styles.ingredient}></li>
         </ul>
-        <Price value={1000} size='normal' />
+        <Price value={1000} size="normal" />
       </div>
     </div>
   );
