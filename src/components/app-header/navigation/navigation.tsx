@@ -46,7 +46,7 @@ const Navigation: FC<INavigationProps> = ({ place }) => {
             place === "burger" && styles.nav_item_place_burger
           }`}
         >
-          <NavLink to="/history" className={navLinkDefaultClass}>
+          <NavLink to="/feed" className={navLinkDefaultClass}>
             <svg className={styles.icon} viewBox="0 0 24 24">
               {historyListIconPath}
             </svg>

@@ -34,6 +34,7 @@ import Modal from "../modal/modal";
 import IngredientInfo from "../ingredient-info/ingredient-info";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import ProtectedRouteElement from "../protected-route-element/protected-route-element";
+import Feed from "../feed/feed";
 
 // slices
 
@@ -109,6 +110,7 @@ const App = () => {
               />
             }
           />
+          <Route path="feed" element={<Feed />} />
           <Route
             path="profile"
             element={<ProtectedRouteElement element={<Profile />} />}

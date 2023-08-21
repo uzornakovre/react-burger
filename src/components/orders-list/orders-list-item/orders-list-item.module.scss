@@ -40,8 +40,11 @@
 }
 
 .dish_name {
-  font-size: $font-size-heading;
-  line-height: $font-line-height-heading;
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $weight: 700
+  );
 }
 
 .ingredients {
