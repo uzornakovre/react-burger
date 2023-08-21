@@ -46,6 +46,7 @@ import {
 } from "../../services/auth/authSlice";
 import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
+import OrderInfo from "../order-info/order-info";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -119,6 +120,14 @@ const App = () => {
             <Route path="orders" element={<Orders />} />
           </Route>
           <Route path="ingredients/:id" element={<IngredientInfo />} />
+                    <Route
+            path="/profile/orders/:id"
+            element={<OrderInfo />}
+          />
+          <Route
+            path="/feed/:id"
+            element={<OrderInfo />}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -134,6 +143,30 @@ const App = () => {
                 title="Детали ингредиента"
               >
                 <IngredientDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path="/profile/orders/:id"
+            element={
+              <Modal
+                isOpen={true}
+                onClose={() => navigate(-1)}
+                title="#999999"
+              >
+                <OrderInfo />
+              </Modal>
+            }
+          />
+          <Route
+            path="/feed/:id"
+            element={
+              <Modal
+                isOpen={true}
+                onClose={() => navigate(-1)}
+                title="#999999"
+              >
+                <OrderInfo />
               </Modal>
             }
           />

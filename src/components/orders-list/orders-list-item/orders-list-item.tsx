@@ -1,13 +1,24 @@
 import styles from "./orders-list-item.module.scss";
 import { FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import Price from "../../price/price";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const OrdersListItem = () => {
   const dateFromServer = "2022-10-10T17:33:32.877Z";
   let tempPlace = "profile";
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handleOrderListItemClick(item: any): void {
+    // dispatch(setCurrentIngredient(item));
+    // dispatch(setIsIngredientDetailsModalOpen(true));
+    navigate(`${item._id}`, {
+      state: { backgroundLocation: location },
+    });
+  }
 
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={() => handleOrderListItemClick({ _id: 1234567 })}>
       <div className={styles.top}>
         <h2 className={styles.id}>#1234567</h2>
         <p className={styles.date}>
