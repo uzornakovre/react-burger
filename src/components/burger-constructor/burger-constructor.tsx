@@ -23,13 +23,11 @@ import {
 
 // components
 
-import {
-  CurrencyIcon,
-  Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import ResultList from "./result-list/result-list";
+import Price from "../price/price";
 
 // slices
 import { clearSelected } from "../../services/constructor/constructorSlice";
@@ -95,10 +93,7 @@ const BurgerConstructor = () => {
     <section className={`${styles.burger_constructor} mt-25`}>
       <ResultList />
       <div className={`${styles.order_info} mt-10`}>
-        <div className={styles.total_price}>
-          <span className={styles.total_price_value}>{totalPrice}</span>
-          <CurrencyIcon type="primary" />
-        </div>
+        <Price value={totalPrice} size='large' />
         <Button
           htmlType="button"
           type="primary"

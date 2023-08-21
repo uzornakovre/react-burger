@@ -1,0 +1,20 @@
+@import '../../styles/index.scss';
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price_value {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price-l,
+    $color: $color-text-1
+  );
+}
+
+.large {
+  font-size: $font-size-price-l,
+}

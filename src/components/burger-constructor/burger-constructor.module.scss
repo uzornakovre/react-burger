@@ -12,21 +12,6 @@
   padding-right: 16px;
 }
 
-.total_price {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.total_price_value {
-  @include renderFont(
-    $family: $font-family-additional,
-    $size: $font-size-price-l,
-    $line-height: $font-line-height-price-l,
-    $color: $color-text-1
-  )
-}
-
 .error {
   display: flex;
   align-items: center;
