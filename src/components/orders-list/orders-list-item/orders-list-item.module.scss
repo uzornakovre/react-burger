@@ -9,6 +9,16 @@
 
   background-color: $color-background-1;
   border-radius: 40px;
+  cursor: pointer;
+  transition: all .2s linear;
+
+  &:hover {
+    background-color: $color-interface-input-1;
+  }
+
+  &:active {
+    opacity: .6;
+  }
 }
 
 .top,
