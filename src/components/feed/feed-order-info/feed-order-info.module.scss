@@ -1,0 +1,18 @@
+@import '../../../styles/index.scss';
+
+.container {
+  margin: 120px auto 0;
+  max-width: 640px;
+}
+
+.id {
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+  );
+}

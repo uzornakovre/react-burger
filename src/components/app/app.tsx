@@ -48,6 +48,7 @@ import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
 import { getOrderId } from "../../services/order/selectors";
+import FeedOrderInfo from "../feed/feed-order-info/feed-order-info";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -128,7 +129,7 @@ const App = () => {
           />
           <Route
             path="/feed/:id"
-            element={<OrderInfo />}
+            element={<FeedOrderInfo />}
           />
         </Route>
         <Route path="*" element={<NotFound />} />
