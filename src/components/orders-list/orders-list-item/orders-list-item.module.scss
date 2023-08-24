@@ -55,6 +55,10 @@
     $line-height: $font-line-height-heading,
     $weight: 700
   );
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .ingredients {
@@ -62,8 +66,8 @@
 }
 
 .ingredient {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   
 

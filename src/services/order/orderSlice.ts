@@ -33,6 +33,9 @@ const orderSlice = createSlice({
     setTotalPrice: (state, action: PayloadAction<number>) => {
       return { ...state, totalPrice: action.payload };
     },
+    setOrderId: (state, action: PayloadAction<number>) => {
+      return { ...state, id: action.payload }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -57,6 +60,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setTotalPrice } = orderSlice.actions;
+export const { setTotalPrice, setOrderId } = orderSlice.actions;
 
 export default orderSlice.reducer;

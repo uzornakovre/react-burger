@@ -31,7 +31,14 @@
     $weight: 700,
     $size: $font-size-heading-l,
     $line-height: $font-line-height-heading-l,
-  )
+  );
+
+  &_alt {
+    @include renderFont (
+      $family: $font-family-additional,
+      $size: $font-size-price,
+    )
+  }
 }
 
 .close_button {

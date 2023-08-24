@@ -1,10 +1,104 @@
 @import '../../styles/index.scss';
 
 .container {
+  width: 100%;
   max-width: 640px;
+  margin: 0 auto;
 }
 
 .id {
-  display: flex;
   min-height: 64px;
 }
+
+.dish {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.dish_name {
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $weight: 700
+  );
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dish_status {
+  @include renderFont(
+    $color: $color-interface-success
+  )
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.ingredients_title {
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $weight: 700
+  )
+}
+
+.ingredients_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 312px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.ingredients_item {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 64px 320px auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.ingredient_image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background-color: $color-background-2;
+  border: 2px solid $color-interface-accent-1;
+}
+
+.ingredient_name {
+  @include renderFont();
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ingredient_price {
+  padding-right: 24px;
+  justify-self: end;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  @include renderFont(
+    $color: $color-text-2
+  )
+}
+

@@ -93,7 +93,7 @@ const BurgerConstructor = () => {
     <section className={`${styles.burger_constructor} mt-25`}>
       <ResultList />
       <div className={`${styles.order_info} mt-10`}>
-        <Price value={totalPrice} size='large' />
+        <Price value={`${totalPrice}`} size='large' />
         <Button
           htmlType="button"
           type="primary"
