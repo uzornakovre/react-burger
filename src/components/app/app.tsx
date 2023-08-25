@@ -125,7 +125,7 @@ const App = () => {
           <Route path="ingredients/:id" element={<IngredientInfo />} />
                     <Route
             path="/profile/orders/:id"
-            element={<OrderInfo />}
+            element={<FeedOrderInfo />}
           />
           <Route
             path="/feed/:id"
