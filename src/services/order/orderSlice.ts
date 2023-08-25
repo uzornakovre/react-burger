@@ -10,6 +10,16 @@ interface IOrderState {
   isLoading: boolean;
 }
 
+export interface IOrderDetails {
+  readonly _id: string;
+  readonly ingredients: Array<string>;
+  readonly status: string;
+  readonly name: string;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+  readonly number: number;
+}
+
 const initialState: IOrderState = {
   id: null,
   ingredientsList: [],
