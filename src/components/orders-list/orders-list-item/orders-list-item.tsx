@@ -33,6 +33,27 @@ const OrdersListItem: FC<IOrderListItem> = ({
   const location = useLocation();
   const allIngredients = useAppSelector(getAllIngredients);
   const [more, setMore] = useState(0);
+  const currentIngredients = allIngredients.filter(
+    (ingredient) =>
+      ingredients.find((i) => i === ingredient._id) === ingredient._id
+  );
+
+  let price = 0;
+
+  currentIngredients.forEach((i) => {
+    if (i.type === 'bun') {
+      price += i.price * 2;
+    } else price += i.price;
+  });
+
+  const ingredientImages = currentIngredients
+    .map((i) => (
+      <li key={i._id} className={styles.ingredient}>
+        <img className={styles.ingredient_image} src={i.image} alt={i.name} />
+        {more > 1 && <p className={styles.more}>+{more}</p>}
+      </li>
+    ))
+    .slice(0, 6);
 
   function handleOrderListItemClick(item: any): void {
     // dispatch(setCurrentIngredient(item));
@@ -42,19 +63,6 @@ const OrdersListItem: FC<IOrderListItem> = ({
       state: { backgroundLocation: location },
     });
   }
-
-  const ingredientImages = allIngredients
-    .filter(
-      (ingredient) =>
-        ingredients.find((i) => i === ingredient._id) === ingredient._id
-    )
-    .map((i) => (
-      <li key={i._id} className={styles.ingredient}>
-        <img className={styles.ingredient_image} src={i.image} alt={i.name} />
-        {more > 1 && <p className={styles.more}>+{more}</p>}
-      </li>
-    ))
-    .slice(0, 6);
 
   useEffect(() => {
     setMore(ingredients.length - 6);
@@ -81,7 +89,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
       </div>
       <div className={styles.bottom}>
         <ul className={styles.ingredients}>{ingredientImages}</ul>
-        <Price value="1000" size="normal" />
+        <Price value={`${price}`} size="normal" />
       </div>
     </div>
   );
