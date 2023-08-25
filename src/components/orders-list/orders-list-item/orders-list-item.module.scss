@@ -66,11 +66,13 @@
 }
 
 .ingredient {
+  position: relative;
+  display: flex;
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  align-items: center;
   
-
   background-color: $color-background-2;
   border: 2px solid $color-interface-accent-1;
 
@@ -98,7 +100,30 @@
     z-index: 1;
   }
 
-  &:not(:first-child) {
-    margin-left: -24px;
+  &:nth-child(6) > p {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    @include renderFont();
   }
+
+  &:nth-child(6) > img {
+    opacity: .6;
+  }
+
+  &:not(:first-child) {
+    margin-left: -16px;
+  }
+}
+
+.ingredient_image {
+  width: inherit;
+  transform: scale(1.5);
+}
+
+.more {
+  display: none;
 }

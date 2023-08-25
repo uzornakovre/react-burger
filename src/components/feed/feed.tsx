@@ -15,24 +15,23 @@ const Feed = () => {
   const total = useAppSelector(getTotal);
   const totalToday = useAppSelector(getTotalToday);
 
-  const ordersDone = orders.filter((order) => order.status === "done");
-  const ordersPending = orders.filter((order) => order.status === "pending");
+  const ordersDone = orders
+    .filter((order) => order.status === "done")
+    .map((order) => (
+      <li key={order._id} className={`${styles.item_id} ${styles.ready}`}>
+        {order.number}
+      </li>
+    ))
+    .slice(0, 8);
 
-  const doneIDs = ordersDone.map((order) => (
-    <li key={order._id} className={`${styles.item_id} ${styles.ready}`}>
-      {order.number}
-    </li>
-  ));
-
-  // const orderItems = orders.map(order => (
-  //   <li key={order._id}>
-  //     <Card card={card}
-  //           onCardClick={onCardClick}
-  //           onDeleteClick={onDeleteClick}
-  //           onCardLike={onCardLike}
-  //     />
-  //   </li>
-  // ))
+  const ordersPending = orders
+    .filter((order) => order.status === "pending")
+    .map((order) => (
+      <li key={order._id} className={`${styles.item_id}`}>
+        {order.number}
+      </li>
+    ))
+    .slice(0, 8);
 
   useEffect(() => {
     dispatch(
@@ -51,19 +50,11 @@ const Feed = () => {
           <div className={styles.status}>
             <div className={styles.status_column}>
               <h3 className={styles.heading}>Готовы:</h3>
-              <ul className={styles.status_column_list}>
-                {doneIDs}
-              </ul>
+              <ul className={styles.status_column_list}>{ordersDone}</ul>
             </div>
             <div className={styles.status_column}>
               <h3 className={styles.heading}>В работе:</h3>
-              <ul className={styles.status_column_list}>
-                <li className={styles.item_id}>123456</li>
-                <li className={styles.item_id}>123456</li>
-                <li className={styles.item_id}>123456</li>
-                <li className={styles.item_id}>123456</li>
-                <li className={styles.item_id}>123456</li>
-              </ul>
+              <ul className={styles.status_column_list}>{ordersPending}</ul>
             </div>
           </div>
           <div className={styles.total}>

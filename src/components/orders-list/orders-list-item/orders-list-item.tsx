@@ -3,48 +3,84 @@ import { FormattedDate } from "@ya.praktikum/react-developer-burger-ui-component
 import Price from "../../price/price";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setOrderId } from "../../../services/order/orderSlice";
-import { useAppDispatch } from "../../../services/hooks";
+import { useAppDispatch, useAppSelector } from "../../../services/hooks";
+import { FC, useEffect, useState } from "react";
+import { getAllIngredients } from "../../../services/ingredients/selectors";
 
-const OrdersListItem = () => {
-  const dateFromServer = "2022-10-10T17:33:32.877Z";
-  let tempPlace = "profile";
-  let tempId = 987654;
+interface IOrderListItem {
+  place: "feed" | "profile";
+  id: string;
+  number: number;
+  name: string;
+  ingredients: Array<string>;
+  status: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+const OrdersListItem: FC<IOrderListItem> = ({
+  place,
+  id,
+  number,
+  name,
+  ingredients,
+  status,
+  createdAt,
+  updatedAt,
+}) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const allIngredients = useAppSelector(getAllIngredients);
+  const [more, setMore] = useState(0);
 
   function handleOrderListItemClick(item: any): void {
     // dispatch(setCurrentIngredient(item));
     // dispatch(setIsIngredientDetailsModalOpen(true));
-    dispatch(setOrderId(tempId));
+    dispatch(setOrderId(number));
     navigate(`${item._id}`, {
       state: { backgroundLocation: location },
     });
   }
 
+  const ingredientImages = allIngredients
+    .filter(
+      (ingredient) =>
+        ingredients.find((i) => i === ingredient._id) === ingredient._id
+    )
+    .map((i) => (
+      <li key={i._id} className={styles.ingredient}>
+        <img className={styles.ingredient_image} src={i.image} alt={i.name} />
+        {more > 1 && <p className={styles.more}>+{more}</p>}
+      </li>
+    ))
+    .slice(0, 6);
+
+  useEffect(() => {
+    setMore(ingredients.length - 6);
+  }, [ingredients]);
+
   return (
-    <div className={styles.item} onClick={() => handleOrderListItemClick({ _id: 1234567 })}>
+    <div
+      className={styles.item}
+      onClick={() => handleOrderListItemClick({ _id: id })}
+    >
       <div className={styles.top}>
-        <h2 className={styles.id}>#14812312</h2>
+        <h2 className={styles.id}>#{number}</h2>
         <p className={styles.date}>
-          <FormattedDate date={new Date(dateFromServer)} />
+          <FormattedDate date={new Date(createdAt)} />
         </p>
       </div>
       <div className={styles.dish}>
-        <h3 className={styles.dish_name}>Бургер</h3>
-        {tempPlace === "profile" && (
-          <p className={styles.dish_status}>Готово</p>
+        <h3 className={styles.dish_name}>{name}</h3>
+        {place === "profile" && (
+          <p className={styles.dish_status}>
+            {status === "done" ? "Выполнен" : "Готовится"}
+          </p>
         )}
       </div>
       <div className={styles.bottom}>
-        <ul className={styles.ingredients}>
-          <li className={styles.ingredient}></li>
-          <li className={styles.ingredient}></li>
-          <li className={styles.ingredient}></li>
-          <li className={styles.ingredient}></li>
-          <li className={styles.ingredient}></li>
-          <li className={styles.ingredient}></li>
-        </ul>
+        <ul className={styles.ingredients}>{ingredientImages}</ul>
         <Price value="1000" size="normal" />
       </div>
     </div>
