@@ -6,6 +6,7 @@ import Modal from "../modal/modal";
 import Preloader from "../preloader/preloader";
 import BurgerMenu from "../burger-menu/burger-menu";
 import { getAuthIsLoading } from "../../services/auth/selectors";
+import { getWSIsPending } from "../../services/websocket/selectors";
 import { getIngredientsIsLoading } from "../../services/ingredients/selectors";
 import {
   getInfoModalText,
@@ -17,7 +18,10 @@ const Layout = () => {
   const dispatch = useAppDispatch();
   const isInfoModalOpen = useAppSelector(getIsInfoModalOpen);
   const infoModalText = useAppSelector(getInfoModalText);
-  const isLoading = useAppSelector(getAuthIsLoading || getIngredientsIsLoading);
+  const authLoading = useAppSelector(getAuthIsLoading);
+  const ingredientsLoading = useAppSelector(getIngredientsIsLoading);
+  const wsPending = useAppSelector(getWSIsPending);
+  const isLoading = authLoading || ingredientsLoading || wsPending;
 
   return (
     <>

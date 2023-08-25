@@ -41,7 +41,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
   let price = 0;
 
   currentIngredients.forEach((i) => {
-    if (i.type === 'bun') {
+    if (i.type === "bun") {
       price += i.price * 2;
     } else price += i.price;
   });
@@ -82,7 +82,11 @@ const OrdersListItem: FC<IOrderListItem> = ({
       <div className={styles.dish}>
         <h3 className={styles.dish_name}>{name}</h3>
         {place === "profile" && (
-          <p className={styles.dish_status}>
+          <p
+            className={`${styles.dish_status} ${
+              status === "done" && styles.done
+            }`}
+          >
             {status === "done" ? "Выполнен" : "Готовится"}
           </p>
         )}

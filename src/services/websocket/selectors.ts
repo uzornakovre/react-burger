@@ -13,3 +13,6 @@ export const getTotal: (store: RootState) => number =
 export const getTotalToday: (store: RootState) => number = 
   (store) => store.webSocket.totalToday;
 
+export const getWSIsPending: (store: RootState) => boolean =
+  (store) => store.webSocket.wsPending;
+

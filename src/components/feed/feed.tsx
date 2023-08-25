@@ -8,6 +8,7 @@ import {
   getTotal,
   getTotalToday,
 } from "../../services/websocket/selectors";
+import { wsUrl } from "../../utils/constants";
 
 const Feed = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ const Feed = () => {
 
   useEffect(() => {
     dispatch(
-      wsActions.connectionStart("wss://norma.nomoreparties.space/orders/all")
+      wsActions.connectionStart(`${wsUrl}/all`)
     );
   }, [dispatch]);
 
@@ -44,7 +45,7 @@ const Feed = () => {
       <h2 className={styles.title}>Лента заказов</h2>
       <div className={styles.container}>
         <div className={styles.orders_list}>
-          <OrdersList />
+          <OrdersList place="feed" />
         </div>
         <div className={styles.statistics}>
           <div className={styles.status}>

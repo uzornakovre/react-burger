@@ -38,12 +38,16 @@ const wsSlice = createSlice({
     connectionClose: (state) => {
       state.wsConnected = false;
     },
+    connectionError: (state, action: any) => {
+      state.wsRejected = true;
+      state.wsError = action.payload;
+    },
     getMessage: (state, action: any) => {
       const { orders, total, totalToday } = action.payload;
       state.orders = orders;
       state.total = total;
       state.totalToday = totalToday;
-    }
+    },
   },
 });
 
