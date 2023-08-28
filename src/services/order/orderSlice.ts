@@ -8,7 +8,6 @@ interface IOrderState {
   totalPrice: number;
   error: string;
   isLoading: boolean;
-  currentOrder: IOrderDetails | null;
 }
 
 export interface IOrderDetails {
@@ -28,7 +27,6 @@ const initialState: IOrderState = {
   totalPrice: 0,
   error: "",
   isLoading: false,
-  currentOrder: null,
 };
 
 export const sendOrderData = createAsyncThunk(
@@ -50,9 +48,6 @@ const orderSlice = createSlice({
     },
     setOrderId: (state, action: PayloadAction<number>) => {
       return { ...state, id: action.payload };
-    },
-    setCurrentOrder: (state, action: PayloadAction<IOrderDetails>) => {
-      return { ...state, currentOrder: action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -78,7 +73,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setTotalPrice, setOrderId, setCurrentOrder } =
+export const { setTotalPrice, setOrderId } =
   orderSlice.actions;
 
 export default orderSlice.reducer;

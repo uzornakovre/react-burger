@@ -10,14 +10,6 @@ export interface TWSState {
   orders: Array<IOrderDetails>;
   total: number;
   totalToday: number;
-  currentOrder: {
-    id: string | null;
-    ingredients: Array<TIngredient>;
-    name: string | null;
-    status: string | null;
-    price: 0,
-    createdAt: string | Date | null;
-  }
 }
 
 const initialState: TWSState = {
@@ -29,14 +21,6 @@ const initialState: TWSState = {
   orders: [],
   total: 0,
   totalToday: 0,
-  currentOrder: {
-    id: null,
-    ingredients: [],
-    name: null,
-    status: null,
-    price: 0,
-    createdAt: null
-  }
 };
 
 const wsSlice = createSlice({

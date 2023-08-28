@@ -6,7 +6,6 @@ import { setOrderId } from "../../../services/order/orderSlice";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FC, useEffect, useState } from "react";
 import { getAllIngredients } from "../../../services/ingredients/selectors";
-import { setCurrentOrder } from "../../../services/order/orderSlice";
 
 interface IOrderListItem {
   place: "feed" | "profile";
@@ -59,16 +58,6 @@ const OrdersListItem: FC<IOrderListItem> = ({
     .slice(0, 6);
 
   function handleOrderListItemClick() {
-    dispatch(setCurrentOrder({
-      _id,
-      number,
-      name,
-      ingredients,
-      ingredientsData: currentIngredients,
-      status,
-      createdAt,
-      updatedAt,
-    }));
     dispatch(setOrderId(number));
     navigate(`${_id}`, {
       state: { backgroundLocation: location },

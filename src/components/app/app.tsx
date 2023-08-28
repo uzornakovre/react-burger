@@ -153,11 +153,7 @@ const App = () => {
           <Route
             path="/profile/orders/:id"
             element={
-              <Modal
-                isOpen={true}
-                onClose={() => navigate(-1)}
-                title={`#${orderId}`}
-              >
+              <Modal isOpen={true} onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
               </Modal>
             }

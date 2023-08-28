@@ -13,6 +13,9 @@ const Orders = () => {
     dispatch(
       wsActions.connectionStart(`${wsUrl}?token=${getCookie('accessToken')}`)
     );
+    return () => {
+      dispatch(wsActions.connectionClose());
+    }
   }, [dispatch]);
 
   return (
