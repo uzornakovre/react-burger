@@ -20,7 +20,6 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
       if (connectionStart().type === type) {
         url = payload;
         socket = new WebSocket(url);
-        console.log("connect");
       }
 
       if (socket) {

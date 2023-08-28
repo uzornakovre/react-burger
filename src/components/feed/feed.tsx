@@ -35,9 +35,10 @@ const Feed = () => {
     .slice(0, 8);
 
   useEffect(() => {
-    dispatch(
-      wsActions.connectionStart(`${wsUrl}/all`)
-    );
+    dispatch(wsActions.connectionStart(`${wsUrl}/all`));
+    return () => {
+      dispatch(wsActions.connectionClose);
+    };
   }, [dispatch]);
 
   return (

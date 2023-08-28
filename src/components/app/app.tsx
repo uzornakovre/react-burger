@@ -49,6 +49,7 @@ import Orders from "../profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
 import { getOrderId } from "../../services/order/selectors";
 import FeedOrderInfo from "../feed/feed-order-info/feed-order-info";
+import { getCurrentOrder } from "../../services/order/selectors";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -57,6 +58,7 @@ const App = () => {
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
   const orderId = useAppSelector(getOrderId);
+  const currentOrder = useAppSelector(getCurrentOrder);
   const isIngredientDetailsModalOpen = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
@@ -123,14 +125,8 @@ const App = () => {
             <Route path="orders" element={<Orders />} />
           </Route>
           <Route path="ingredients/:id" element={<IngredientInfo />} />
-                    <Route
-            path="/profile/orders/:id"
-            element={<FeedOrderInfo />}
-          />
-          <Route
-            path="/feed/:id"
-            element={<FeedOrderInfo />}
-          />
+          <Route path="/profile/orders/:id" element={<OrderInfo type="default" />} />
+          <Route path="/feed/:id" element={<OrderInfo type="default" />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -156,9 +152,9 @@ const App = () => {
                 isOpen={true}
                 onClose={() => navigate(-1)}
                 title={`#${orderId}`}
-                type='order'
+                type="order"
               >
-                <OrderInfo />
+                <OrderInfo type="modal" />
               </Modal>
             }
           />
@@ -168,10 +164,11 @@ const App = () => {
               <Modal
                 isOpen={true}
                 onClose={() => navigate(-1)}
-                title={`#${orderId}`}
-                type='order'
+                title=""
+                type="order"
               >
-                <OrderInfo />
+                <OrderInfo type="modal" />
+                {/* <FeedOrderInfo /> */}
               </Modal>
             }
           />

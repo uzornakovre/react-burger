@@ -64,6 +64,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
       number,
       name,
       ingredients,
+      ingredientsData: currentIngredients,
       status,
       createdAt,
       updatedAt,

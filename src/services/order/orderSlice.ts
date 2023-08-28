@@ -19,6 +19,7 @@ export interface IOrderDetails {
   readonly createdAt: string | Date;
   readonly updatedAt: string | Date;
   readonly number: number;
+  ingredientsData?: Array<TIngredient>;
 }
 
 const initialState: IOrderState = {

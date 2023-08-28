@@ -10,6 +10,14 @@ export interface TWSState {
   orders: Array<IOrderDetails>;
   total: number;
   totalToday: number;
+  currentOrder: {
+    id: string | null;
+    ingredients: Array<TIngredient>;
+    name: string | null;
+    status: string | null;
+    price: 0,
+    createdAt: string | Date | null;
+  }
 }
 
 const initialState: TWSState = {
@@ -21,6 +29,14 @@ const initialState: TWSState = {
   orders: [],
   total: 0,
   totalToday: 0,
+  currentOrder: {
+    id: null,
+    ingredients: [],
+    name: null,
+    status: null,
+    price: 0,
+    createdAt: null
+  }
 };
 
 const wsSlice = createSlice({
@@ -50,19 +66,6 @@ const wsSlice = createSlice({
     },
   },
 });
-
-// export const wsReducer = createReducer(initialState, (builder) => {
-//   builder
-//     .addCase(connectionStart, (state) => {
-//       console.log('test_pending');
-//       state.wsPending = true;
-//     })
-//     .addCase(connectionSuccess, (state) => {
-//       console.log('test_success');
-//       state.wsConnected = true;
-//       state.wsPending = false;
-//     })
-// })
 
 export const wsActions = wsSlice.actions;
 

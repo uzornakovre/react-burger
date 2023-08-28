@@ -11,7 +11,7 @@ interface IOrderList {
 const OrdersList: FC<IOrderList> = ({ place }) => {
   let orders = useAppSelector(getOrders);
 
-  const orderItems = orders.map((order) => (
+  const orderItems = orders?.map((order) => (
     <li key={order._id} className={styles.list_item}>
       <OrdersListItem
         place={place}
@@ -28,7 +28,7 @@ const OrdersList: FC<IOrderList> = ({ place }) => {
   
   return (
     <ul className={styles.list}>
-      {place === 'feed' ? orderItems : orderItems.reverse()}
+      {place === 'feed' ? orderItems : orderItems?.reverse()}
     </ul>
   );
 };

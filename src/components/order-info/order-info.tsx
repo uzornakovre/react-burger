@@ -1,15 +1,43 @@
 import { FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import Price from "../price/price";
 import styles from "./order-info.module.scss";
-import { getCurrentOrder } from "../../services/order/selectors";
-import { useAppSelector } from "../../services/hooks";
+import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { getAllIngredients } from "../../services/ingredients/selectors";
+import { IOrderDetails } from "../../services/order/orderSlice";
+import { FC, useEffect } from "react";
+import { getOrders, getWSIsConnected } from "../../services/websocket/selectors";
+import { useParams } from "react-router-dom";
+import { wsActions } from "../../services/websocket/wsSlice";
+import { wsUrl } from "../../utils/constants";
 
-const OrderInfo = () => {
-  const currentOrder = useAppSelector(getCurrentOrder);
+interface IOrderInfo {
+  type: 'default' | 'modal';
+}
+
+const OrderInfo: FC<IOrderInfo> = ({ type }) => {
+  const orders = useAppSelector(getOrders);
+  const isWSConnected = useAppSelector(getWSIsConnected);
+  const dispatch = useAppDispatch();
+  const orderId = useParams().id;
   const allIngredients = useAppSelector(getAllIngredients);
+
   let currentIngredients: Array<TIngredient> = [];
   let price = 0;
+
+  const currentOrder = orders.find((order) => order._id === orderId);
+  let currentOrderWithIngredients: IOrderDetails | null = null;
+
+  currentOrder?.ingredients.forEach((id) => {
+    let current = allIngredients.find((i) => i._id === id);
+    if (current) currentIngredients.push(current);
+  });
+
+  if (currentOrder) {
+    currentOrderWithIngredients = {
+      ...currentOrder,
+      ingredientsData: currentIngredients,
+    };
+  }
 
   function sortIngredients(arr: Array<TIngredient>) {
     let counts = new Map();
@@ -35,9 +63,9 @@ const OrderInfo = () => {
       });
   }
 
-  if (currentOrder?.ingredients) {
-    currentOrder.ingredients.forEach((id) => {
-      let current = allIngredients.find((i) => i._id === id);
+  if (currentOrderWithIngredients?.ingredientsData) {
+    currentOrderWithIngredients.ingredientsData.forEach((ingredient) => {
+      let current = allIngredients.find((i) => i._id === ingredient._id);
       if (current) currentIngredients.push(current);
     });
   }
@@ -67,13 +95,25 @@ const OrderInfo = () => {
     </li>
   ));
 
+  useEffect(() => {
+    if (!isWSConnected) {
+      dispatch(wsActions.connectionStart(`${wsUrl}/all`));
+      return () => {
+        dispatch(wsActions.connectionClose);
+      };
+    }
+  }, [dispatch, isWSConnected]);
+
   return (
     <div className={styles.container}>
+      <h2 className={`${styles.title} ${styles[type]}`}>#{currentOrder?.number}</h2>
       <div className={styles.dish}>
         <h3 className={styles.dish_name}>{currentOrder?.name}</h3>
-        <p className={styles.dish_status}>{`${
-          currentOrder?.status === "done" ? "Выполнен" : "Готовится"
-        }`}</p>
+        <p
+          className={`${styles.dish_status} ${
+            currentOrder?.status === "done" && styles.done
+          }`}
+        >{`${currentOrder?.status === "done" ? "Выполнен" : "Готовится"}`}</p>
       </div>
       <div className={styles.ingredients}>
         <h4 className={styles.ingredients_title}>Состав:</h4>

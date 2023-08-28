@@ -6,8 +6,25 @@
   margin: 0 auto;
 }
 
-.id {
+.title {
   min-height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+  );
+}
+
+.default {
+  margin-top: 120px;
+}
+
+.modal {
+  margin-top: -65px;
+  justify-content: flex-start;
 }
 
 .dish {
@@ -31,9 +48,7 @@
 }
 
 .dish_status {
-  @include renderFont(
-    $color: $color-interface-success
-  )
+  @include renderFont()
 }
 
 .ingredients {
@@ -100,5 +115,9 @@
   @include renderFont(
     $color: $color-text-2
   )
+}
+
+.done {
+  color: $color-interface-success;
 }
 
