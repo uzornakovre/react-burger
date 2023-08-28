@@ -47,7 +47,6 @@ import {
 import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
-import { getOrderId } from "../../services/order/selectors";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +54,6 @@ const App = () => {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const orderId = useAppSelector(getOrderId);
   const isIngredientDetailsModalOpen = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
