@@ -119,10 +119,18 @@ const App = () => {
             element={<ProtectedRouteElement element={<Profile />} />}
           >
             <Route index element={<EditForm />} />
-            <Route path="orders" element={<Orders />} />
+            <Route
+              path="orders"
+              element={<ProtectedRouteElement element={<Orders />} />}
+            />
           </Route>
           <Route path="ingredients/:id" element={<IngredientInfo />} />
-          <Route path="/profile/orders/:id" element={<OrderInfo type="default" />} />
+          <Route
+            path="/profile/orders/:id"
+            element={
+              <ProtectedRouteElement element={<OrderInfo type="default" />} />
+            }
+          />
           <Route path="/feed/:id" element={<OrderInfo type="default" />} />
         </Route>
         <Route path="*" element={<NotFound />} />
@@ -157,11 +165,7 @@ const App = () => {
           <Route
             path="/feed/:id"
             element={
-              <Modal
-                isOpen={true}
-                onClose={() => navigate(-1)}
-                title=""
-              >
+              <Modal isOpen={true} onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
               </Modal>
             }
