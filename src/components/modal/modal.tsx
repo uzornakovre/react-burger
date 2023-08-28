@@ -9,7 +9,6 @@ interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  type?: 'order';
 }
 
 const modalRoot = document.getElementById("react-modals") as Element;
@@ -18,7 +17,6 @@ const Modal: FC<PropsWithChildren<IModalProps>> = ({
   isOpen,
   onClose,
   title,
-  type,
   children,
 }) => {
   function handleModalOverlayClick(evt: MouseEvent<HTMLDivElement>): void {
@@ -50,7 +48,7 @@ const Modal: FC<PropsWithChildren<IModalProps>> = ({
     <ModalOverlay isOpen={isOpen} onOverlayClick={handleModalOverlayClick}>
       <div className={styles.modal}>
         <div className={styles.modal_top}>
-          <h2 className={`${styles.title} ${type === 'order' && styles.title_alt}`}>{title}</h2>
+          <h2 className={`${styles.title}`}>{title}</h2>
           <button
             className={styles.close_button}
             type="button"

@@ -48,8 +48,6 @@ import EditForm from "../profile/edit-form/edit-form";
 import Orders from "../profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
 import { getOrderId } from "../../services/order/selectors";
-import FeedOrderInfo from "../feed/feed-order-info/feed-order-info";
-import { getCurrentOrder } from "../../services/order/selectors";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -58,7 +56,6 @@ const App = () => {
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
   const orderId = useAppSelector(getOrderId);
-  const currentOrder = useAppSelector(getCurrentOrder);
   const isIngredientDetailsModalOpen = useAppSelector(
     getIsIngredientDetailsModalOpen
   );
@@ -152,7 +149,6 @@ const App = () => {
                 isOpen={true}
                 onClose={() => navigate(-1)}
                 title={`#${orderId}`}
-                type="order"
               >
                 <OrderInfo type="modal" />
               </Modal>
@@ -165,10 +161,8 @@ const App = () => {
                 isOpen={true}
                 onClose={() => navigate(-1)}
                 title=""
-                type="order"
               >
                 <OrderInfo type="modal" />
-                {/* <FeedOrderInfo /> */}
               </Modal>
             }
           />
