@@ -21,7 +21,9 @@ const store = configureStore({
     webSocket: wsSlice
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(wsMiddleware(wsActions));
+    return getDefaultMiddleware({
+      serializableCheck: false
+    }).concat(wsMiddleware(wsActions));
   },
 });
 

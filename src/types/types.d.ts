@@ -27,3 +27,8 @@ type TIngredient = {
   image: string;
   image_large?: string;
 };
+
+type TSortResult = {
+  ingredient: TIngredient | null;
+  count: number;
+}

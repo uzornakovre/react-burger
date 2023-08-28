@@ -1,8 +1,10 @@
 import OrderInfo from '../../order-info/order-info';
 import styles from './feed-order-info.module.scss';
+import { getOrderId } from '../../../services/order/selectors';
+import { useAppSelector } from '../../../services/hooks';
 
 const FeedOrderInfo = () => {
-  let orderId = 98765;
+  const orderId = useAppSelector(getOrderId);
 
   return (
     <div className={styles.container}>

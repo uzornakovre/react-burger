@@ -8,6 +8,7 @@ interface IOrderState {
   totalPrice: number;
   error: string;
   isLoading: boolean;
+  currentOrder: IOrderDetails | null;
 }
 
 export interface IOrderDetails {
@@ -15,8 +16,8 @@ export interface IOrderDetails {
   readonly ingredients: Array<string>;
   readonly status: string;
   readonly name: string;
-  readonly createdAt: string;
-  readonly updatedAt: string;
+  readonly createdAt: string | Date;
+  readonly updatedAt: string | Date;
   readonly number: number;
 }
 
@@ -26,11 +27,14 @@ const initialState: IOrderState = {
   totalPrice: 0,
   error: "",
   isLoading: false,
+  currentOrder: null,
 };
 
 export const sendOrderData = createAsyncThunk(
   "order/setOrderData",
-  async (orderData: {ingredientsList: Array<string>} & { token?: string }) => {
+  async (
+    orderData: { ingredientsList: Array<string> } & { token?: string }
+  ) => {
     const res = await fetchSendOrderData(orderData);
     return res;
   }
@@ -44,8 +48,11 @@ const orderSlice = createSlice({
       return { ...state, totalPrice: action.payload };
     },
     setOrderId: (state, action: PayloadAction<number>) => {
-      return { ...state, id: action.payload }
-    }
+      return { ...state, id: action.payload };
+    },
+    setCurrentOrder: (state, action: PayloadAction<IOrderDetails>) => {
+      return { ...state, currentOrder: action.payload };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,6 +77,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setTotalPrice, setOrderId } = orderSlice.actions;
+export const { setTotalPrice, setOrderId, setCurrentOrder } =
+  orderSlice.actions;
 
 export default orderSlice.reducer;

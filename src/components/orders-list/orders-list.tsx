@@ -15,7 +15,7 @@ const OrdersList: FC<IOrderList> = ({ place }) => {
     <li key={order._id} className={styles.list_item}>
       <OrdersListItem
         place={place}
-        id={order._id}
+        _id={order._id}
         number={order.number}
         name={order.name}
         ingredients={order.ingredients}

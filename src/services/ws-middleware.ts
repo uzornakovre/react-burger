@@ -17,7 +17,6 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
       } = wsActions;
       let url = undefined;
 
-      console.log(type);
       if (connectionStart().type === type) {
         url = payload;
         socket = new WebSocket(url);
@@ -25,7 +24,6 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
       }
 
       if (socket) {
-        console.log(socket);
         socket.onopen = (evt) => {
           dispatch(connectionSuccess(evt));
         };

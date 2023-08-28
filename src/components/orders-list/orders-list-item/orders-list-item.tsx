@@ -6,10 +6,11 @@ import { setOrderId } from "../../../services/order/orderSlice";
 import { useAppDispatch, useAppSelector } from "../../../services/hooks";
 import { FC, useEffect, useState } from "react";
 import { getAllIngredients } from "../../../services/ingredients/selectors";
+import { setCurrentOrder } from "../../../services/order/orderSlice";
 
 interface IOrderListItem {
   place: "feed" | "profile";
-  id: string;
+  _id: string;
   number: number;
   name: string;
   ingredients: Array<string>;
@@ -20,7 +21,7 @@ interface IOrderListItem {
 
 const OrdersListItem: FC<IOrderListItem> = ({
   place,
-  id,
+  _id,
   number,
   name,
   ingredients,
@@ -33,10 +34,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
   const location = useLocation();
   const allIngredients = useAppSelector(getAllIngredients);
   const [more, setMore] = useState(0);
-  const currentIngredients = allIngredients.filter(
-    (ingredient) =>
-      ingredients.find((i) => i === ingredient._id) === ingredient._id
-  );
+  let currentIngredients: Array<TIngredient> = [];
 
   let price = 0;
 
@@ -46,20 +44,32 @@ const OrdersListItem: FC<IOrderListItem> = ({
     } else price += i.price;
   });
 
+  ingredients.forEach((id) => {
+    let current = allIngredients.find((i) => i._id === id);
+    if (current) currentIngredients.push(current);
+  });
+
   const ingredientImages = currentIngredients
     .map((i) => (
-      <li key={i._id} className={styles.ingredient}>
+      <li key={crypto.randomUUID()} className={styles.ingredient}>
         <img className={styles.ingredient_image} src={i.image} alt={i.name} />
         {more > 1 && <p className={styles.more}>+{more}</p>}
       </li>
     ))
     .slice(0, 6);
 
-  function handleOrderListItemClick(item: any): void {
-    // dispatch(setCurrentIngredient(item));
-    // dispatch(setIsIngredientDetailsModalOpen(true));
+  function handleOrderListItemClick() {
+    dispatch(setCurrentOrder({
+      _id,
+      number,
+      name,
+      ingredients,
+      status,
+      createdAt,
+      updatedAt,
+    }));
     dispatch(setOrderId(number));
-    navigate(`${item._id}`, {
+    navigate(`${_id}`, {
       state: { backgroundLocation: location },
     });
   }
@@ -71,7 +81,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
   return (
     <div
       className={styles.item}
-      onClick={() => handleOrderListItemClick({ _id: id })}
+      onClick={handleOrderListItemClick}
     >
       <div className={styles.top}>
         <h2 className={styles.id}>#{number}</h2>
