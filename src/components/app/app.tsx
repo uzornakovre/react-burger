@@ -23,15 +23,15 @@ import { getIsLoggedIn } from "../../services/auth/selectors";
 // components
 
 import Layout from "../layout/layout";
-import NotFound from "../not-found/not-found";
-import BurgerConstructorPage from "../burger-constructor-page/burger-constructor-page";
-import Login from "../login/login";
-import Register from "../register/register";
-import ForgotPassword from "../forgot-password/forgot-password";
-import ResetPassword from "../reset-password/reset-password";
-import Profile from "../profile/profile";
+import NotFound from "../../pages/not-found/not-found";
+import BurgerConstructorPage from "../../pages/burger-constructor-page/burger-constructor-page";
+import Login from "../../pages/login/login";
+import Register from "../../pages/register/register";
+import ForgotPassword from "../../pages/forgot-password/forgot-password";
+import ResetPassword from "../../pages/reset-password/reset-password";
+import Profile from "../../pages/profile/profile";
 import Modal from "../modal/modal";
-import IngredientInfo from "../ingredient-info/ingredient-info";
+import IngredientInfo from "../../pages/ingredient-info/ingredient-info";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import ProtectedRouteElement from "../protected-route-element/protected-route-element";
 import Feed from "../feed/feed";
@@ -44,8 +44,8 @@ import {
   getUserInfo,
   setUserInfo,
 } from "../../services/auth/authSlice";
-import EditForm from "../profile/edit-form/edit-form";
-import Orders from "../profile/orders/orders";
+import EditForm from "../../pages/profile/edit-form/edit-form";
+import Orders from "../../pages/profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
 
 const App = () => {

@@ -1,5 +1,5 @@
 import styles from "./ingredient-info.module.scss";
-import IngredientDetails from "../ingredient-details/ingredient-details";
+import IngredientDetails from "../../components/ingredient-details/ingredient-details";
 import { useParams } from "react-router-dom";
 import { getAllIngredients } from "../../services/ingredients/selectors";
 import { getCurrentIngredient } from "../../services/current-ingredient/selectors";

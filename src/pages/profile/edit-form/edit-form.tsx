@@ -1,5 +1,5 @@
 import styles from "./edit-form.module.scss";
-import FormInput from "../../form-input/form-input";
+import FormInput from "../../../components/form-input/form-input";
 import {
   EditIcon,
   Button,
