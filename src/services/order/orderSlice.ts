@@ -10,17 +10,6 @@ interface IOrderState {
   isLoading: boolean;
 }
 
-export interface IOrderDetails {
-  readonly _id: string;
-  readonly ingredients: Array<string>;
-  readonly status: string;
-  readonly name: string;
-  readonly createdAt: string | Date;
-  readonly updatedAt: string | Date;
-  readonly number: number;
-  ingredientsData?: Array<TIngredient>;
-}
-
 const initialState: IOrderState = {
   id: null,
   ingredientsList: [],
@@ -73,7 +62,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setTotalPrice, setOrderId } =
-  orderSlice.actions;
+export const { setTotalPrice, setOrderId } = orderSlice.actions;
 
 export default orderSlice.reducer;

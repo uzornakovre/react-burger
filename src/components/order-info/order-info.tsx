@@ -3,7 +3,6 @@ import Price from "../price/price";
 import styles from "./order-info.module.scss";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { getAllIngredients } from "../../services/ingredients/selectors";
-import { IOrderDetails } from "../../services/order/orderSlice";
 import { FC, useEffect } from "react";
 import { getOrders, getWSIsConnected } from "../../services/websocket/selectors";
 import { useParams } from "react-router-dom";
@@ -25,9 +24,9 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
   let price = 0;
 
   const currentOrder = orders.find((order) => order._id === orderId);
-  let currentOrderWithIngredients: IOrderDetails | null = null;
+  let currentOrderWithIngredients: TOrderDetails | null = null;
 
-  currentOrder?.ingredients.forEach((id) => {
+  currentOrder?.ingredients.forEach((id: string) => {
     let current = allIngredients.find((i) => i._id === id);
     if (current) currentIngredients.push(current);
   });

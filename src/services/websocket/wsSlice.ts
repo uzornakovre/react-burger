@@ -1,26 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IOrderDetails } from "../order/orderSlice";
-
-interface IWSMessageState {
-  orders: Array<IOrderDetails>;
-  total: number;
-  totalToday: number;
-}
-
-interface IWSState extends IWSMessageState {
-  wsUrl: string;
-  wsPending: boolean;
-  wsConnected: boolean;
-  wsRejected: boolean;
-  wsError: string;
-}
+import { IWSMessageState, IWSState } from "./types";
 
 const initialState: IWSState = {
   wsUrl: "",
   wsPending: false,
   wsConnected: false,
   wsRejected: false,
-  wsError: "",
   orders: [],
   total: 0,
   totalToday: 0,
@@ -44,7 +29,7 @@ const wsSlice = createSlice({
     connectionError: (state, action: PayloadAction<Event>) => {
       state.wsRejected = true;
       state.wsConnected = false;
-      // state.wsError = action.payload.message;
+      state.wsError = action.payload;
     },
     getMessage: (state, action: PayloadAction<IWSMessageState>) => {
       const { orders, total, totalToday } = action.payload;
@@ -56,7 +41,5 @@ const wsSlice = createSlice({
 });
 
 export const wsActions = wsSlice.actions;
-
-export type TWSActionTypes = typeof wsActions;
 
 export default wsSlice.reducer;

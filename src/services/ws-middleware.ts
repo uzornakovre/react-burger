@@ -1,6 +1,6 @@
 import { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store";
-import { TWSActionTypes } from "./websocket/wsSlice";
+import { TWSActionTypes } from "./websocket/types";
 
 export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, RootState>) => {

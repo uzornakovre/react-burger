@@ -1,10 +1,9 @@
 import { RootState } from "../store";
-import { IOrderDetails } from "../order/orderSlice";
 
 export const getWSUrl: (store: RootState) => string = 
   (store) => store.webSocket.wsUrl;
 
-export const getOrders: (store: RootState) => Array<IOrderDetails> = 
+export const getOrders: (store: RootState) => Array<TOrderDetails> = 
   (store) => store.webSocket.orders;
 
 export const getTotal: (store: RootState) => number =
