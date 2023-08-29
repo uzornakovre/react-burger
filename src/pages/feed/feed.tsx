@@ -1,5 +1,5 @@
 import styles from "./feed.module.scss";
-import OrdersList from "../orders-list/orders-list";
+import OrdersList from "../../components/orders-list/orders-list";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { useEffect } from "react";
 import { wsActions } from "../../services/websocket/wsSlice";

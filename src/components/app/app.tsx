@@ -34,7 +34,7 @@ import Modal from "../modal/modal";
 import IngredientInfo from "../../pages/ingredient-info/ingredient-info";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import ProtectedRouteElement from "../protected-route-element/protected-route-element";
-import Feed from "../feed/feed";
+import Feed from "../../pages/feed/feed";
 
 // slices
 
