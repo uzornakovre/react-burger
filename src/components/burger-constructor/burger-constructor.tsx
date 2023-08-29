@@ -14,7 +14,11 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 // store
 
 import { getIsOrderDetailsModalOpen } from "../../services/modals/selectors";
-import { getOrderId, getTotalPrice } from "../../services/order/selectors";
+import {
+  getOrderId,
+  getOrderIsLoading,
+  getTotalPrice,
+} from "../../services/order/selectors";
 import { getIsLoggedIn } from "../../services/auth/selectors";
 import {
   getSelectedBun,
@@ -50,6 +54,7 @@ const BurgerConstructor = () => {
   const orderNumber = useAppSelector(getOrderId);
   const isOrderDetailsModalOpen = useAppSelector(getIsOrderDetailsModalOpen);
   const isLoggedIn = useAppSelector(getIsLoggedIn);
+  const isOrderLoading = useAppSelector(getOrderIsLoading);
 
   function submitOrder(ingredients: Array<string>): void {
     dispatch(
@@ -93,7 +98,7 @@ const BurgerConstructor = () => {
     <section className={`${styles.burger_constructor} mt-25`}>
       <ResultList />
       <div className={`${styles.order_info} mt-10`}>
-        <Price value={`${totalPrice}`} size='large' />
+        <Price value={`${totalPrice}`} size="large" />
         <Button
           htmlType="button"
           type="primary"
@@ -103,13 +108,15 @@ const BurgerConstructor = () => {
           Оформить заказ
         </Button>
       </div>
-      <Modal
-        isOpen={isOrderDetailsModalOpen}
-        onClose={() => dispatch(closeAllModals())}
-        title=""
-      >
-        <OrderDetails orderNumber={orderNumber} />
-      </Modal>
+      {!isOrderLoading && (
+        <Modal
+          isOpen={isOrderDetailsModalOpen}
+          onClose={() => dispatch(closeAllModals())}
+          title=""
+        >
+          <OrderDetails orderNumber={orderNumber} />
+        </Modal>
+      )}
     </section>
   );
 };

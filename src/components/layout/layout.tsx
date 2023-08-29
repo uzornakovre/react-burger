@@ -13,6 +13,7 @@ import {
   getIsInfoModalOpen,
 } from "../../services/modals/selectors";
 import { closeAllModals } from "../../services/modals/modalsSlice";
+import { getOrderIsLoading } from "../../services/order/selectors";
 
 const Layout = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +22,8 @@ const Layout = () => {
   const authLoading = useAppSelector(getAuthIsLoading);
   const ingredientsLoading = useAppSelector(getIngredientsIsLoading);
   const wsPending = useAppSelector(getWSIsPending);
-  const isLoading = authLoading || ingredientsLoading || wsPending;
+  const isOrderLoading = useAppSelector(getOrderIsLoading);
+  const isLoading = authLoading || ingredientsLoading || wsPending || isOrderLoading;
 
   return (
     <>
