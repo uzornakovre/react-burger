@@ -13,6 +13,7 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
         connectionStart,
         connectionSuccess,
         connectionClose,
+        connectionError,
         getMessage,
       } = wsActions;
       let url = undefined;
@@ -23,21 +24,25 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
       }
 
       if (socket) {
+        if (connectionClose().type === type) {
+          socket.close();
+        }
+
         socket.onopen = () => {
           dispatch(connectionSuccess());
         };
 
         socket.onerror = (err) => {
-          console.log(err);
+          dispatch(connectionError(err));
+        };
+        
+        socket.onclose = () => {
+          dispatch(connectionClose());
         };
 
         socket.onmessage = (evt) => {
           const { data } = evt;
           dispatch(getMessage(JSON.parse(data)));
-        };
-
-        socket.onclose = () => {
-          dispatch(connectionClose());
         };
       }
 
