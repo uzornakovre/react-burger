@@ -37,15 +37,15 @@ const OrdersListItem: FC<IOrderListItem> = ({
 
   let price = 0;
 
+  ingredients.forEach((id) => {
+    let current = allIngredients.find((i) => i._id === id);
+    if (current) currentIngredients.push(current);
+  });
+
   currentIngredients.forEach((i) => {
     if (i.type === "bun") {
       price += i.price * 2;
     } else price += i.price;
-  });
-
-  ingredients.forEach((id) => {
-    let current = allIngredients.find((i) => i._id === id);
-    if (current) currentIngredients.push(current);
   });
 
   const ingredientImages = currentIngredients
