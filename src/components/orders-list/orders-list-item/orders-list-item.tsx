@@ -57,7 +57,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
     ))
     .slice(0, 6);
 
-  function handleOrderListItemClick() {
+  function handleOrderListItemClick(): void {
     dispatch(setOrderId(number));
     navigate(`${_id}`, {
       state: { backgroundLocation: location },

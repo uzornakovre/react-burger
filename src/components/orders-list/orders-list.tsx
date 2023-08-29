@@ -9,7 +9,7 @@ interface IOrderList {
 }
 
 const OrdersList: FC<IOrderList> = ({ place }) => {
-  let orders = useAppSelector(getOrders);
+  const orders = useAppSelector(getOrders);
 
   const orderItems = orders?.map((order) => (
     <li key={order._id} className={styles.list_item}>
