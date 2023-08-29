@@ -46,6 +46,14 @@
   gap: 24px;
 }
 
+.status_column_list {
+  display: flex;
+  max-height: 250px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .heading {
   @include renderFont(
     $size: $font-size-heading,
@@ -55,6 +63,9 @@
 }
 
 .item_id {
+  display: block;
+  width: fit-content;
+  
   @include renderFont(
     $family: $font-family-additional,
     $size: $font-size-price,

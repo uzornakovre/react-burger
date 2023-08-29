@@ -23,7 +23,7 @@ const Feed = () => {
         {order.number}
       </li>
     ))
-    .slice(0, 8);
+    .slice(0, 24);
 
   const ordersPending = orders
     .filter((order) => order.status === "pending")
@@ -32,7 +32,7 @@ const Feed = () => {
         {order.number}
       </li>
     ))
-    .slice(0, 8);
+    .slice(0, 24);
 
   useEffect(() => {
     dispatch(wsActions.connectionStart(`${wsUrl}/all`));
