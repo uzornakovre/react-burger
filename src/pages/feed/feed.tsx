@@ -37,7 +37,7 @@ const Feed = () => {
   useEffect(() => {
     dispatch(wsActions.connectionStart(`${wsUrl}/all`));
     return () => {
-      dispatch(wsActions.connectionClose);
+      dispatch(wsActions.connectionClose());
     };
   }, [dispatch]);
 
