@@ -14,10 +14,10 @@ interface IOrderInfo {
 }
 
 const OrderInfo: FC<IOrderInfo> = ({ type }) => {
-  const orders = useAppSelector(getOrders);
-  const isWSConnected = useAppSelector(getWSIsConnected);
   const dispatch = useAppDispatch();
   const orderId = useParams().id;
+  const orders = useAppSelector(getOrders);
+  const isWSConnected = useAppSelector(getWSIsConnected);
   const allIngredients = useAppSelector(getAllIngredients);
 
   let currentIngredients: Array<TIngredient> = [];
@@ -100,6 +100,10 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
       return () => {
         dispatch(wsActions.connectionClose);
       };
+    }
+
+    return () => {
+      dispatch(wsActions.connectionClose());
     }
   }, [dispatch, isWSConnected]);
 
