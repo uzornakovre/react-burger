@@ -1,6 +1,6 @@
 import { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store";
-import { TWSActionTypes } from "./websocket/ws-actions";
+import { TWSActionTypes } from "./websocket/wsSlice";
 
 export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, RootState>) => {
@@ -17,14 +17,14 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
       } = wsActions;
       let url = undefined;
 
-      if (connectionStart().type === type) {
+      if (connectionStart(payload).type === type) {
         url = payload;
         socket = new WebSocket(url);
       }
 
       if (socket) {
-        socket.onopen = (evt) => {
-          dispatch(connectionSuccess(evt));
+        socket.onopen = () => {
+          dispatch(connectionSuccess());
         };
 
         socket.onerror = (err) => {

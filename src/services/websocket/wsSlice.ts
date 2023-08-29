@@ -1,19 +1,22 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IOrderDetails } from "../order/orderSlice";
 
-export interface TWSState {
-  wsUrl: string;
-  wsPending: boolean;
-  wsConnected: boolean;
-  wsRejected: boolean;
-  wsError: string;
+interface IWSMessageState {
   orders: Array<IOrderDetails>;
   total: number;
   totalToday: number;
 }
 
-const initialState: TWSState = {
-  wsUrl: '',
+interface IWSState extends IWSMessageState {
+  wsUrl: string;
+  wsPending: boolean;
+  wsConnected: boolean;
+  wsRejected: boolean;
+  wsError: string;
+}
+
+const initialState: IWSState = {
+  wsUrl: "",
   wsPending: false,
   wsConnected: false,
   wsRejected: false,
@@ -38,11 +41,12 @@ const wsSlice = createSlice({
     connectionClose: (state) => {
       state.wsConnected = false;
     },
-    connectionError: (state, action: any) => {
+    connectionError: (state, action: PayloadAction<Event>) => {
       state.wsRejected = true;
-      state.wsError = action.payload;
+      state.wsConnected = false;
+      // state.wsError = action.payload.message;
     },
-    getMessage: (state, action: any) => {
+    getMessage: (state, action: PayloadAction<IWSMessageState>) => {
       const { orders, total, totalToday } = action.payload;
       state.orders = orders;
       state.total = total;
@@ -52,5 +56,7 @@ const wsSlice = createSlice({
 });
 
 export const wsActions = wsSlice.actions;
+
+export type TWSActionTypes = typeof wsActions;
 
 export default wsSlice.reducer;
