@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IModalsState {
-  isIngredientDetailsModalOpen: boolean;
   isOrderDetailsModalOpen: boolean;
   isInfoModalOpen: boolean;
   infoModalText: string;
 }
 
 const initialState: IModalsState = {
-  isIngredientDetailsModalOpen: false,
   isOrderDetailsModalOpen: false,
   isInfoModalOpen: false,
   infoModalText: "",
@@ -18,13 +16,6 @@ const modalsSlice = createSlice({
   name: "modals",
   initialState,
   reducers: {
-    setIsIngredientDetailsModalOpen: (
-      state,
-      action: PayloadAction<boolean>
-    ) => {
-      return { ...state, isIngredientDetailsModalOpen: action.payload };
-    },
-
     setIsOrderDetailsModalOpen: (state, action: PayloadAction<boolean>) => {
       return { ...state, isOrderDetailsModalOpen: action.payload };
     },
@@ -44,7 +35,6 @@ const modalsSlice = createSlice({
 });
 
 export const {
-  setIsIngredientDetailsModalOpen,
   setIsOrderDetailsModalOpen,
   setIsInfoModalOpen,
   setInfoModalText,

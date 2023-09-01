@@ -6,7 +6,8 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { isHtmlElement } from "../../utils/constants";
 
 interface IModalProps {
-  isOpen: boolean;
+  type: "route" | "default";
+  isOpen?: boolean;
   onClose: () => void;
   title: string;
 }
@@ -14,6 +15,7 @@ interface IModalProps {
 const modalRoot = document.getElementById("react-modals") as Element;
 
 const Modal: FC<PropsWithChildren<IModalProps>> = ({
+  type,
   isOpen,
   onClose,
   title,
@@ -29,23 +31,23 @@ const Modal: FC<PropsWithChildren<IModalProps>> = ({
     }
   }
 
+  function handleEscClick(evt: KeyboardEvent) {
+    if (evt.key === "Escape") {
+      onClose();
+    }
+  }
+
   useEffect(() => {
-    function handleEscClick(evt: KeyboardEvent) {
-      if (evt.key === "Escape") {
-        onClose();
-      }
-    }
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscClick);
-    }
+    document.addEventListener("keydown", handleEscClick);
+
     return () => {
       document.removeEventListener("keydown", handleEscClick);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+  }, []);
 
   return createPortal(
-    <ModalOverlay isOpen={isOpen} onOverlayClick={handleModalOverlayClick}>
+    <ModalOverlay type={type} isOpen={isOpen} onOverlayClick={handleModalOverlayClick}>
       <div className={styles.modal}>
         <div className={styles.modal_top}>
           <h2 className={`${styles.title}`}>{title}</h2>

@@ -110,6 +110,7 @@ const BurgerConstructor = () => {
       </div>
       {!isOrderLoading && (
         <Modal
+          type="default"
           isOpen={isOrderDetailsModalOpen}
           onClose={() => dispatch(closeAllModals())}
           title=""

@@ -30,6 +30,7 @@ const Layout = () => {
       <AppHeader />
       <Outlet />
       <Modal
+        type="default"
         isOpen={isInfoModalOpen}
         onClose={() => dispatch(closeAllModals())}
         title=""

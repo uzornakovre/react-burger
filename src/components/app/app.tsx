@@ -17,7 +17,6 @@ import { getCookie } from "../../utils/cookies";
 
 // store
 
-import { getIsIngredientDetailsModalOpen } from "../../services/modals/selectors";
 import { getIsLoggedIn } from "../../services/auth/selectors";
 
 // components
@@ -54,9 +53,6 @@ const App = () => {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const isIngredientDetailsModalOpen = useAppSelector(
-    getIsIngredientDetailsModalOpen
-  );
   const locationState = location.state as { backgroundLocation?: Location };
   const backgroundState = locationState
     ? locationState
@@ -135,7 +131,7 @@ const App = () => {
             path="ingredients/:id"
             element={
               <Modal
-                isOpen={isIngredientDetailsModalOpen}
+                type="route"
                 onClose={() => navigate(-1)}
                 title="Детали ингредиента"
               >
@@ -146,7 +142,7 @@ const App = () => {
           <Route
             path="profile/orders/:id"
             element={
-              <Modal isOpen={true} onClose={() => navigate(-1)} title="">
+              <Modal type="route" onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
               </Modal>
             }
@@ -154,7 +150,7 @@ const App = () => {
           <Route
             path="feed/:id"
             element={
-              <Modal isOpen={true} onClose={() => navigate(-1)} title="">
+              <Modal type="route" onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
               </Modal>
             }
