@@ -25,6 +25,7 @@ const wsSlice = createSlice({
     },
     connectionClose: (state) => {
       state.wsConnected = false;
+      state.wsPending = false;
     },
     connectionError: (state, action: PayloadAction<Event>) => {
       state.wsRejected = true;

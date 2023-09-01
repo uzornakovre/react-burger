@@ -1,8 +1,8 @@
 import styles from "./category.module.scss";
 import { FC, useMemo } from "react";
-import { useSelector } from "react-redux";
 import { getAllIngredients } from "../../../services/ingredients/selectors";
 import Item from "../item/item";
+import { useAppSelector } from "../../../services/hooks";
 
 interface ICategoryProps {
   title: string;
@@ -11,7 +11,7 @@ interface ICategoryProps {
 }
 
 const Category: FC<ICategoryProps> = ({ title, type, onIngredientClick }) => {
-  const ingredientsList = useSelector(getAllIngredients);
+  const ingredientsList = useAppSelector(getAllIngredients);
 
   const ingredients = useMemo(
     () =>

@@ -1,6 +1,5 @@
 import styles from "./ingredient.module.scss";
 import { FC, useRef } from "react";
-import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import {
   ConstructorElement,
@@ -8,6 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { removeIngredient } from "../../../services/constructor/constructorSlice";
 import { Identifier } from "dnd-core";
+import { useAppDispatch } from "../../../services/hooks";
 
 interface IIngredientProps {
   name: string;
@@ -26,7 +26,7 @@ const Ingredient: FC<IIngredientProps> = ({
   index,
   moveSelectedIngredient,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
 
   function handleDeleteClick(): void {

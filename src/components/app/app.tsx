@@ -117,18 +117,13 @@ const App = () => {
             element={<ProtectedRouteElement element={<Profile />} />}
           >
             <Route index element={<EditForm />} />
-            <Route
-              path="orders"
-              element={<ProtectedRouteElement element={<Orders />} />}
-            />
+            <Route path="orders" element={<Orders />} />
           </Route>
-          <Route path="ingredients/:id" element={<IngredientInfo />} />
           <Route
-            path="/profile/orders/:id"
-            element={
-              <ProtectedRouteElement element={<OrderInfo type="default" />} />
-            }
+            path="profile/orders/:id"
+            element={<ProtectedRouteElement element={<OrderInfo type="default" />} />}
           />
+          <Route path="ingredients/:id" element={<IngredientInfo />} />
           <Route path="/feed/:id" element={<OrderInfo type="default" />} />
         </Route>
         <Route path="*" element={<NotFound />} />
@@ -137,7 +132,7 @@ const App = () => {
       {backgroundState.backgroundLocation && (
         <Routes>
           <Route
-            path="/ingredients/:id"
+            path="ingredients/:id"
             element={
               <Modal
                 isOpen={isIngredientDetailsModalOpen}
@@ -149,7 +144,7 @@ const App = () => {
             }
           />
           <Route
-            path="/profile/orders/:id"
+            path="profile/orders/:id"
             element={
               <Modal isOpen={true} onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
@@ -157,7 +152,7 @@ const App = () => {
             }
           />
           <Route
-            path="/feed/:id"
+            path="feed/:id"
             element={
               <Modal isOpen={true} onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />

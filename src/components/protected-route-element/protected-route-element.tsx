@@ -20,7 +20,10 @@ const ProtectedRouteElement: FC<TProtectedRouteElementProps> = ({
     return <Navigate to="/forgot-password" replace />
   } else if (loggedIn && onlyUnAuth) {
     return <Navigate to={from} replace />
-  } else return element;
+  } else {
+    console.log(location)
+    return element
+  };
 }
 
 export default ProtectedRouteElement;

@@ -49,8 +49,11 @@ const OrdersListItem: FC<IOrderListItem> = ({
   });
 
   const ingredientImages = currentIngredients
-    .map((i) => (
-      <li key={crypto.randomUUID()} className={styles.ingredient}>
+    .map((i, index) => (
+      <li
+        key={`${i._id}_${index}`}
+        className={styles.ingredient}
+      >
         <img className={styles.ingredient_image} src={i.image} alt={i.name} />
         {more > 1 && <p className={styles.more}>+{more}</p>}
       </li>
@@ -69,10 +72,7 @@ const OrdersListItem: FC<IOrderListItem> = ({
   }, [ingredients]);
 
   return (
-    <div
-      className={styles.item}
-      onClick={handleOrderListItemClick}
-    >
+    <div className={styles.item} onClick={handleOrderListItemClick}>
       <div className={styles.top}>
         <h2 className={styles.id}>#{number}</h2>
         <p className={styles.date}>

@@ -26,3 +26,11 @@ type TIngredientsResponse = TServerResponse<{
 type TResMessage = TServerResponse<{
   message: string;
 }>;
+
+// type TResponses =
+//   | TRefreshResponse
+//   | TUserInfoResponse
+//   | TAuthResponse
+//   | TResMessage
+//   | TIngredientsResponse
+//   | TOrderResponse;
