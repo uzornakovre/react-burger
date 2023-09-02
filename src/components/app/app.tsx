@@ -17,23 +17,23 @@ import { getCookie } from "../../utils/cookies";
 
 // store
 
-import { getIsIngredientDetailsModalOpen } from "../../services/modals/selectors";
 import { getIsLoggedIn } from "../../services/auth/selectors";
 
 // components
 
 import Layout from "../layout/layout";
-import NotFound from "../not-found/not-found";
-import BurgerConstructorPage from "../burger-constructor-page/burger-constructor-page";
-import Login from "../login/login";
-import Register from "../register/register";
-import ForgotPassword from "../forgot-password/forgot-password";
-import ResetPassword from "../reset-password/reset-password";
-import Profile from "../profile/profile";
+import NotFound from "../../pages/not-found/not-found";
+import BurgerConstructorPage from "../../pages/burger-constructor-page/burger-constructor-page";
+import Login from "../../pages/login/login";
+import Register from "../../pages/register/register";
+import ForgotPassword from "../../pages/forgot-password/forgot-password";
+import ResetPassword from "../../pages/reset-password/reset-password";
+import Profile from "../../pages/profile/profile";
 import Modal from "../modal/modal";
-import IngredientInfo from "../ingredient-info/ingredient-info";
+import IngredientInfo from "../../pages/ingredient-info/ingredient-info";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import ProtectedRouteElement from "../protected-route-element/protected-route-element";
+import Feed from "../../pages/feed/feed";
 
 // slices
 
@@ -43,8 +43,9 @@ import {
   getUserInfo,
   setUserInfo,
 } from "../../services/auth/authSlice";
-import EditForm from "../profile/edit-form/edit-form";
-import Orders from "../profile/orders/orders";
+import EditForm from "../../pages/profile/edit-form/edit-form";
+import Orders from "../../pages/profile/orders/orders";
+import OrderInfo from "../order-info/order-info";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -52,13 +53,13 @@ const App = () => {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const isIngredientDetailsModalOpen = useAppSelector(
-    getIsIngredientDetailsModalOpen
-  );
-  const locationState = location.state as { backgroundLocation?: Location };
+  const locationState = location.state as {
+    backgroundLocation?: Location;
+    previousLocation?: Location;
+  };
   const backgroundState = locationState
     ? locationState
-    : { backgroundLocation: undefined };
+    : { backgroundLocation: undefined, previousLocation: undefined };
 
   function checkUserAuth(): void {
     if (accessToken) {
@@ -109,6 +110,7 @@ const App = () => {
               />
             }
           />
+          <Route path="feed" element={<Feed />} />
           <Route
             path="profile"
             element={<ProtectedRouteElement element={<Profile />} />}
@@ -116,7 +118,14 @@ const App = () => {
             <Route index element={<EditForm />} />
             <Route path="orders" element={<Orders />} />
           </Route>
+          <Route
+            path="profile/orders/:id"
+            element={
+              <ProtectedRouteElement element={<OrderInfo type="default" />} />
+            }
+          />
           <Route path="ingredients/:id" element={<IngredientInfo />} />
+          <Route path="/feed/:id" element={<OrderInfo type="default" />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -124,10 +133,10 @@ const App = () => {
       {backgroundState.backgroundLocation && (
         <Routes>
           <Route
-            path="/ingredients/:id"
+            path="ingredients/:id"
             element={
               <Modal
-                isOpen={isIngredientDetailsModalOpen}
+                type="route"
                 onClose={() => navigate(-1)}
                 title="Детали ингредиента"
               >
@@ -135,6 +144,39 @@ const App = () => {
               </Modal>
             }
           />
+          <Route
+            path="profile/orders/:id"
+            element={
+              <ProtectedRouteElement
+                element={
+                  <Modal type="route" onClose={() => navigate(-1)} title="">
+                    <OrderInfo type="modal" />
+                  </Modal>
+                }
+              />
+            }
+          />
+          <Route
+            path="feed/:id"
+            element={
+              <Modal type="route" onClose={() => navigate(-1)} title="">
+                <OrderInfo type="modal" />
+              </Modal>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <ProtectedRouteElement element={<Login />} onlyUnAuth={true} />
+            }
+          />
+          <Route
+            path="profile"
+            element={<ProtectedRouteElement element={<Profile />} />}
+          >
+            <Route index element={<EditForm />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
         </Routes>
       )}
     </div>

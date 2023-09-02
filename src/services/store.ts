@@ -6,6 +6,8 @@ import orderSlice from './order/orderSlice';
 import modalsSlice from './modals/modalsSlice';
 import authSlice from './auth/authSlice';
 import burgerMenuSlice from './burger-menu/burgerMenuSlice';
+import { wsMiddleware } from './ws-middleware';
+import wsSlice, { wsActions } from './websocket/wsSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,8 +17,14 @@ const store = configureStore({
     order: orderSlice,
     modals: modalsSlice,
     auth: authSlice,
-    burgerMenu: burgerMenuSlice
-  }
+    burgerMenu: burgerMenuSlice,
+    webSocket: wsSlice
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({
+      serializableCheck: false
+    }).concat(wsMiddleware(wsActions));
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,10 +1,9 @@
 import styles from "./ingredients-menu.module.scss";
-import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import Category from "../category/category";
 import { setCurrentIngredient } from "../../../services/current-ingredient/currentIngredientSlice";
-import { setIsIngredientDetailsModalOpen } from "../../../services/modals/modalsSlice";
 import { FC, SetStateAction, Dispatch, RefObject } from "react";
+import { useAppDispatch } from "../../../services/hooks";
 
 interface IIngredientsMenuProps {
   setCurrentTab: Dispatch<SetStateAction<string>>
@@ -21,13 +20,12 @@ const IngredientsMenu: FC<IIngredientsMenuProps> = ({
   mainCategoryRef,
   setCurrentTab,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   function handleIngredientClick(item: TIngredient): void {
     dispatch(setCurrentIngredient(item));
-    dispatch(setIsIngredientDetailsModalOpen(true));
     navigate(`ingredients/${item._id}`, {
       state: { backgroundLocation: location },
     });

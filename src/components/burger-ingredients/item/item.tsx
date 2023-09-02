@@ -1,12 +1,12 @@
 import styles from "./item.module.scss";
 import { FC, useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
-import { useSelector } from "react-redux";
 import {
   getSelectedBun,
   getSelectedIngredients,
 } from "../../../services/constructor/selectors";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useAppSelector } from "../../../services/hooks";
 
 interface IItemProps {
   name: string;
@@ -17,8 +17,8 @@ interface IItemProps {
 }
 
 const Item: FC<IItemProps> = ({ name, price, image, _id, type }) => {
-  const selectedBun = useSelector(getSelectedBun);
-  const selectedIngredients = useSelector(getSelectedIngredients);
+  const selectedBun = useAppSelector(getSelectedBun);
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
 
   const [counter, setCounter] = useState(0);
 

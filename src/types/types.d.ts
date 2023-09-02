@@ -27,3 +27,19 @@ type TIngredient = {
   image: string;
   image_large?: string;
 };
+
+type TSortResult = {
+  ingredient: TIngredient | null;
+  count: number;
+}
+
+type TOrderDetails = {
+  readonly _id: string;
+  readonly ingredients: Array<string>;
+  readonly status: string;
+  readonly name: string;
+  readonly createdAt: string | Date;
+  readonly updatedAt: string | Date;
+  readonly number: number;
+  ingredientsData?: Array<TIngredient>;
+}

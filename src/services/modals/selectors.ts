@@ -1,7 +1,5 @@
 import { RootState } from "../store";
 
-export const getIsIngredientDetailsModalOpen: (store: RootState) => boolean = 
-  (store) => store.modals.isIngredientDetailsModalOpen;
 export const getIsOrderDetailsModalOpen: (store: RootState) => boolean = 
   (store) => store.modals.isOrderDetailsModalOpen;
 export const getIsInfoModalOpen: (store: RootState) => boolean = 

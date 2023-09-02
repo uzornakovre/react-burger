@@ -20,7 +20,9 @@ const initialState: IOrderState = {
 
 export const sendOrderData = createAsyncThunk(
   "order/setOrderData",
-  async (orderData: {ingredientsList: Array<string>} & { token?: string }) => {
+  async (
+    orderData: { ingredientsList: Array<string> } & { token?: string }
+  ) => {
     const res = await fetchSendOrderData(orderData);
     return res;
   }
@@ -32,6 +34,9 @@ const orderSlice = createSlice({
   reducers: {
     setTotalPrice: (state, action: PayloadAction<number>) => {
       return { ...state, totalPrice: action.payload };
+    },
+    setOrderId: (state, action: PayloadAction<number>) => {
+      return { ...state, id: action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -57,6 +62,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setTotalPrice } = orderSlice.actions;
+export const { setTotalPrice, setOrderId } = orderSlice.actions;
 
 export default orderSlice.reducer;

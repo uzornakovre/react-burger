@@ -6,7 +6,7 @@
   box-sizing: border-box;
   width: 720px;
   padding: 40px 40px 60px;
-  z-index: 1;
+  z-index: 1000;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -31,13 +31,21 @@
     $weight: 700,
     $size: $font-size-heading-l,
     $line-height: $font-line-height-heading-l,
-  )
+  );
+
+  &_alt {
+    @include renderFont (
+      $family: $font-family-additional,
+      $size: $font-size-price,
+    )
+  }
 }
 
 .close_button {
   background-color: transparent;
   cursor: pointer;
   transition: transform .2s linear;
+  z-index: 100;
 
   &:hover {
     transform: scale(1.15);

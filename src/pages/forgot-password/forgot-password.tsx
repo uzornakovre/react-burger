@@ -1,7 +1,7 @@
 import styles from "./forgot-password.module.scss";
 import useFormData, { TFormValues } from "../../hooks/useFormData";
-import AuthForm from "../auth-form/auth-form";
-import FormInput from "../form-input/form-input";
+import AuthForm from "../../components/auth-form/auth-form";
+import FormInput from "../../components/form-input/form-input";
 import { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getResetCode } from "../../utils/api";

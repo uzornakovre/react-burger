@@ -6,6 +6,7 @@ import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import logoMobile from '../../images/logo.svg';
 import { useAppDispatch } from "../../services/hooks";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
+import { Link } from "react-router-dom";
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +19,9 @@ const AppHeader = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <Navigation />
-        <div className={styles.logo}>
+        <Link className={styles.logo} to="/">
           <Logo />
-        </div>
+        </Link>
         <div className={styles.logo_mobile}>
           <img src={logoMobile} alt="Логотип с изображением неонового бургера" />
         </div>

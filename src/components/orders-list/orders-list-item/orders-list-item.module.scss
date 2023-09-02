@@ -1,0 +1,133 @@
+@import '../../../styles/index.scss';
+
+.item {
+  display: flex;
+  width: calc(100% - 24px * 2 - 8px);
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+
+  background-color: $color-background-1;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all .2s linear;
+
+  &:hover {
+    background-color: $color-interface-input-1;
+  }
+
+  &:active {
+    opacity: .6;
+  }
+}
+
+.top,
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.id {
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price
+  )
+}
+
+.date {
+  @include renderFont(
+    $color: $color-text-2,
+  )
+}
+
+.dish {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include renderFont();
+}
+
+.dish_name {
+  @include renderFont(
+    $size: $font-size-heading,
+    $line-height: $font-line-height-heading,
+    $weight: 700
+  );
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ingredients {
+  display: flex;
+}
+
+.ingredient {
+  position: relative;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  align-items: center;
+  
+  background-color: $color-background-2;
+  border: 2px solid $color-interface-accent-1;
+
+  &:first-child {
+    z-index: 6;
+  }
+
+  &:nth-child(2) {
+    z-index: 5;
+  }
+
+  &:nth-child(3) {
+    z-index: 4;
+  }
+
+  &:nth-child(4) {
+    z-index: 3;
+  }
+
+  &:nth-child(5) {
+    z-index: 2;
+  }
+
+  &:nth-child(6) {
+    z-index: 1;
+  }
+
+  &:nth-child(6) > p {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    @include renderFont();
+  }
+
+  &:nth-child(6) > img {
+    opacity: .6;
+  }
+
+  &:not(:first-child) {
+    margin-left: -16px;
+  }
+}
+
+.ingredient_image {
+  width: inherit;
+  transform: scale(1.5);
+}
+
+.more {
+  display: none;
+}
+
+.done {
+  color: $color-text-2;
+}

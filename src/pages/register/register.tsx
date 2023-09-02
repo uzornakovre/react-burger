@@ -1,12 +1,12 @@
 import styles from "./register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import useFormData, { TFormValues } from "../../hooks/useFormData";
-import FormInput from "../form-input/form-input";
+import FormInput from "../../components/form-input/form-input";
 import {
   ShowIcon,
   HideIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import AuthForm from "../auth-form/auth-form";
+import AuthForm from "../../components/auth-form/auth-form";
 import { login, register } from "../../utils/api";
 import { useAppDispatch } from "../../services/hooks";
 import {
