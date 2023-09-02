@@ -8,7 +8,7 @@ import {
   getTotal,
   getTotalToday,
 } from "../../services/websocket/selectors";
-import { wsUrl } from "../../utils/constants";
+import { WS_URL } from "../../utils/constants";
 
 const Feed = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ const Feed = () => {
     .slice(0, 24);
 
   useEffect(() => {
-    dispatch(wsActions.connectionStart(`${wsUrl}/all`));
+    dispatch(wsActions.connectionStart(`${WS_URL}/all`));
     return () => {
       dispatch(wsActions.connectionClose());
     };
