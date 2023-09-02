@@ -1,6 +1,9 @@
 import { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store";
 import { TWSActionTypes } from "./websocket/types";
+import { refreshToken } from "../utils/api";
+import { WS_URL } from "../utils/constants";
+import { getCookie } from "../utils/cookies";
 
 export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, RootState>) => {
@@ -35,14 +38,25 @@ export const wsMiddleware = (wsActions: TWSActionTypes): Middleware => {
         socket.onerror = (err) => {
           dispatch(connectionError(err));
         };
-        
+
         socket.onclose = () => {
           dispatch(connectionClose());
         };
 
         socket.onmessage = (evt) => {
           const { data } = evt;
-          dispatch(getMessage(JSON.parse(data)));
+          const parsedData = JSON.parse(data);
+          if (parsedData.success) {
+            dispatch(getMessage(parsedData));
+          } else {
+            if (parsedData.message === "Invalid or missing token") {
+              refreshToken().then(() => {
+                dispatch(
+                  connectionStart(`${WS_URL}?token=${getCookie("accessToken")}`)
+                );
+              });
+            }
+          }
         };
       }
 

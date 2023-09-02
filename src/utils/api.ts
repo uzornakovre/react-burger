@@ -14,7 +14,15 @@ export const refreshToken = (): Promise<TRefreshResponse> => {
     method: "POST",
     headers: HEADERS,
     body: JSON.stringify({ token: getCookie("refreshToken") }),
-  }).then((res) => checkResponse<TRefreshResponse>(res));
+  })
+    .then((res) => checkResponse<TRefreshResponse>(res))
+    .then((data) => {
+      if (data?.success) {
+        setCookie("refreshToken", data.refreshToken);
+        setCookie("accessToken", data.accessToken.split("Bearer ")[1]);
+      } else Promise.reject(data);
+      return data;
+    });
 };
 
 export const fetchWithRefresh = async <T>(
@@ -27,11 +35,7 @@ export const fetchWithRefresh = async <T>(
   } catch (err: any) {
     if (err.message === "jwt expired" || err.message === "jwt maloformed") {
       const refreshData = await refreshToken();
-      if (!refreshData.success) {
-        Promise.reject(refreshData);
-      }
-      setCookie("refreshToken", refreshData.refreshToken);
-      setCookie("accessToken", refreshData.accessToken.split("Bearer ")[1]);
+      if (!refreshData.success) return Promise.reject(refreshData);
       (options.headers as { [key: string]: string }).authorization =
         refreshData.accessToken;
       const res = await fetch(url, options);
