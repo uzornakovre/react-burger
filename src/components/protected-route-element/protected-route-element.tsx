@@ -17,7 +17,6 @@ const ProtectedRouteElement: FC<TProtectedRouteElementProps> = ({
   const allowPasswordReset = useAppSelector(getIsAllowedPasswordReset);
 
   if (!loggedIn && !onlyUnAuth) {
-    console.log(location.state);
     return (
       <Navigate
         to="/login"
