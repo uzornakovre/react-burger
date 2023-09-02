@@ -46,6 +46,7 @@ import {
 import EditForm from "../../pages/profile/edit-form/edit-form";
 import Orders from "../../pages/profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
+import { EP_ALL, EP_FEED, EP_FEED_ITEM, EP_FORGOT_PASSWORD, EP_HOME, EP_INGREDIENT_INFO, EP_LOGIN, EP_ORDERS, EP_ORDER_ITEM, EP_PROFILE, EP_REGISTER, EP_RESET_PASSWORD } from "../../utils/constants";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -77,22 +78,22 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Routes location={backgroundState.backgroundLocation || location}>
-        <Route path="/" element={<Layout />}>
+        <Route path={EP_HOME} element={<Layout />}>
           <Route index element={<BurgerConstructorPage />} />
           <Route
-            path="login"
+            path={EP_LOGIN}
             element={
               <ProtectedRouteElement element={<Login />} onlyUnAuth={true} />
             }
           />
           <Route
-            path="register"
+            path={EP_REGISTER}
             element={
               <ProtectedRouteElement element={<Register />} onlyUnAuth={true} />
             }
           />
           <Route
-            path="forgot-password"
+            path={EP_FORGOT_PASSWORD}
             element={
               <ProtectedRouteElement
                 element={<ForgotPassword />}
@@ -101,7 +102,7 @@ const App = () => {
             }
           />
           <Route
-            path="reset-password"
+            path={EP_RESET_PASSWORD}
             element={
               <ProtectedRouteElement
                 element={<ResetPassword />}
@@ -110,30 +111,30 @@ const App = () => {
               />
             }
           />
-          <Route path="feed" element={<Feed />} />
+          <Route path={EP_FEED} element={<Feed />} />
           <Route
-            path="profile"
+            path={EP_PROFILE}
             element={<ProtectedRouteElement element={<Profile />} />}
           >
             <Route index element={<EditForm />} />
-            <Route path="orders" element={<Orders />} />
+            <Route path={EP_ORDERS} element={<Orders />} />
           </Route>
           <Route
-            path="profile/orders/:id"
+            path={EP_ORDER_ITEM}
             element={
               <ProtectedRouteElement element={<OrderInfo type="default" />} />
             }
           />
-          <Route path="ingredients/:id" element={<IngredientInfo />} />
-          <Route path="/feed/:id" element={<OrderInfo type="default" />} />
+          <Route path={EP_INGREDIENT_INFO} element={<IngredientInfo />} />
+          <Route path={EP_FEED_ITEM} element={<OrderInfo type="default" />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path={EP_ALL} element={<NotFound />} />
       </Routes>
 
       {backgroundState.backgroundLocation && (
         <Routes>
           <Route
-            path="ingredients/:id"
+            path={EP_INGREDIENT_INFO}
             element={
               <Modal
                 type="route"
@@ -145,7 +146,7 @@ const App = () => {
             }
           />
           <Route
-            path="profile/orders/:id"
+            path={EP_ORDER_ITEM}
             element={
               <ProtectedRouteElement
                 element={
@@ -157,7 +158,7 @@ const App = () => {
             }
           />
           <Route
-            path="feed/:id"
+            path={EP_FEED_ITEM}
             element={
               <Modal type="route" onClose={() => navigate(-1)} title="">
                 <OrderInfo type="modal" />
@@ -165,17 +166,17 @@ const App = () => {
             }
           />
           <Route
-            path="login"
+            path={EP_LOGIN}
             element={
               <ProtectedRouteElement element={<Login />} onlyUnAuth={true} />
             }
           />
           <Route
-            path="profile"
+            path={EP_PROFILE}
             element={<ProtectedRouteElement element={<Profile />} />}
           >
             <Route index element={<EditForm />} />
-            <Route path="orders" element={<Orders />} />
+            <Route path={EP_ORDERS} element={<Orders />} />
           </Route>
         </Routes>
       )}

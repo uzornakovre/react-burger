@@ -10,7 +10,7 @@ import {
 } from "../../services/websocket/selectors";
 import { useLocation, useParams } from "react-router-dom";
 import { wsActions } from "../../services/websocket/wsSlice";
-import { wsUrl } from "../../utils/constants";
+import { WS_URL} from "../../utils/constants";
 import { getCookie } from "../../utils/cookies";
 
 interface IOrderInfo {
@@ -107,10 +107,10 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
       location.pathname.includes("profile")
         ? dispatch(
             wsActions.connectionStart(
-              `${wsUrl}?token=${getCookie("accessToken")}`
+              `${WS_URL}?token=${getCookie("accessToken")}`
             )
           )
-        : dispatch(wsActions.connectionStart(`${wsUrl}/all`));
+        : dispatch(wsActions.connectionStart(`${WS_URL}/all`));
     }
 
     return () => {

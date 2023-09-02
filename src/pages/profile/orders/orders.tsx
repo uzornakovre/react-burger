@@ -3,7 +3,7 @@ import OrdersList from '../../../components/orders-list/orders-list';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks';
 import { useEffect } from 'react';
 import { wsActions } from '../../../services/websocket/wsSlice';
-import { wsUrl } from '../../../utils/constants';
+import { WS_URL} from '../../../utils/constants';
 import { getCookie } from '../../../utils/cookies';
 import { getWSIsConnected } from '../../../services/websocket/selectors';
 
@@ -14,7 +14,7 @@ const Orders = () => {
   useEffect(() => {
     if (!isWSConnected) {
       dispatch(
-        wsActions.connectionStart(`${wsUrl}?token=${getCookie('accessToken')}`)
+        wsActions.connectionStart(`${WS_URL}?token=${getCookie('accessToken')}`)
       );
     }
     return () => {

@@ -1,4 +1,4 @@
-import { baseUrl, headers } from "./constants";
+import { BASE_URL, HEADERS } from "./constants";
 import { getCookie, setCookie, deleteCookie } from "./cookies";
 
 const checkResponse = <T>(res: Response): Promise<T> => {
@@ -10,9 +10,9 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 };
 
 export const refreshToken = (): Promise<TRefreshResponse> => {
-  return fetch(`${baseUrl}/auth/token`, {
+  return fetch(`${BASE_URL}/auth/token`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ token: getCookie("refreshToken") }),
   }).then((res) => checkResponse<TRefreshResponse>(res));
 };
@@ -44,10 +44,10 @@ export const fetchWithRefresh = async <T>(
 
 export const fetchUserInfo = async (token: string) => {
   const data = await fetchWithRefresh<TUserInfoResponse>(
-    `${baseUrl}/auth/user`,
+    `${BASE_URL}/auth/user`,
     {
       headers: {
-        ...headers,
+        ...HEADERS,
         authorization: `Bearer ${token}`,
       },
     }
@@ -60,17 +60,17 @@ export const register = (
   password: string,
   name: string
 ): Promise<TAuthResponse> => {
-  return fetch(`${baseUrl}/auth/register`, {
+  return fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ email, password, name }),
   }).then((res) => checkResponse<TAuthResponse>(res));
 };
 
 export const login = (email: string, password: string): Promise<unknown> => {
-  return fetch(`${baseUrl}/auth/login`, {
+  return fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ email, password }),
   })
     .then((res) => checkResponse<TAuthResponse>(res))
@@ -82,10 +82,10 @@ export const login = (email: string, password: string): Promise<unknown> => {
 
 export const fetchUpdateUserInfo = (data: TUserInfo & { token?: string }) => {
   const { name, email, password, token } = data;
-  return fetch(`${baseUrl}/auth/user`, {
+  return fetch(`${BASE_URL}/auth/user`, {
     method: "PATCH",
     headers: {
-      ...headers,
+      ...HEADERS,
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, email, password }),
@@ -97,9 +97,9 @@ export const fetchUpdateUserInfo = (data: TUserInfo & { token?: string }) => {
 };
 
 export const getResetCode = (email: string): Promise<TResMessage> => {
-  return fetch(`${baseUrl}/password-reset`, {
+  return fetch(`${BASE_URL}/password-reset`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ email }),
   }).then((res) => checkResponse<TResMessage>(res));
 };
@@ -108,17 +108,17 @@ export const resetPassword = (
   password: string,
   token: string
 ): Promise<TResMessage> => {
-  return fetch(`${baseUrl}/password-reset/reset`, {
+  return fetch(`${BASE_URL}/password-reset/reset`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ password, token }),
   }).then((res) => checkResponse<TResMessage>(res));
 };
 
 export const logout = (token?: string): Promise<unknown> => {
-  return fetch(`${baseUrl}/auth/logout`, {
+  return fetch(`${BASE_URL}/auth/logout`, {
     method: "POST",
-    headers,
+    headers: HEADERS,
     body: JSON.stringify({ token }),
   })
     .then((res) => checkResponse<TResMessage>(res))
@@ -129,8 +129,8 @@ export const logout = (token?: string): Promise<unknown> => {
 };
 
 export const fetchIngredients = () => {
-  return fetch(`${baseUrl}/ingredients`, {
-    headers,
+  return fetch(`${BASE_URL}/ingredients`, {
+    headers: HEADERS,
   })
     .then((res) => checkResponse<TIngredientsResponse>(res))
     .then((data) => {
@@ -141,10 +141,10 @@ export const fetchIngredients = () => {
 export const fetchSendOrderData = async (
   orderData: { ingredientsList: Array<string> } & { token?: string }
 ) => {
-  const data = await fetchWithRefresh<TOrderResponse>(`${baseUrl}/orders`, {
+  const data = await fetchWithRefresh<TOrderResponse>(`${BASE_URL}/orders`, {
     method: "POST",
     headers: {
-      ...headers,
+      ...HEADERS,
       authorization: `Bearer ${orderData.token}`,
     },
     body: JSON.stringify({
