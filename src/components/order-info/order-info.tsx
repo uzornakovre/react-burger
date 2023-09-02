@@ -7,10 +7,11 @@ import { FC, useEffect } from "react";
 import {
   getOrders,
   getWSIsConnected,
+  getWSIsPending,
 } from "../../services/websocket/selectors";
 import { useLocation, useParams } from "react-router-dom";
 import { wsActions } from "../../services/websocket/wsSlice";
-import { WS_URL} from "../../utils/constants";
+import { WS_URL } from "../../utils/constants";
 import { getCookie } from "../../utils/cookies";
 
 interface IOrderInfo {
@@ -24,6 +25,7 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
   const orders = useAppSelector(getOrders);
   const isWSConnected = useAppSelector(getWSIsConnected);
   const allIngredients = useAppSelector(getAllIngredients);
+  const wsPending = useAppSelector(getWSIsPending);
 
   let currentIngredients: Array<TIngredient> = [];
   let price = 0;
@@ -121,27 +123,33 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={`${styles.title} ${styles[type]}`}>
-        #{currentOrder?.number}
-      </h2>
-      <div className={styles.dish}>
-        <h3 className={styles.dish_name}>{currentOrder?.name}</h3>
-        <p
-          className={`${styles.dish_status} ${
-            currentOrder?.status === "done" && styles.done
-          }`}
-        >{`${currentOrder?.status === "done" ? "Выполнен" : "Готовится"}`}</p>
-      </div>
-      <div className={styles.ingredients}>
-        <h4 className={styles.ingredients_title}>Состав:</h4>
-        <ul className={styles.ingredients_list}>{ingredientsList}</ul>
-      </div>
-      <div className={styles.bottom}>
-        <div className={styles.date}>
-          <FormattedDate date={new Date(currentOrder?.createdAt || "")} />
-        </div>
-        <Price value={`${price}`} size="normal" />
-      </div>
+      {!wsPending && (
+        <>
+          <h2 className={`${styles.title} ${styles[type]}`}>
+            #{currentOrder?.number}
+          </h2>
+          <div className={styles.dish}>
+            <h3 className={styles.dish_name}>{currentOrder?.name}</h3>
+            <p
+              className={`${styles.dish_status} ${
+                currentOrder?.status === "done" && styles.done
+              }`}
+            >{`${
+              currentOrder?.status === "done" ? "Выполнен" : "Готовится"
+            }`}</p>
+          </div>
+          <div className={styles.ingredients}>
+            <h4 className={styles.ingredients_title}>Состав:</h4>
+            <ul className={styles.ingredients_list}>{ingredientsList}</ul>
+          </div>
+          <div className={styles.bottom}>
+            <div className={styles.date}>
+              <FormattedDate date={new Date(currentOrder?.createdAt || "")} />
+            </div>
+            <Price value={`${price}`} size="normal" />
+          </div>
+        </>
+      )}
     </div>
   );
 };
