@@ -19,7 +19,6 @@ interface IOrderInfo {
 
 const OrderInfo: FC<IOrderInfo> = ({ type }) => {
   const location = useLocation();
-  console.log(location.pathname)
   const dispatch = useAppDispatch();
   const orderId = useParams().id;
   const orders = useAppSelector(getOrders);

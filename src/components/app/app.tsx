@@ -53,10 +53,13 @@ const App = () => {
   const location = useLocation();
   const accessToken: string | undefined = getCookie("accessToken");
   const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const locationState = location.state as { backgroundLocation?: Location };
+  const locationState = location.state as {
+    backgroundLocation?: Location;
+    previousLocation?: Location;
+  };
   const backgroundState = locationState
     ? locationState
-    : { backgroundLocation: undefined };
+    : { backgroundLocation: undefined, previousLocation: undefined };
 
   function checkUserAuth(): void {
     if (accessToken) {
@@ -117,7 +120,9 @@ const App = () => {
           </Route>
           <Route
             path="profile/orders/:id"
-            element={<ProtectedRouteElement element={<OrderInfo type="default" />} />}
+            element={
+              <ProtectedRouteElement element={<OrderInfo type="default" />} />
+            }
           />
           <Route path="ingredients/:id" element={<IngredientInfo />} />
           <Route path="/feed/:id" element={<OrderInfo type="default" />} />
@@ -142,9 +147,13 @@ const App = () => {
           <Route
             path="profile/orders/:id"
             element={
-              <Modal type="route" onClose={() => navigate(-1)} title="">
-                <OrderInfo type="modal" />
-              </Modal>
+              <ProtectedRouteElement
+                element={
+                  <Modal type="route" onClose={() => navigate(-1)} title="">
+                    <OrderInfo type="modal" />
+                  </Modal>
+                }
+              />
             }
           />
           <Route
@@ -155,6 +164,19 @@ const App = () => {
               </Modal>
             }
           />
+          <Route
+            path="login"
+            element={
+              <ProtectedRouteElement element={<Login />} onlyUnAuth={true} />
+            }
+          />
+          <Route
+            path="profile"
+            element={<ProtectedRouteElement element={<Profile />} />}
+          >
+            <Route index element={<EditForm />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
         </Routes>
       )}
     </div>
