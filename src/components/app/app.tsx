@@ -14,6 +14,20 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 // utils
 
 import { getCookie } from "../../utils/cookies";
+import {
+  EP_ALL,
+  EP_FEED,
+  EP_FEED_ITEM,
+  EP_FORGOT_PASSWORD,
+  EP_HOME,
+  EP_INGREDIENT_INFO,
+  EP_LOGIN,
+  EP_ORDERS,
+  EP_ORDER_ITEM,
+  EP_PROFILE,
+  EP_REGISTER,
+  EP_RESET_PASSWORD,
+} from "../../utils/constants";
 
 // store
 
@@ -46,7 +60,6 @@ import {
 import EditForm from "../../pages/profile/edit-form/edit-form";
 import Orders from "../../pages/profile/orders/orders";
 import OrderInfo from "../order-info/order-info";
-import { EP_ALL, EP_FEED, EP_FEED_ITEM, EP_FORGOT_PASSWORD, EP_HOME, EP_INGREDIENT_INFO, EP_LOGIN, EP_ORDERS, EP_ORDER_ITEM, EP_PROFILE, EP_REGISTER, EP_RESET_PASSWORD } from "../../utils/constants";
 
 const App = () => {
   const dispatch = useAppDispatch();
