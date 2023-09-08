@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: TIngredient = {
+export const initialState: TIngredient = {
   _id: "",
   name: "",
   type: "",

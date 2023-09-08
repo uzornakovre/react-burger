@@ -4,7 +4,7 @@ interface IBurgerMenuState {
   isBurgerMenuOpen: boolean;
 }
 
-const initialState: IBurgerMenuState = {
+export const initialState: IBurgerMenuState = {
   isBurgerMenuOpen: false,
 };
 
