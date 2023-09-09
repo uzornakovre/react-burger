@@ -45,7 +45,7 @@ const Item: FC<IItemProps> = ({ name, price, image, _id, type }) => {
   }, [selectedBun, selectedIngredients]);
 
   return (
-    <div className={styles.item} ref={dragRef}>
+    <div className={`${styles.item} ingredients_drag_item`} ref={dragRef}>
       <img
         className={`${styles.image} pl-4 pr-4 pb-1`}
         src={image}

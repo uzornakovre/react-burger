@@ -64,7 +64,7 @@ const ResultList = () => {
 
   return (
     <ul
-      className={`${styles.result_list} ${
+      className={`${styles.result_list} constructor_drop_area ${
         isHover && styles.result_list_on_drop
       }`}
       ref={ingredientDropRef}

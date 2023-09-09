@@ -19,7 +19,7 @@ const Category: FC<ICategoryProps> = ({ title, type, onIngredientClick }) => {
         .filter((i) => i.type === type)
         .map((i) => (
           <li
-            className={styles.listItem}
+            className='ingredients_list_item'
             key={`listItem-${i._id}`}
             onClick={() => onIngredientClick(i)}
           >
