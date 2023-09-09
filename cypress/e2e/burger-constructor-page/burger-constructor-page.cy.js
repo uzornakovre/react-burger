@@ -3,8 +3,7 @@
 describe('service is available', function() {
   beforeEach(() => {
     cy.viewport(1440, 1080);
-    // cy.visit('https://stellar-burgers.website');
-    cy.visit('http://localhost:3000');
+    cy.visit('https://stellar-burgers.website');
 
     cy.get("a").contains("Личный кабинет").click();
     cy.get("input").first().type('testemail@testemail.com');
@@ -14,7 +13,7 @@ describe('service is available', function() {
   })
 
   it('should open ingredient details modal', function() {
-    cy.get('.ingredients_list_item').first().click();
+    cy.wait(3000).get('.ingredients_list_item').first().click();
     cy.contains("Детали ингредиента");
     cy.wait(2000).get('.close_button').click();
   });
