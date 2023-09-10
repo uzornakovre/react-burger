@@ -1,17 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { mockIngredientsList } from "../../utils/mock-data";
 import reducer, {
   initialState,
   setOrderId,
   setTotalPrice,
   sendOrderData,
 } from "./orderSlice";
-
-const ingredientsList = [
-  "60d3b41abdacab0026a733c6",
-  "60d3b41abdacab0026a733c6",
-  "60d3b41abdacab0026a733ce",
-  "60d3b41abdacab0026a733c9",
-];
 
 describe("order", () => {
   let store = configureStore({
@@ -60,7 +54,7 @@ describe("order", () => {
 
     await store.dispatch(
       sendOrderData({
-        ingredientsList,
+        mockIngredientsList,
         accessToken: "token",
       })
     );
@@ -80,7 +74,7 @@ describe("order", () => {
 
     await store.dispatch(
       sendOrderData({
-        ingredientsList,
+        mockIngredientsList,
         accessToken: "token",
       })
     );

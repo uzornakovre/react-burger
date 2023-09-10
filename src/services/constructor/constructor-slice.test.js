@@ -1,3 +1,4 @@
+import { mockBun, mockIngredient1, mockIngredient2 } from "../../utils/mock-data";
 import reducer, {
   initialState,
   addBun,
@@ -7,54 +8,9 @@ import reducer, {
   clearSelected,
 } from "./constructorSlice";
 
-const bun = {
-  _id: "60d3b41abdacab0026a733c6",
-  id: "1",
-  name: "Краторная булка N-200i",
-  type: "bun",
-  proteins: 80,
-  fat: 24,
-  carbohydrates: 53,
-  calories: 420,
-  price: 1255,
-  image: "https://code.s3.yandex.net/react/code/bun-02.png",
-};
-
-const ingredient1 = {
-  _id: "60d3b41abdacab0026a733c9",
-  id: "2",
-  name: "Мясо бессмертных моллюсков Protostomia",
-  type: "main",
-  proteins: 433,
-  fat: 244,
-  carbohydrates: 33,
-  calories: 420,
-  price: 1337,
-  image: "https://code.s3.yandex.net/react/code/meat-02.png",
-  image_mobile: "https://code.s3.yandex.net/react/code/meat-02-mobile.png",
-  image_large: "https://code.s3.yandex.net/react/code/meat-02-large.png",
-  __v: 0,
-};
-
-const ingredient2 = {
-  _id: "60d3b41abdacab0026a733c9",
-  id: "3",
-  name: "Мясо бессмертных моллюсков Protostomia",
-  type: "main",
-  proteins: 433,
-  fat: 244,
-  carbohydrates: 33,
-  calories: 420,
-  price: 1337,
-  image: "https://code.s3.yandex.net/react/code/meat-02.png",
-  image_mobile: "https://code.s3.yandex.net/react/code/meat-02-mobile.png",
-  image_large: "https://code.s3.yandex.net/react/code/meat-02-large.png",
-  __v: 0,
-};
-
 const stateWithMockIngredients = {
-  bun,
-  ingredients: [ingredient1, ingredient2],
+  bun: mockBun,
+  ingredients: [mockIngredient1, mockIngredient2],
 };
 
 describe("constructor", () => {
@@ -63,16 +19,16 @@ describe("constructor", () => {
   });
 
   test("Should add bun", () => {
-    expect(reducer(initialState, addBun(bun))).toEqual({
+    expect(reducer(initialState, addBun(mockBun))).toEqual({
       ...initialState,
-      bun: bun,
+      bun: mockBun,
     });
   });
 
   test("Should add ingredient", () => {
-    expect(reducer(initialState, addIngredient(bun))).toEqual({
+    expect(reducer(initialState, addIngredient(mockBun))).toEqual({
       ...initialState,
-      ingredients: [...initialState.ingredients, bun],
+      ingredients: [...initialState.ingredients, mockBun],
     });
   });
 
@@ -84,14 +40,14 @@ describe("constructor", () => {
       )
     ).toEqual({
       ...stateWithMockIngredients,
-      ingredients: [ingredient2, ingredient1],
+      ingredients: [mockIngredient2, mockIngredient1],
     });
   });
 
   test("Should remove ingredient", () => {
     expect(reducer(stateWithMockIngredients, removeIngredient("3"))).toEqual({
       ...stateWithMockIngredients,
-      ingredients: [ingredient1],
+      ingredients: [mockIngredient1],
     });
   });
 

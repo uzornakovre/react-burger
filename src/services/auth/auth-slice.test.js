@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { mockUser } from "../../utils/mock-data";
 import reducer, {
   initialState,
   setLoggedIn,
@@ -7,11 +8,6 @@ import reducer, {
   getUserInfo,
   updateUserInfo,
 } from "./authSlice";
-
-const user = {
-  name: "Tommy",
-  email: "tomvercetty@mail.vc",
-};
 
 describe("ingredients", () => {
   let store = configureStore({
@@ -42,9 +38,9 @@ describe("ingredients", () => {
   });
 
   test("Should set user info", () => {
-    expect(reducer(initialState, setUserInfo(user))).toEqual({
+    expect(reducer(initialState, setUserInfo(mockUser))).toEqual({
       ...initialState,
-      userInfo: user,
+      userInfo: mockUser,
     });
   });
 
@@ -60,7 +56,7 @@ describe("ingredients", () => {
       jest.fn(() =>
         Promise.resolve({
           json: () => ({
-            user: user,
+            user: mockUser,
             success: true,
           }),
           ok: true,
@@ -74,7 +70,7 @@ describe("ingredients", () => {
 
     expect(store.getState()).toEqual({
       ...initialState,
-      userInfo: user,
+      userInfo: mockUser,
       isLoading: false,
     });
   });
@@ -100,7 +96,7 @@ describe("ingredients", () => {
       jest.fn(() =>
         Promise.resolve({
           json: () => ({
-            user: user,
+            user: mockUser,
             success: true,
           }),
           ok: true,
@@ -108,13 +104,13 @@ describe("ingredients", () => {
       )
     );
 
-    await store.dispatch(updateUserInfo({ ...user, accessToken: "token" }));
+    await store.dispatch(updateUserInfo({ ...mockUser, accessToken: "token" }));
 
     expect(fetch).toBeCalledTimes(1);
 
     expect(store.getState()).toEqual({
       ...initialState,
-      userInfo: user,
+      userInfo: mockUser,
       isLoading: false,
     });
   });
@@ -125,7 +121,7 @@ describe("ingredients", () => {
       .mockImplementation(jest.fn(() => Promise.reject()));
 
     await store.dispatch(
-      updateUserInfo({ ...user, accessToken: "token" })
+      updateUserInfo({ ...mockUser, accessToken: "token" })
     );
 
     expect(fetch).toBeCalledTimes(1);

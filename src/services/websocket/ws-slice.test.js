@@ -1,5 +1,6 @@
 import reducer, { initialState, wsActions } from "./wsSlice";
 import { WS_URL } from "../../utils/constants";
+import { mockOrders } from "../../utils/mock-data";
 
 const {
   connectionStart,
@@ -7,35 +8,6 @@ const {
   connectionClose,
   getMessage,
 } = wsActions;
-
-const orders = [
-  {
-    "_id": "64f8aa3e6d2997001caa699c",
-    "ingredients": [
-        "643d69a5c3f7b9001cfa0943",
-        "643d69a5c3f7b9001cfa093d",
-        "643d69a5c3f7b9001cfa093d"
-    ],
-    "status": "done",
-    "name": "Space флюоресцентный бургер",
-    "createdAt": "2023-09-06T16:35:10.596Z",
-    "updatedAt": "2023-09-06T16:35:10.789Z",
-    "number": 19496
-},
-{
-  "_id": "64f8aa3e6d2997001caa699c",
-  "ingredients": [
-      "643d69a5c3f7b9001cfa0943",
-      "643d69a5c3f7b9001cfa093d",
-      "643d69a5c3f7b9001cfa093d"
-  ],
-  "status": "done",
-  "name": "Space флюоресцентный бургер",
-  "createdAt": "2023-09-06T16:35:10.596Z",
-  "updatedAt": "2023-09-06T16:35:10.789Z",
-  "number": 19496
-}
-];
 
 describe("websocket", () => {
   test("Should return the initial state", () => {
@@ -59,9 +31,9 @@ describe("websocket", () => {
   })
 
   test("Should get message", () => {
-    expect(reducer(initialState, getMessage({ orders, total: 2, totalToday: 2}))).toEqual({
+    expect(reducer(initialState, getMessage({ orders: mockOrders, total: 2, totalToday: 2}))).toEqual({
       ...initialState,
-      orders: orders,
+      orders: mockOrders,
       total: 2,
       totalToday: 2
     })
