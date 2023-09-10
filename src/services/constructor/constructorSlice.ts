@@ -5,7 +5,7 @@ interface IConstructorState {
   ingredients: Array<TIngredient>;
 }
 
-const initialState: IConstructorState = {
+export const initialState: IConstructorState = {
   bun: {
     _id: '',
     name: '',

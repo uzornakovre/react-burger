@@ -10,7 +10,7 @@ interface IOrderState {
   isLoading: boolean;
 }
 
-const initialState: IOrderState = {
+export const initialState: IOrderState = {
   id: null,
   ingredientsList: [],
   totalPrice: 0,

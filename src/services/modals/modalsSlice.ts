@@ -6,7 +6,7 @@ interface IModalsState {
   infoModalText: string;
 }
 
-const initialState: IModalsState = {
+export const initialState: IModalsState = {
   isOrderDetailsModalOpen: false,
   isInfoModalOpen: false,
   infoModalText: "",

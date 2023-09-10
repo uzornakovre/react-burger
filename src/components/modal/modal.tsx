@@ -47,21 +47,27 @@ const Modal: FC<PropsWithChildren<IModalProps>> = ({
   }, []);
 
   return createPortal(
-    <ModalOverlay type={type} isOpen={isOpen} onOverlayClick={handleModalOverlayClick}>
-      <div className={styles.modal}>
-        <div className={styles.modal_top}>
-          <h2 className={`${styles.title}`}>{title}</h2>
-          <button
-            className={styles.close_button}
-            type="button"
-            onClick={onClose}
-          >
-            <CloseIcon type="primary" />
-          </button>
+    (isOpen || type === "route") && (
+      <ModalOverlay
+        type={type}
+        isOpen={isOpen}
+        onOverlayClick={handleModalOverlayClick}
+      >
+        <div className={styles.modal}>
+          <div className={styles.modal_top}>
+            <h2 className={`${styles.title}`}>{title}</h2>
+            <button
+              className={`${styles.close_button} close_button`}
+              type="button"
+              onClick={onClose}
+            >
+              <CloseIcon type="primary" />
+            </button>
+          </div>
+          {children}
         </div>
-        {children}
-      </div>
-    </ModalOverlay>,
+      </ModalOverlay>
+    ),
     modalRoot
   );
 };

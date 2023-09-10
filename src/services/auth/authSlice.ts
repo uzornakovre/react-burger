@@ -10,7 +10,7 @@ interface IAuthState {
   userInfo: TUserInfo;
 }
 
-const initialState: IAuthState = {
+export const initialState: IAuthState = {
   isLoggedIn: false,
   isLoading: false,
   error: '',

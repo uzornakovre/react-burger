@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IWSMessageState, IWSState } from "./types";
 
-const initialState: IWSState = {
+export const initialState: IWSState = {
   wsUrl: "",
   wsPending: false,
   wsConnected: false,

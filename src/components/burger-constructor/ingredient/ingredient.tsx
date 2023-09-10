@@ -77,7 +77,7 @@ const Ingredient: FC<IIngredientProps> = ({
 
   return (
     <div
-      className={`${styles.ingredient} ${
+      className={`${styles.ingredient} constructor_drag_item ${
         isDrag && styles.ingredient_is_dragging
       }
       ${isHover && styles.ingredient_is_hover}`}
