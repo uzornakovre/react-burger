@@ -4,7 +4,10 @@ import { testEmail, testPassword } from "../../../src/utils/mock-data";
 describe("service is available", function () {
   beforeEach(() => {
     cy.viewport(1440, 1080);
-    cy.visit("https://stellar-burgers.website");
+    cy.visit("");
+
+    cy.get(".ingredients_drag_item").as("iDragItem");
+    cy.get(".constructor_drop_area").as("cDropArea");
 
     cy.get("a").contains("Личный кабинет").click();
     cy.get("input").first().type(testEmail);
@@ -20,20 +23,22 @@ describe("service is available", function () {
   });
 
   it("should drag and drop items", function () {
-    cy.get(".ingredients_drag_item").eq(1).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(3).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(5).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(7).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(9).drag(".constructor_drop_area");
+    cy.get("@iDragItem").eq(1).drag("@cDropArea");
+    cy.get("@iDragItem").eq(3).drag("@cDropArea");
+    cy.get("@iDragItem").eq(5).drag("@cDropArea");
+    cy.get("@iDragItem").eq(7).drag("@cDropArea");
+    cy.get("@iDragItem").eq(9).drag("@cDropArea");
 
-    cy.get(".constructor_drag_item").eq(2).drag(".constructor_drag_item");
-    cy.get(".constructor_drag_item").eq(3).drag(".constructor_drag_item");
+    cy.get(".constructor_drag_item").as("cDragItem");
+
+    cy.get("@cDragItem").eq(2).drag("@cDragItem");
+    cy.get("@cDragItem").eq(3).drag("@cDragItem");
   });
 
   it("should open order details modal", function () {
-    cy.get(".ingredients_drag_item").eq(1).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(3).drag(".constructor_drop_area");
-    cy.get(".ingredients_drag_item").eq(5).drag(".constructor_drop_area");
+    cy.get("@iDragItem").eq(1).drag("@cDropArea");
+    cy.get("@iDragItem").eq(3).drag("@cDropArea");
+    cy.get("@iDragItem").eq(5).drag("@cDropArea");
 
     cy.get("button").contains("Оформить заказ").click();
 
