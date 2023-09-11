@@ -64,11 +64,7 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
           count: 0,
         };
         result.ingredient = entry[0];
-        if (entry[0].type === "bun") {
-          result.count = entry[1];
-        } else {
-          result.count = entry[1] / 2;
-        }
+        result.count = entry[1] / 2;
         return result;
       });
   }
