@@ -29,6 +29,10 @@ const Category: FC<ICategoryProps> = ({ title, type, onIngredientClick }) => {
               type={i.type}
               price={i.price}
               image={i.image}
+              proteins={i.proteins}
+              carbohydrates={i.carbohydrates}
+              fat={i.fat}
+              calories={i.calories}
             />
           </li>
         )),
@@ -39,7 +43,7 @@ const Category: FC<ICategoryProps> = ({ title, type, onIngredientClick }) => {
   return (
     <div className={`${styles.category}`} id={`category_${type}`}>
       <h3 className={styles.title}>{title}</h3>
-      <ul className={`${styles.list} pt-6 pr-4 pb-10 pl-4`}>{ingredients}</ul>
+      <ul className={styles.list}>{ingredients}</ul>
     </div>
   );
 };

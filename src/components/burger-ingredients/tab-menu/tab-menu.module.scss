@@ -4,3 +4,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+.tabs div {
+  padding: 16px 0px;
+  min-width: 0;
+  flex: 1 1 33%;
+}

@@ -3,11 +3,22 @@
 .title {
   @include renderFont(
     $size: $font-size-heading
-  )
+  );
+
+  @media screen and (max-width: 1023px) {
+    font-size: $font-size-heading-s;
+  }
 }
 
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  padding: 24px 16px 40px 16px;
+
+  @media screen and (max-width: 1023px) {
+    gap: 16px;
+    width: 100%;
+    padding: 16px 0 12px;
+  }
 }
