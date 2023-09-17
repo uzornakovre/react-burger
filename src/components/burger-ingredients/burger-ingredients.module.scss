@@ -1,10 +1,43 @@
 @import '../../styles/index.scss';
 
+.burger_ingredients {
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+}
+
 .title {
   @include renderFont(
     $weight: 700,
     $size: $font-size-heading-l,
     $line-height: $font-line-height-heading-l,
     $color: $color-text-1
+  );
+
+  @media screen and (max-width: 1023px) {
+    font-size: $font-size-price;
+    text-align: center;
+  }
+}
+
+.bottom {
+  position: fixed;
+  box-sizing: border-box;
+  bottom: 0;
+  width: 100%;
+  display: none;
+  padding: 16px 8px;
+  gap: 16px;
+  justify-content: flex-end;
+  background-color: $color-background-1;
+
+  @media screen and (max-width: 1023px) {
+    display: flex;
+  }
+}
+
+.bottom button {
+  @include renderFont(
+    $size: $font-size-text-s
   )
 }

@@ -1,24 +1,49 @@
 import styles from "./item.module.scss";
-import { FC, useEffect, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
 import {
   getSelectedBun,
   getSelectedIngredients,
 } from "../../../services/constructor/selectors";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppSelector } from "../../../services/hooks";
+import { useAppDispatch, useAppSelector } from "../../../services/hooks";
+import {
+  addBun,
+  addIngredient,
+} from "../../../services/constructor/constructorSlice";
 
-interface IItemProps {
-  name: string;
-  price: number;
-  image: string;
-  _id: string;
-  type: string;
-}
+// interface IItemProps {
+//   name: string;
+//   price: number;
+//   image: string;
+//   _id: string;
+//   type: string;
+// }
 
-const Item: FC<IItemProps> = ({ name, price, image, _id, type }) => {
+const Item: FC<TIngredient> = ({
+  name,
+  price,
+  image,
+  _id,
+  type,
+  calories,
+  carbohydrates,
+  fat,
+  proteins,
+}) => {
+  const dispatch = useAppDispatch();
   const selectedBun = useAppSelector(getSelectedBun);
   const selectedIngredients = useAppSelector(getSelectedIngredients);
+
+  function handleIngredientAdd(
+    evt: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+    item: TIngredient
+  ): void {
+    evt.stopPropagation();
+    if (item.type === "bun") {
+      dispatch(addBun({ ...item, id: crypto.randomUUID() }));
+    } else dispatch(addIngredient({ ...item, id: crypto.randomUUID() }));
+  }
 
   const [counter, setCounter] = useState(0);
 
@@ -61,6 +86,25 @@ const Item: FC<IItemProps> = ({ name, price, image, _id, type }) => {
           <span className={styles.counter_value}>{counter}</span>
         </div>
       )}
+      <button
+        className={styles.add_button}
+        type="button"
+        onClick={(evt) =>
+          handleIngredientAdd(evt, {
+            name,
+            price,
+            image,
+            _id,
+            type,
+            calories,
+            carbohydrates,
+            fat,
+            proteins,
+          })
+        }
+      >
+        Добавить
+      </button>
     </div>
   );
 };
