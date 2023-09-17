@@ -3,11 +3,13 @@ import Navigation from "../app-header/navigation/navigation";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import { getIsBurgerMenuOpen } from "../../services/burger-menu/selectors";
 import { toggleBurgerMenu } from "../../services/burger-menu/burgerMenuSlice";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import { isHtmlElement } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const BurgerMenu = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isBurgerMenuOpen = useAppSelector(getIsBurgerMenuOpen);
 
   function closeBurgerMenu(): void {
@@ -23,6 +25,9 @@ const BurgerMenu = () => {
       });
     }
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => closeBurgerMenu(), [navigate]);
 
   return (
     <div
@@ -46,6 +51,6 @@ const BurgerMenu = () => {
       </div>
     </div>
   );
-}
+};
 
 export default BurgerMenu;

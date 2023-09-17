@@ -70,6 +70,7 @@
 .burger_button {
   display: none;
   background-color: transparent;
+  cursor: pointer;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     display: flex;
