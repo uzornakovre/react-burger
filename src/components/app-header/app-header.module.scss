@@ -7,6 +7,8 @@
   @include renderFont();
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    position: fixed;
+    width: 100%;
     min-height: 40px;
   }
 }

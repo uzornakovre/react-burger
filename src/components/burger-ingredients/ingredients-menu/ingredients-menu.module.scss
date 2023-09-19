@@ -8,7 +8,8 @@
   @media screen and (max-width: 1023px) {
     padding-left: 8px;
     padding-right: 8px;
+    padding-bottom: 73px;
     width: calc(100% - 8px * 2);
-    height: calc(100vh - 252px);
+    height: calc(100vh - 252px - 72px);
   }
 }
