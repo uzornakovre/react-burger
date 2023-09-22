@@ -10,6 +10,11 @@
   gap: 80px;
 
   @media screen and (max-width: 1023px) {
+    padding-top: calc(16px + 72px);
+    gap: 40px;
+  }
+
+  @media screen and (max-width: 767px) {
     padding-top: calc(16px + 64px);
   }
 }

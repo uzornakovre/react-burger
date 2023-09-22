@@ -15,8 +15,18 @@
 
   @include renderFont($color: $color-text-2);
 
+  @media screen and (max-width: 1023px) {
+    top: 12px;
+    left: 20px;
+  }
+
   &_active {
     top: 8px;
+
+    @media screen and (max-width: 1023px) {
+      top: 0;
+      font-size: $font-size-text-s;
+    }
   }
 }
 
@@ -31,6 +41,11 @@
 
   @include renderFont();
 
+  @media screen and (max-width: 1023px) {
+    height: 48px;
+    padding: 8px 20px 0;
+  }
+
   &_error {
     outline: 2px solid $color-interface-error;
   }
@@ -41,6 +56,11 @@
 
   &:focus + .input_label {
     top: 8px;
+
+    @media screen and (max-width: 1023px) {
+      top: 0;
+      font-size: $font-size-text-s;
+    }
   }
 
   &:disabled {
@@ -69,16 +89,25 @@
   &:active {
     opacity: .5;
   }
+
+  @media screen and (max-width: 1023px) {
+    top: 12px;
+    right: 20px
+  }
 }
 
 .error {
   display: block;
-  padding: 2px 24px 0;
-  height: 22px;
+  padding: 4px 24px 0;
+  min-height: 20px;
 
   @include renderFont(
     $color: $color-interface-error,
     $size: $font-size-xs,
     $line-height: $font-line-height-xs,
   );
+
+  @media screen and (max-width: 1023px) {
+    min-height: 16px;
+  }
 }
