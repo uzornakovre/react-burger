@@ -6,15 +6,23 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import Modal from "../modal/modal";
 import {
   closeAllModals,
+  setInfoModalText,
   setIsCartModalOpen,
+  setIsInfoModalOpen,
 } from "../../services/modals/modalsSlice";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIsCartModalOpen } from "../../services/modals/selectors";
 import OrderBottom from "../order-bottom/order-bottom";
+import {
+  getSelectedBun,
+  getSelectedIngredients,
+} from "../../services/constructor/selectors";
 
 const BurgerIngredients = () => {
   const dispatch = useAppDispatch();
   const isCartModalOpen = useAppSelector(getIsCartModalOpen);
+  const selectedIngredients = useAppSelector(getSelectedIngredients);
+  const selectedBun = useAppSelector(getSelectedBun);
   const [currentTab, setCurrentTab] = useState("one");
 
   const tabMenuRef = useRef<HTMLDivElement>();
@@ -23,7 +31,16 @@ const BurgerIngredients = () => {
   const mainCategoryRef = useRef<HTMLLIElement>();
 
   function handleShowCartClick() {
-    dispatch(setIsCartModalOpen(true));
+    if (selectedIngredients.length && selectedBun._id) {
+      dispatch(setIsCartModalOpen(true));
+    } else {
+      dispatch(setIsInfoModalOpen(true));
+      dispatch(
+        setInfoModalText(
+          "Необходимо выбрать булку и как минимум один ингредент"
+        )
+      );
+    }
   }
 
   return (

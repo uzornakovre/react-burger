@@ -79,6 +79,10 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: none;
+  }
+
   &_top {
     border-radius: 88px 88px 40px 40px;
   }
