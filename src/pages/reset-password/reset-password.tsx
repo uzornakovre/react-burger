@@ -3,7 +3,7 @@ import useFormData, { TFormValues } from "../../hooks/useFormData";
 import AuthForm from "../../components/auth-form/auth-form";
 import FormInput from "../../components/form-input/form-input";
 import { FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   ShowIcon,
   HideIcon,
@@ -14,6 +14,8 @@ import {
   setIsInfoModalOpen,
   setInfoModalText,
 } from "../../services/modals/modalsSlice";
+import { RESET_PASSWORD_TIPS_DATA } from "../../utils/constants";
+import AuthTips from "../../components/auth-tips/auth-tips";
 
 const ResetPassword = () => {
   const formData = useFormData<TFormValues>({
@@ -69,16 +71,7 @@ const ResetPassword = () => {
           isIcon={false}
         />
       </AuthForm>
-      <div className={styles.tips}>
-        <p className={styles.tip}>
-          Вспомнили пароль?{" "}
-          {
-            <Link to="/login" className={styles.tip_link}>
-              Войти
-            </Link>
-          }
-        </p>
-      </div>
+      <AuthTips tipsData={RESET_PASSWORD_TIPS_DATA} />
     </div>
   );
 }
