@@ -10,7 +10,7 @@ const BurgerConstructorPage = () => {
       <DndProvider backend={HTML5Backend}>
         <div className={styles.container}>
           <BurgerIngredients />
-          <BurgerConstructor />
+          <BurgerConstructor type="default"/>
         </div>
       </DndProvider>
     </main>

@@ -77,6 +77,7 @@ const ResultList = () => {
             text={`${selectedBun.name} (верх)`}
             price={selectedBun.price}
             thumbnail={selectedBun.image}
+            extraClass={styles.element}
           />
         ) : (
           <div
@@ -105,6 +106,7 @@ const ResultList = () => {
             text={`${selectedBun.name} (низ)`}
             price={selectedBun.price}
             thumbnail={selectedBun.image}
+            extraClass={styles.element}
           />
         ) : (
           <div

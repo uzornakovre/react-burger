@@ -4,7 +4,7 @@ import styles from "./burger-constructor.module.scss";
 
 // libraries
 
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // hooks
@@ -14,11 +14,7 @@ import { useAppDispatch, useAppSelector } from "../../services/hooks";
 // store
 
 import { getIsOrderDetailsModalOpen } from "../../services/modals/selectors";
-import {
-  getOrderId,
-  getOrderIsLoading,
-  getTotalPrice,
-} from "../../services/order/selectors";
+import { getOrderId, getOrderIsLoading } from "../../services/order/selectors";
 import { getIsLoggedIn } from "../../services/auth/selectors";
 import {
   getSelectedBun,
@@ -27,11 +23,9 @@ import {
 
 // components
 
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import ResultList from "./result-list/result-list";
-import Price from "../price/price";
 
 // slices
 import { clearSelected } from "../../services/constructor/constructorSlice";
@@ -43,14 +37,18 @@ import {
   setIsOrderDetailsModalOpen,
 } from "../../services/modals/modalsSlice";
 import { getCookie } from "../../utils/cookies";
+import OrderBottom from "../mobile-bottom/order-bottom";
 
-const BurgerConstructor = () => {
+interface BurgerConstructorProps {
+  type: "default" | "modal";
+}
+
+const BurgerConstructor: FC<BurgerConstructorProps> = ({ type }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const accessToken: string | undefined = getCookie("accessToken");
   const selectedBun = useAppSelector(getSelectedBun);
   const selectedIngredients = useAppSelector(getSelectedIngredients);
-  const totalPrice = useAppSelector(getTotalPrice);
   const orderNumber = useAppSelector(getOrderId);
   const isOrderDetailsModalOpen = useAppSelector(getIsOrderDetailsModalOpen);
   const isLoggedIn = useAppSelector(getIsLoggedIn);
@@ -95,19 +93,17 @@ const BurgerConstructor = () => {
   }, [dispatch, selectedBun, selectedIngredients]);
 
   return (
-    <section className={`${styles.burger_constructor} mt-25`}>
+    <section
+      className={`${styles.burger_constructor} ${
+        type === "modal" && styles.modal
+      } ${type === "default" && "mt-25"}`}
+    >
       <ResultList />
-      <div className={`${styles.order_info} mt-10`}>
-        <Price value={`${totalPrice}`} size="large" />
-        <Button
-          htmlType="button"
-          type="primary"
-          size="large"
-          onClick={handleOrderClick}
-        >
-          Оформить заказ
-        </Button>
-      </div>
+      <OrderBottom
+        type={type === "modal" ? "mobile" : "default"}
+        buttonText="Оформить заказ"
+        buttonClickHandler={handleOrderClick}
+      />
       {!isOrderLoading && (
         <Modal
           type="default"

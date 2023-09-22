@@ -1,0 +1,39 @@
+@import '../../styles/index.scss';
+
+.order_bottom {
+  position: fixed;
+  box-sizing: border-box;
+  bottom: 0;
+  width: 100%;
+  display: none;
+  padding: 16px 8px;
+  gap: 16px;
+  justify-content: flex-end;
+  background-color: $color-background-1;
+
+  @media screen and (max-width: 1023px) {
+    display: flex;
+  }
+}
+
+.default {
+  position: static;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: 0;
+  padding-right: 16px;
+  background-color: transparent;
+}
+
+.order_bottom button {
+  @include renderFont(
+    $size: $font-size-text-s
+  )
+}
+
+.default button {
+  @include renderFont();
+}
