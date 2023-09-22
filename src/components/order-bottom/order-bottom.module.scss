@@ -11,7 +11,7 @@
   justify-content: flex-end;
   background-color: $color-background-1;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     display: flex;
   }
 }

@@ -9,12 +9,12 @@
   max-width: 480px;
   gap: 80px;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     padding-top: calc(16px + 72px);
     gap: 40px;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
     padding-top: calc(16px + 64px);
   }
 }

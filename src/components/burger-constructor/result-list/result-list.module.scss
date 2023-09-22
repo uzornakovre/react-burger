@@ -18,14 +18,12 @@
 }
 
 .item {
-  // min-height: 80px;
-
   &_top,
   &_bottom {
     width: calc(100% - 50px);
     padding-left: 50px;
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
       width: calc(100% - 30px);
       padding-left: 30px;
     }
@@ -34,7 +32,7 @@
   &_middle {
     width: calc(100% - 20px);
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
       width: 100%;
       padding-left: 0;
     }
@@ -52,7 +50,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     max-height: calc(100vh - 400px);
     margin-right: 0;
     padding-right: 0;
@@ -98,7 +96,7 @@
 .element {
   min-height: auto;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     max-width: 100%;
     width: 100%;
     padding: 8px;

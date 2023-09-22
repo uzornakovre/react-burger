@@ -20,7 +20,7 @@
     min-width: 24px;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     gap: 0;
   }
 }
@@ -28,7 +28,7 @@
 .element {
   min-height: auto;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     max-width: 100%;
     width: 100%;
     padding: 8px;

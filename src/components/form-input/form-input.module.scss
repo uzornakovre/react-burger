@@ -15,7 +15,7 @@
 
   @include renderFont($color: $color-text-2);
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     top: 12px;
     left: 20px;
   }
@@ -23,7 +23,7 @@
   &_active {
     top: 8px;
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
       top: 0;
       font-size: $font-size-text-s;
     }
@@ -41,7 +41,7 @@
 
   @include renderFont();
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     height: 48px;
     padding: 8px 20px 0;
   }
@@ -57,7 +57,7 @@
   &:focus + .input_label {
     top: 8px;
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
       top: 0;
       font-size: $font-size-text-s;
     }
@@ -90,7 +90,7 @@
     opacity: .5;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     top: 12px;
     right: 20px
   }
@@ -107,7 +107,7 @@
     $line-height: $font-line-height-xs,
   );
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     min-height: 16px;
   }
 }

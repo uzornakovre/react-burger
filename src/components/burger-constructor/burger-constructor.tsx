@@ -37,7 +37,7 @@ import {
   setIsOrderDetailsModalOpen,
 } from "../../services/modals/modalsSlice";
 import { getCookie } from "../../utils/cookies";
-import OrderBottom from "../mobile-bottom/order-bottom";
+import OrderBottom from "../order-bottom/order-bottom";
 
 interface BurgerConstructorProps {
   type: "default" | "modal";

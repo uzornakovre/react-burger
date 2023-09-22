@@ -1,7 +1,7 @@
 @import '../../styles/index.scss';
 
 .burger_ingredients {
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     padding-top: 64px;
     width: 100%;
   }
@@ -15,7 +15,7 @@
     $color: $color-text-1
   );
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     font-size: $font-size-price;
     text-align: center;
   }

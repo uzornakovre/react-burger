@@ -1,11 +1,9 @@
-@import '../../../styles/index.scss';
+@import "../../../styles/index.scss";
 
 .title {
-  @include renderFont(
-    $size: $font-size-heading
-  );
+  @include renderFont($size: $font-size-heading);
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     font-size: $font-size-heading-s;
   }
 }
@@ -16,7 +14,7 @@
   gap: 24px;
   padding: 24px 16px 40px 16px;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     gap: 16px;
     width: 100%;
     padding: 16px 0 12px;

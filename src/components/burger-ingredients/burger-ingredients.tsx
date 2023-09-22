@@ -10,7 +10,7 @@ import {
 } from "../../services/modals/modalsSlice";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIsCartModalOpen } from "../../services/modals/selectors";
-import OrderBottom from "../mobile-bottom/order-bottom";
+import OrderBottom from "../order-bottom/order-bottom";
 
 const BurgerIngredients = () => {
   const dispatch = useAppDispatch();

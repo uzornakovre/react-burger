@@ -18,7 +18,7 @@
 
   @include renderFont($color: $color-text-2);
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     flex-direction: column;
     gap: 0;
   }
@@ -26,12 +26,12 @@
   &_link {
     @include renderFont($color: $color-interface-accent-1);
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
       font-size: $font-size-text-s;
     }
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     font-size: $font-size-text-s;
   }
 }
