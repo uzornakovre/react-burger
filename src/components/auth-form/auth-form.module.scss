@@ -5,6 +5,12 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 .title {
