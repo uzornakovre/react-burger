@@ -5,7 +5,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     padding-left: 8px;
     padding-right: 8px;
     padding-bottom: 73px;

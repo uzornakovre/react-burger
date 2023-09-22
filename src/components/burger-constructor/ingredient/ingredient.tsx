@@ -90,6 +90,7 @@ const Ingredient: FC<IIngredientProps> = ({
         price={price}
         thumbnail={image}
         handleClose={handleDeleteClick}
+        extraClass={styles.element}
       />
     </div>
   );

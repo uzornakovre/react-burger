@@ -4,12 +4,14 @@ interface IModalsState {
   isOrderDetailsModalOpen: boolean;
   isInfoModalOpen: boolean;
   infoModalText: string;
+  isCartModalOpen: boolean;
 }
 
 export const initialState: IModalsState = {
   isOrderDetailsModalOpen: false,
   isInfoModalOpen: false,
   infoModalText: "",
+  isCartModalOpen: false
 };
 
 const modalsSlice = createSlice({
@@ -28,6 +30,10 @@ const modalsSlice = createSlice({
       return { ...state, infoModalText: action.payload };
     },
 
+    setIsCartModalOpen: (state, action: PayloadAction<boolean>) => {
+      return { ...state, isCartModalOpen: action.payload };
+    },
+
     closeAllModals: () => {
       return initialState;
     },
@@ -38,6 +44,7 @@ export const {
   setIsOrderDetailsModalOpen,
   setIsInfoModalOpen,
   setInfoModalText,
+  setIsCartModalOpen,
   closeAllModals,
 } = modalsSlice.actions;
 

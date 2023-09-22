@@ -15,7 +15,7 @@
     background-color: $color-background-1;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     cursor: pointer;
 
     &:hover {
@@ -37,7 +37,7 @@
     $line-height: $font-line-height-price,
   );
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     font-size: $font-size-price-s;
   }
 }
@@ -46,7 +46,7 @@
   min-height: 48px;
   text-align: center;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     font-size: $font-size-text-s;
   }
 }
@@ -88,7 +88,7 @@
   font-size: $font-size-text-s;
   cursor: pointer;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     display: block;
   }
 }

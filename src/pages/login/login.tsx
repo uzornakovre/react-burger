@@ -1,7 +1,7 @@
 import styles from "./login.module.scss";
 import { FormEvent } from "react";
 import { useAppDispatch } from "../../services/hooks";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../utils/api";
 import useFormData, { TFormValues } from "../../hooks/useFormData";
 import FormInput from "../../components/form-input/form-input";
@@ -15,14 +15,17 @@ import {
   setIsInfoModalOpen,
 } from "../../services/modals/modalsSlice";
 import { setLoggedIn } from "../../services/auth/authSlice";
+import AuthTips from "../../components/auth-tips/auth-tips";
+import { LOGIN_TIPS_DATA } from "../../utils/constants";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const formData = useFormData<TFormValues>({
     login_email: '',
     login_password: ''
   });
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault();
@@ -64,24 +67,7 @@ const Login = () => {
           icons={[<ShowIcon type="primary" />, <HideIcon type="primary" />]}
         />
       </AuthForm>
-      <div className={styles.tips}>
-        <p className={styles.tip}>
-          Вы - новый пользователь?{" "}
-          {
-            <Link to="/register" className={styles.tip_link}>
-              Зарегистрироваться
-            </Link>
-          }
-        </p>
-        <p className={styles.tip}>
-          Забыли пароль?{" "}
-          {
-            <Link to="/forgot-password" className={styles.tip_link}>
-              Восстановить пароль
-            </Link>
-          }
-        </p>
-      </div>
+      <AuthTips tipsData={LOGIN_TIPS_DATA} />
     </div>
   );
 }

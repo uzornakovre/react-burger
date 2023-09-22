@@ -6,4 +6,9 @@
   height: 100px;
 
   @include renderFont();
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    padding: 0 8px;
+    text-align: center;
+  }
 }

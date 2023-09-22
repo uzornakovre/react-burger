@@ -1,5 +1,5 @@
 import styles from "./register.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useFormData, { TFormValues } from "../../hooks/useFormData";
 import FormInput from "../../components/form-input/form-input";
 import {
@@ -15,6 +15,8 @@ import {
 } from "../../services/modals/modalsSlice";
 import { FormEvent } from "react";
 import { setLoggedIn } from "../../services/auth/authSlice";
+import AuthTips from "../../components/auth-tips/auth-tips";
+import { REGISTER_TIPS_DATA } from "../../utils/constants";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -109,16 +111,7 @@ const Register = () => {
           icons={[<ShowIcon type="primary" />, <HideIcon type="primary" />]}
         />
       </AuthForm>
-      <div className={styles.tips}>
-        <p className={styles.tip}>
-          Уже зарегистрированы?{" "}
-          {
-            <Link to="/login" className={styles.tip_link}>
-              Войти
-            </Link>
-          }
-        </p>
-      </div>
+      <AuthTips tipsData={REGISTER_TIPS_DATA} />
     </div>
   );
 }

@@ -26,3 +26,38 @@ export const EP_LOGIN = "login";
 export const EP_REGISTER = "register";
 export const EP_FORGOT_PASSWORD = "forgot-password";
 export const EP_RESET_PASSWORD = "reset-password";
+
+// Auth Tips Data
+
+export const LOGIN_TIPS_DATA = [
+  {
+    id: 1,
+    text: "Вы - новый пользователь?",
+    link: "/register",
+    linkText: "Зарегистрироваться",
+  },
+  {
+    id: 2,
+    text: "Забыли пароль?",
+    link: "/forgot-password",
+    linkText: "Восстановить пароль",
+  },
+];
+
+export const REGISTER_TIPS_DATA = [
+  {
+    id: 1,
+    text: "Уже зарегистрированы?",
+    link: "/login",
+    linkText: "Войти",
+  },
+];
+
+export const RESET_PASSWORD_TIPS_DATA = [
+  {
+    id: 1,
+    text: "Вспомнили пароль?",
+    link: "/login",
+    linkText: "Войти",
+  },
+];

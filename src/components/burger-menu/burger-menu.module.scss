@@ -68,7 +68,7 @@
   transition: all .3s linear;
   right: -50%;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
     width: 100%;
   }
 
