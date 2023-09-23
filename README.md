@@ -1,4 +1,4 @@
-# :small_orange_diamond: Приложение "Stellar Burgers"
+# :small_orange_diamond: Приложение ["Stellar Burgers"](https://stellar-burgers.website/)
 *Проектная работа на курсе в Яндекс Практикум*  
 ______
 
@@ -27,7 +27,7 @@ ______
 * :heavy_check_mark: React.js
 * :heavy_check_mark: Redux Toolkit
  
-[:link: Открыть веб-сайт приложения](https://stellar-burgers.website)   
+[:link: Открыть веб-сайт приложения](https://stellar-burgers.website) (Для деплоя был использован Yandex Cloud)   
 [:link: Открыть макет в Figma](https://www.figma.com/file/zFGN2O5xktHl9VmoOieq5E/React-_-Проектные-задачи_external_link?type=design&node-id=0-1&mode=design)
 ------
 ![GitHub repo size](https://img.shields.io/github/repo-size/uzornakovre/react-burger?color=yellow&style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/uzornakovre/react-burger?color=blue&style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/uzornakovre/react-burger?color=pink&style=flat-square)  
