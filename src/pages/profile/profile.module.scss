@@ -5,9 +5,19 @@
   grid-template-columns: (320px auto);
   gap: 60px;
   max-width: 1280px;
-  margin: 120px auto 0;
-  padding: 0px 20px;
+  margin: 0 auto;
+  padding: 120px 20px 0;
   box-sizing: border-box;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: calc(16px + 72px) 16px 0;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding: calc(16px + 64px) 8px 0;
+  }
 }
 
 .side_container {
@@ -16,8 +26,34 @@
   gap: 80px;
 }
 
+.nav_menu_list {
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: flex;
+  }
+}
+
 .nav_menu_list_item {
   height: 64px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    height: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: inset 0px -1px 0px $color-interface-input-1;
+    color: $color-text-2;
+    transition: all .3s ease-in;
+    box-sizing: border-box;
+
+    &:hover {
+      color: $color-text-1;
+    }
+
+    &:last-child {
+      color: $color-interface-error;
+    }
+  }
 }
 
 .nav_link {
@@ -34,15 +70,32 @@
   &:hover {
     color: $color-text-1;
   }
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    color: inherit;
+    display: block;
+    padding: 16px 0px;
+    width: 100%;
+    font-size: $font-size-text-s;
+    line-height: $font-line-height-text;
+  }
 }
 
 .active {
   color: $color-text-1;
   cursor: default;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    box-shadow: inset 0px -2px 0px $color-interface-accent-1;
+  }
 }
 
 .tip {
   @include renderFont($color: $color-text-2);
 
   opacity: .4;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: none;
+  }
 }

@@ -5,4 +5,8 @@
   height: calc(100vh - 208px);
   overflow-y: scroll;
   overflow-x: hidden;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    height: calc(100vh - 158px);
+  }
 }
