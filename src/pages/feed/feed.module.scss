@@ -9,11 +9,11 @@
   gap: 20px;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-    padding: calc(40px + 72px) 16px 0;
+    padding: calc(16px + 72px) 16px 0;
   }
 
   @media screen and (max-width: calc($screen-width-tablet - 1px)) {
-    padding: calc(40px + 64px) 8px 0;
+    padding: calc(16px + 64px) 8px 0;
   }
 }
 
@@ -46,6 +46,7 @@
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     text-align: center;
     font-size: $font-size-price;
+    display: none;
   }
 }
 
@@ -73,7 +74,7 @@
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     min-height: 600px;
-    height: calc(100vh - 236px);
+    height: calc(100vh - 158px);
 
   }
 

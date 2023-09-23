@@ -20,7 +20,6 @@ const EditForm = () => {
   const formData = useFormData<TFormValues>({
     profile_name: "",
     profile_email: "",
-    profile_password: "",
   });
   const dispatch = useAppDispatch();
   const accessToken: string | undefined = getCookie("accessToken");
@@ -75,15 +74,6 @@ const EditForm = () => {
         label="E-mail"
         type="email"
         name="profile_email"
-        isIcon={true}
-        icons={[<EditIcon type="primary" />]}
-        place="profile"
-      />
-      <FormInput
-        formData={formData || {}}
-        label="Пароль"
-        type="password"
-        name="profile_password"
         isIcon={true}
         icons={[<EditIcon type="primary" />]}
         place="profile"

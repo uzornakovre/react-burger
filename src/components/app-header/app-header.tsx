@@ -22,9 +22,9 @@ const AppHeader = () => {
         <Link className={styles.logo} to="/">
           <Logo />
         </Link>
-        <div className={styles.logo_mobile}>
+        <Link className={styles.logo_mobile} to="/">
           <img src={logoMobile} alt="Логотип с изображением неонового бургера" />
-        </div>
+        </Link>
         <h1 className={styles.title} lang="en">
           Stellar Burgers
         </h1>
