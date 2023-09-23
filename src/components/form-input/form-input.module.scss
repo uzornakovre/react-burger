@@ -9,7 +9,7 @@
 
 .input_label {
   position: absolute;
-  top: 20px;
+  top: 18px;
   left: 24px;
   transition: all .2s linear;
 
@@ -24,7 +24,7 @@
     top: 8px;
 
     @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-      top: 0;
+      top: 4px;
       font-size: $font-size-text-s;
     }
   }
@@ -32,7 +32,7 @@
 
 .input {
   width: 100%;
-  height: 64px;
+  height: 60px;
   padding: 24px 24px 0;
   box-sizing: border-box;
   border-radius: 40px;
@@ -43,7 +43,7 @@
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     height: 48px;
-    padding: 8px 20px 0;
+    padding: 16px 20px 0;
   }
 
   &_error {
@@ -58,7 +58,7 @@
     top: 8px;
 
     @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-      top: 0;
+      top: 4px;
       font-size: $font-size-text-s;
     }
   }
@@ -78,7 +78,7 @@
 
 .icon {
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 24px;
   cursor: pointer;
 
