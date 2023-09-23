@@ -6,10 +6,15 @@
   overflow-x: hidden;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 73px;
+    height: calc(100vh - 252px - 72px);
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
     padding-left: 8px;
     padding-right: 8px;
-    padding-bottom: 73px;
-    width: calc(100% - 8px * 2);
-    height: calc(100vh - 252px - 72px);
   }
 }

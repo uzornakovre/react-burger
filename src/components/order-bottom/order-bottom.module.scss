@@ -6,13 +6,18 @@
   bottom: 0;
   width: 100%;
   display: none;
-  padding: 16px 8px;
+  padding: 16px;
   gap: 16px;
   justify-content: flex-end;
   background-color: $color-background-1;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     display: flex;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
