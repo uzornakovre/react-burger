@@ -1,0 +1,98 @@
+@import '../../styles/index.scss';
+
+.statistics {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    max-width: 380px;
+    gap: 24px;
+  }
+
+  &_inactive {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      display: none;
+    }
+  }
+}
+
+.status {
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  gap: 36px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    width: 100%;
+    grid-template-columns: repeat(2, 140px);
+    gap: 24px;
+  }
+}
+
+.status_column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    gap: 16px;
+  }
+}
+
+.status_column_list {
+  display: flex;
+  max-height: 250px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    gap: 4px;
+  }
+}
+
+.heading {
+  @include renderFont(
+    $size: $font-size-heading,
+    $weight: 700,
+    $line-height: $font-line-height-heading
+  );
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    font-size: $font-size-heading-s;
+  }
+}
+
+.item_id {
+  display: block;
+  width: fit-content;
+  
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-price,
+    $line-height: $font-line-height-price
+  );
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    font-size: $font-size-price-s;
+  }
+}
+
+.ready {
+  color: $color-interface-success;
+}
+
+.total_value {
+  text-shadow: 0px 4px 32px rgba(51, 51, 255, 0.5),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 0px 16px rgba(51, 51, 255, 0.25);
+
+  @include renderFont(
+    $family: $font-family-additional,
+    $size: $font-size-xl,
+    $line-height: $font-line-height-xl
+  );
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    font-size: $font-size-l;
+  }
+}

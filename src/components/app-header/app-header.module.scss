@@ -3,6 +3,7 @@
 .header {
   color: $color-text-1;
   background-color: $color-background-1;
+  z-index: 10000;
   
   @include renderFont();
 

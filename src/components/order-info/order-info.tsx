@@ -129,7 +129,9 @@ const OrderInfo: FC<IOrderInfo> = ({ type }) => {
             #{currentOrder?.number}
           </h2>
           <div className={styles.dish}>
-            <h3 className={styles.dish_name}>{currentOrder?.name}</h3>
+            <h3 className={styles.dish_name} title={currentOrder?.name}>
+              {currentOrder?.name}
+            </h3>
             <p
               className={`${styles.dish_status} ${
                 currentOrder?.status === "done" && styles.done

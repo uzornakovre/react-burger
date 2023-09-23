@@ -13,6 +13,10 @@
     $line-height: $font-line-height-price-l,
     $color: $color-text-1
   );
+
+  @media screen and (max-width: $screen-width-desktop-s) {
+    font-size: $font-size-price-s;
+  }
 }
 
 .large {

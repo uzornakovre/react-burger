@@ -98,7 +98,7 @@
 
 .error {
   display: block;
-  padding: 4px 24px 0;
+  padding: 4px 24px 4px;
   min-height: 20px;
 
   @include renderFont(
@@ -106,8 +106,4 @@
     $size: $font-size-xs,
     $line-height: $font-line-height-xs,
   );
-
-  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-    min-height: 16px;
-  }
 }

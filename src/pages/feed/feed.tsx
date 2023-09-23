@@ -1,38 +1,19 @@
 import styles from "./feed.module.scss";
 import OrdersList from "../../components/orders-list/orders-list";
-import { useAppDispatch, useAppSelector } from "../../services/hooks";
-import { useEffect } from "react";
+import { useAppDispatch } from "../../services/hooks";
+import { useEffect, useState } from "react";
 import { wsActions } from "../../services/websocket/wsSlice";
-import {
-  getOrders,
-  getTotal,
-  getTotalToday,
-} from "../../services/websocket/selectors";
 import { WS_URL } from "../../utils/constants";
+import Statistics from "../../components/statistics/statistics";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const Feed = () => {
   const dispatch = useAppDispatch();
-  const orders = useAppSelector(getOrders);
-  const total = useAppSelector(getTotal);
-  const totalToday = useAppSelector(getTotalToday);
+  const [currentTab, setCurrentTab] = useState("one");
 
-  const ordersDone = orders
-    .filter((order) => order.status === "done")
-    .map((order) => (
-      <li key={order._id} className={`${styles.item_id} ${styles.ready}`}>
-        {order.number}
-      </li>
-    ))
-    .slice(0, 24);
-
-  const ordersPending = orders
-    .filter((order) => order.status === "pending")
-    .map((order) => (
-      <li key={order._id} className={`${styles.item_id}`}>
-        {order.number}
-      </li>
-    ))
-    .slice(0, 24);
+  function handleTabClick(tab: string) {
+    setCurrentTab(tab);
+  }
 
   useEffect(() => {
     dispatch(wsActions.connectionStart(`${WS_URL}/all`));
@@ -44,30 +25,31 @@ const Feed = () => {
   return (
     <div className={styles.feed}>
       <h2 className={styles.title}>Лента заказов</h2>
+      <div className={styles.tabs}>
+        <Tab
+          value="one"
+          active={currentTab === "one"}
+          onClick={() => handleTabClick("one")}
+        >
+          Заказы
+        </Tab>
+        <Tab
+          value="two"
+          active={currentTab === "two"}
+          onClick={() => handleTabClick("two")}
+        >
+          Статистика
+        </Tab>
+      </div>
       <div className={styles.container}>
-        <div className={styles.orders_list}>
+        <div
+          className={`${styles.orders_list} ${
+            currentTab === "two" && styles.orders_list_inactive
+          }`}
+        >
           <OrdersList place="feed" />
         </div>
-        <div className={styles.statistics}>
-          <div className={styles.status}>
-            <div className={styles.status_column}>
-              <h3 className={styles.heading}>Готовы:</h3>
-              <ul className={styles.status_column_list}>{ordersDone}</ul>
-            </div>
-            <div className={styles.status_column}>
-              <h3 className={styles.heading}>В работе:</h3>
-              <ul className={styles.status_column_list}>{ordersPending}</ul>
-            </div>
-          </div>
-          <div className={styles.total}>
-            <h3 className={styles.heading}>Выполнено за все время:</h3>
-            <p className={styles.total_value}>{total}</p>
-          </div>
-          <div className={styles.total}>
-            <h3 className={styles.heading}>Выполнено за сегодня:</h3>
-            <p className={styles.total_value}>{totalToday}</p>
-          </div>
-        </div>
+        <Statistics isShown={currentTab === "two"} />
       </div>
     </div>
   );
