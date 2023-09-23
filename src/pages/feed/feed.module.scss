@@ -3,9 +3,18 @@
 .feed {
   display: flex;
   max-width: 1280px;
-  margin: 40px auto 0;
+  margin: 0 auto;
+  padding: 40px 20px 0;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    padding: calc(40px + 72px) 16px 0;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding: calc(40px + 64px) 8px 0;
+  }
 }
 
 .title {
@@ -18,72 +27,28 @@
 
 .container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 60% auto;
   gap: 60px;
+
+  @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+    grid-template-columns: 50% auto;
+    gap: 40px;
+  }
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .orders_list {
   height: calc(100vh - 188px);
+  min-height: 712px;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    height: calc(100vh - 174px);
+  }
 }
 
-.statistics {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
 
-.status {
-  display: grid;
-  grid-template-columns: repeat(2, 280px);
-  gap: 36px;
-}
-
-.status_column {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.status_column_list {
-  display: flex;
-  max-height: 250px;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.heading {
-  @include renderFont(
-    $size: $font-size-heading,
-    $weight: 700,
-    $line-height: $font-line-height-heading
-  );
-}
-
-.item_id {
-  display: block;
-  width: fit-content;
-  
-  @include renderFont(
-    $family: $font-family-additional,
-    $size: $font-size-price,
-    $line-height: $font-line-height-price
-  );
-}
-
-.ready {
-  color: $color-interface-success;
-}
-
-.total_value {
-  text-shadow: 0px 4px 32px rgba(51, 51, 255, 0.5),
-    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 0px 16px rgba(51, 51, 255, 0.25);
-
-  @include renderFont(
-    $family: $font-family-additional,
-    $size: $font-size-xl,
-    $line-height: $font-line-height-xl
-  );
-}
