@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useAppSelector } from "../../services/hooks";
 import {
   getOrders,
@@ -6,7 +7,11 @@ import {
 } from "../../services/websocket/selectors";
 import styles from "./statistics.module.scss";
 
-const Statistics = () => {
+interface IStatisticsProps {
+  isShown: boolean;
+}
+
+const Statistics: FC<IStatisticsProps> = ({ isShown }) => {
   const orders = useAppSelector(getOrders);
   const total = useAppSelector(getTotal);
   const totalToday = useAppSelector(getTotalToday);
@@ -30,7 +35,7 @@ const Statistics = () => {
     .slice(0, 16);
 
   return (
-    <div className={styles.statistics}>
+    <div className={`${styles.statistics} ${!isShown && styles.statistics_inactive}`}>
       <div className={styles.status}>
         <div className={styles.status_column}>
           <h3 className={styles.heading}>Готовы:</h3>

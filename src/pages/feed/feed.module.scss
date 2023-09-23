@@ -17,12 +17,31 @@
   }
 }
 
+.tabs {
+  display: none;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  div {
+    padding: 16px 0px;
+    min-width: 0;
+    flex: 1 1 33%;
+  }
+}
+
 .title {
   @include renderFont(
     $size: $font-size-heading-l,
     $line-height: $font-line-height-heading-l,
     $weight: 700
   );
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    text-align: center;
+  }
 }
 
 .container {
@@ -47,7 +66,15 @@
   overflow-x: hidden;
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-    height: calc(100vh - 174px);
+    min-height: 600px;
+    height: calc(100vh - 248px);
+
+  }
+
+  &_inactive {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      display: none;
+    }
   }
 }
 
