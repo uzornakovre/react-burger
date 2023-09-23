@@ -29,6 +29,10 @@
     padding: 16px 0px;
     min-width: 0;
     flex: 1 1 33%;
+    
+    span {
+      font-size: $font-size-text-s;
+    }
   }
 }
 
@@ -41,6 +45,7 @@
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     text-align: center;
+    font-size: $font-size-price;
   }
 }
 
@@ -50,6 +55,7 @@
   gap: 60px;
 
   @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+    margin: 0 auto;
     grid-template-columns: 50% auto;
     gap: 40px;
   }
@@ -67,7 +73,7 @@
 
   @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
     min-height: 600px;
-    height: calc(100vh - 248px);
+    height: calc(100vh - 236px);
 
   }
 
